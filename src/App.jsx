@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import Navbar from "./components/Navbar";
+import Landingpage from "./components/Landingpage";
 
 function App() {
   return (
-    <div class="bg-pink-950">
-      hello 
+    <div>
+      <Navbar />
+      <Landingpage />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
