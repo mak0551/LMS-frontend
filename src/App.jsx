@@ -3,14 +3,19 @@ import Navbar from "./components/Navbar";
 import Landingpage from "./components/Landingpage";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Signup/>
-      <Signin/>
-      <Navbar />
-      <Landingpage />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landingpage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

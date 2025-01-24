@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [name, setName] = useState();
@@ -28,8 +29,8 @@ function Signup() {
     }
   };
   return (
-    <div className="flex justify-center gap-24 items-center h-[100vh] w-full bg-green-50 px-10">
-      <img src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-1-x1.webp" />
+    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 px-10">
+      <img src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-1-x1.webp" className="h-full"/>
       <form
         className="flex flex-col gap-8 w-[60vh]  border-pink-800 h-fit p-8 rounded-lg "
         onSubmit={handleSignup}
@@ -81,13 +82,24 @@ function Signup() {
             className="appearance-none border-none outline-none focus:ring-0 bg-transparent "
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>  
-        <button
-          type="submit"
-          className="w-full bg-pink-200 h-12 font-mono rounded-md hover:bg-pink-100"
-        >
-          Sign up
-        </button>
+        </div>
+        <div>
+          <button
+            type="submit"
+            className="w-full bg-pink-200 h-12 font-mono rounded-md hover:bg-pink-100"
+          >
+            Sign up
+          </button>
+          <h6 className="text-sm text-center mt-1 font-semibold">
+            already have an account?{" "}
+            <Link
+              to={"/signin"}
+              className="text-pink-800 font-mono underline underline-offset-4"
+            >
+              Sign in
+            </Link>
+          </h6>
+        </div>
       </form>
     </div>
   );
