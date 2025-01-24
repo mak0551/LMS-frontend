@@ -1,4 +1,5 @@
 import React from "react";
+import Courses from "./Courses";
 
 export default function Landingpage() {
   const imgobj = [
@@ -61,13 +62,14 @@ export default function Landingpage() {
       </div>
       <marquee behavior="alternate" direction="right" scrollamount="10">
         <div className="flex my-4">
-          {imgobj.map((data) => {
+          {imgobj.map((data, index) => {
             return (
-              <img className="h-20 mx-10 rounded-md" src={data.img} alt="" />
+              <img className="h-20 mx-10 rounded-md" src={data.img} alt="" key={index}/>
             );
           })}
         </div>
       </marquee>
+      <Courses />
     </div>
   );
 }

@@ -32,7 +32,7 @@ function Signup() {
     <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 px-10">
       <img src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-1-x1.webp" className="h-full"/>
       <form
-        className="flex flex-col gap-8 w-[60vh]  border-pink-800 h-fit p-8 rounded-lg "
+        className="flex flex-col gap-8 w-[60vh] border-pink-800 h-fit p-8 rounded-lg "
         onSubmit={handleSignup}
       >
         <h1 className="font-mono text-center text-2xl capitalize text-pink-900">
