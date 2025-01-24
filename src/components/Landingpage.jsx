@@ -60,7 +60,7 @@ export default function Landingpage() {
         </h6>
       </div>
       <marquee behavior="alternate" direction="right" scrollamount="10">
-        <div className="flex mt-6">
+        <div className="flex my-4">
           {imgobj.map((data) => {
             return (
               <img className="h-20 mx-10 rounded-md" src={data.img} alt="" />
