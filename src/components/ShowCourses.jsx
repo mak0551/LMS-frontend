@@ -17,7 +17,7 @@ function ShowCourses() {
       {data.length > 0 ? (
         data.map((data, index) => (
           <div
-            className="w-full h-[300px] flex rounded-lg overflow-hidden my-8 font-mono p-6 border border-pink-400"
+            className="w-full h-[300px] flex rounded-lg overflow-hidden my-8 bg-zinc-100 font-mono p-6"
             key={index}
           >
             <div className="w-[40%]">
@@ -31,7 +31,7 @@ function ShowCourses() {
                 className="h-full w-full rounded-md "
               />
             </div>
-            <div className=" w-[60%] px-8">
+            <div className=" w-[60%] px-8 relative">
               <h1 className="mt-4 mb-2 text-3xl capitalize font-mono font-bold">
                 {data.title}
               </h1>
@@ -42,9 +42,9 @@ function ShowCourses() {
               <div className="text-xs mb-2 font-base">
                 Last Updated {data.updatedAt.slice(0, 10)}
               </div>
-              <span>&#8377;{data.price}</span>
+              <span className="absolute top-4 right-10 text-xl">&#8377;{data.price}</span>
 
-              <div className="my-4 flex gap-2 items-center">
+              <div className="mt-4 flex gap-2 items-center">
                 <span
                   className={`${
                     data.level === "Advance" ? "bg-red-300" : "bg-green-300"
@@ -55,7 +55,7 @@ function ShowCourses() {
                   {data.level}
                 </span>
                 <Link
-                  to={"/viewcoursedetails"}
+                  to={`/viewcoursedetails/${data._id}`}
                   className="text-sm underline underline-offset-4"
                 >
                   View Details
