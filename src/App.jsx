@@ -5,7 +5,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ShowCourses from "./components/ShowCourses";
-import ViewCourse from "./components/viewCourse";
+import ViewCourse from "./components/ViewCourse";
 
 function App() {
   return (

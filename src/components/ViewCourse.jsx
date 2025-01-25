@@ -15,6 +15,7 @@ function ViewCourse() {
       );
       setData(response.data);
       console.log(response.data);
+      // console.log(response.data.module[0].content[0].url, "fsdfdsfjasdj");
     };
     fetchdata();
   }, [id]);
@@ -22,7 +23,7 @@ function ViewCourse() {
     setMount(true);
   }, 2000);
   return (
-    <div className="mx-48 my-20 font-mono p-2">
+    <div className="mx-48 mt-20 font-mono p-2 h-full ">
       <div className="flex gap-4 items-center">
         <img
           src={`${
@@ -31,23 +32,23 @@ function ViewCourse() {
               : "https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }`}
           alt=""
-          className="h-[200px] w-[300px] rounded-md "
+          className="h-[200px] w-[300px] rounded-md hover:brightness-125"
         />
         <div className="m-4 flex flex-col gap-2">
           <h1 className="font-mono text-4xl capitalize">{data.title}</h1>
           <p className="text-zinc-500 text-base">{data.description}</p>
           <span className="capitalize">instructor - {data.teacher?.name}</span>
           <span className="text-sm">
-            Date Created: {data.createdAt?.slice(0, 10)}
+            <b>Date Created:</b> {data.createdAt?.slice(0, 10)}
           </span>
           <span className="text-sm">
-            Last Updated: {data.updatedAt?.slice(0, 10)}
+            <b>Last Updated:</b> {data.updatedAt?.slice(0, 10)}
           </span>
         </div>
       </div>
-      <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col gap-4">
         <span className="mt-4">
-          Course Duration:{" "}
+          <b>Course Duration:</b>{" "}
           {`${
             data.duration?.hours > 1
               ? `${data.duration?.hours} hours`
@@ -56,7 +57,7 @@ function ViewCourse() {
         </span>
         <div className="flex flex-col gap-4 ">
           <span>
-            Difficulty Level:{" "}
+            <b>Difficulty Level:</b>{" "}
             <span
               className={`${
                 data.level === "Advance" ? "bg-red-300" : "bg-green-300"
@@ -68,15 +69,45 @@ function ViewCourse() {
             </span>
           </span>
           <div>
-            Required Skills:{" "}
+            <b>Required Skills:{" ["}</b>
             {data.skillsRequired?.map((data, index) => (
               <span key={index} className="capitalize">
                 {" "}
                 {data}{" "}
               </span>
             ))}
+            {"]"}
           </div>
-          <div>Enrollment Fee: &#8377;{data.price}</div>
+          <div>
+            <b>Enrollment Fee:</b> &#8377;{data.price}
+          </div>
+        </div>
+        <div className=" mr-40 w-[80%] bg-zinc-50 rounded-md">
+          <h1 className="font-mono m-2 font-semibold text-lg">
+            Course content
+          </h1>
+          {data.module?.map((data, index) => (
+            <div key={index} className="m-2">
+              <div className="flex justify-between items-center">
+                {data.content?.map((data, index) => (
+                  <video
+                    width="200"
+                    height="200"
+                    onMouseEnter={(e) => e.target.play()}
+                    onMouseLeave={(e) => e.target.pause()}
+                    muted
+                    key={index}
+                    className="rounded-md"
+                  >
+                    <source src={data.url} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ))}
+                <h1 className="capitalize font-bold">{data.title}</h1>
+                <p className="capitalize text-zinc-600">{data.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
         <button className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100">
           Enroll Now
