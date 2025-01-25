@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Courses from "./Courses";
 
 function ViewCourse() {
@@ -82,32 +82,36 @@ function ViewCourse() {
             <b>Enrollment Fee:</b> &#8377;{data.price}
           </div>
         </div>
-        <div className=" mr-40 w-[80%] bg-zinc-50 rounded-md">
-          <h1 className="font-mono m-2 font-semibold text-lg">
-            Course content
-          </h1>
-          {data.module?.map((data, index) => (
-            <div key={index} className="m-2">
-              <div className="flex justify-between items-center">
-                {data.content?.map((data, index) => (
-                  <video
-                    width="200"
-                    height="200"
-                    onMouseEnter={(e) => e.target.play()}
-                    onMouseLeave={(e) => e.target.pause()}
-                    muted
-                    key={index}
-                    className="rounded-md"
-                  >
-                    <source src={data.url} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                ))}
-                <h1 className="capitalize font-bold">{data.title}</h1>
-                <p className="capitalize text-zinc-600">{data.description}</p>
-              </div>
-            </div>
-          ))}
+        <div className="p-6 mr-40 w-[80%] bg-zinc-50 rounded-md">
+          <h1 className="font-mono font-semibold text-lg">Course content</h1>
+          <div className="max-h-[70vh] overflow-auto scrollbar-hide">
+            {data.module?.map((data, index) => (
+              <Link to={`/viewvideos/${data._id}`} key={data._id}>
+                <div className="my-4">
+                  <div className="flex justify-between items-center">
+                    {data.content?.map((data, index) => (
+                      <video
+                        width="200"
+                        height="200"
+                        onMouseEnter={(e) => e.target.play()}
+                        onMouseLeave={(e) => e.target.pause()}
+                        muted
+                        key={index}
+                        className="rounded-md"
+                      >
+                        <source src={data.url} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ))}
+                    <h1 className="capitalize font-bold">{data.title}</h1>
+                    <p className="capitalize text-zinc-600">
+                      {data.description}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
         <button className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100">
           Enroll Now

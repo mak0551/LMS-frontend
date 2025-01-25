@@ -6,6 +6,7 @@ import Signin from "./pages/Signin";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ShowCourses from "./components/ShowCourses";
 import ViewCourse from "./components/ViewCourse";
+import Viewvideo from "./components/Viewvideo";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/allcourses" element={<ShowCourses />} />
           <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
+          <Route path="/viewvideos/:id" element={<Viewvideo/>}/>
         </Routes>
       </Router>
     </div>
