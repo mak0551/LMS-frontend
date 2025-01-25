@@ -40,7 +40,7 @@ function Viewvideo() {
           key={data._id}
           className=" w-[80%]"
         >
-          <div className={`my-4 p-2 ${id === data._id ? "bg-zinc-100" : ""}`}>
+          <div className={`my-4 p-3 ${id === data._id ? "bg-zinc-100 border rounded-md border-zinc-600" : ""}`}>
             <div className="flex justify-between items-center">
               {data.content?.map((data, index) => (
                 <video
