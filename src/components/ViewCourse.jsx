@@ -93,7 +93,7 @@ function ViewCourse() {
           <h1 className="font-mono font-semibold text-lg">Course content</h1>
           <div className="max-h-[70vh] overflow-auto scrollbar-hide">
             {data.module?.map((data, index) => (
-              <div className="my-4 bg-zinc-100 rounded-md">
+              <div className="my-4 bg-zinc-100 rounded-md" key={index}>
                 <div
                   className="w-full bg-zinc-200 rounded-md items-center justify-between flex py-4 p-6"
                   onClick={() => toggleVisibility(index)}
