@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Courses from "./Courses";
+import { IoIosArrowDown } from "react-icons/io";
 
 function ViewCourse() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [mount, setMount] = useState(false);
+  const [visibleModule, setVisibleModule] = useState(null);
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -22,6 +24,11 @@ function ViewCourse() {
   setTimeout(() => {
     setMount(true);
   }, 2000);
+
+  const toggleVisibility = (index) => {
+    setVisibleModule(visibleModule === index ? null : index);
+  };
+
   return (
     <div className="mx-48 mt-20 font-mono p-2 h-full ">
       <div className="flex gap-4 items-center">
@@ -86,30 +93,46 @@ function ViewCourse() {
           <h1 className="font-mono font-semibold text-lg">Course content</h1>
           <div className="max-h-[70vh] overflow-auto scrollbar-hide">
             {data.module?.map((data, index) => (
-              <Link to={`/viewvideos/${data._id}`} key={data._id}>
-                <div className="my-4">
-                  <div className="flex justify-between items-center">
-                    {data.content?.map((data, index) => (
-                      <video
-                        width="200"
-                        height="200"
-                        onMouseEnter={(e) => e.target.play()}
-                        onMouseLeave={(e) => e.target.pause()}
-                        muted
-                        key={index}
-                        className="rounded-md"
-                      >
-                        <source src={data.url} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    ))}
-                    <h1 className="capitalize font-bold">{data.title}</h1>
-                    <p className="capitalize text-zinc-600">
-                      {data.description}
-                    </p>
-                  </div>
+              <div className="my-4 bg-zinc-100 rounded-md">
+                <div
+                  className="w-full bg-zinc-200 rounded-md items-center justify-between flex py-4 p-6"
+                  onClick={() => toggleVisibility(index)}
+                >
+                  <span className="font-bold text-lg">{data?.title}</span>{" "}
+                  <IoIosArrowDown
+                    className={`transition-transform ${
+                      visibleModule === index ? "rotate-180" : ""
+                    }`}
+                  />
                 </div>
-              </Link>
+                {visibleModule === index && (
+                  <Link to={`/viewvideos/${data._id}`} key={data._id}>
+                    <div className="p-2 flex flex-col gap-2">
+                      {data.content?.map((data, index) => (
+                        // console.log(data, "sdhafkjhfjk")
+                        <div className="flex justify-between items-center px-2">
+                          <video
+                            width="200"
+                            height="200"
+                            onMouseEnter={(e) => e.target.play()}
+                            onMouseLeave={(e) => e.target.pause()}
+                            muted
+                            key={index}
+                            className="rounded-md"
+                          >
+                            <source src={data.url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                          <h1 className="capitalize font-bold">{data.title}</h1>
+                          <p className="capitalize text-zinc-600">
+                            {data.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
         </div>
