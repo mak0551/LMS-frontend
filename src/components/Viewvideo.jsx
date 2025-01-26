@@ -7,7 +7,8 @@ function Viewvideo() {
   const [data, setData] = useState([]);
   const [courseData, setCoursedata] = useState([]);
   const [visibleModule, setVisibleModule] = useState(null);
-  const { id } = useParams();
+  const { id, index } = useParams();
+  const videoIndex = parseInt(index, 10); // index coming from useparas is always a string so it needs to be converted to number
 
   // scroll becomes zero when page rerenders
   useEffect(() => {
@@ -25,30 +26,52 @@ function Viewvideo() {
       setData(response.data);
       console.log(response.data);
 
-      const fetchallmodules = async () => {
-        const response2 = await axios.get(
-          `http://localhost:4040/course/getbyid/${response.data.courseId}`
-        );
-        setCoursedata(response2.data);
-        console.log(response2.data);
-      };
-      fetchallmodules();
+      const response2 = await axios.get(
+        `http://localhost:4040/course/getbyid/${response.data.courseId}`
+      );
+      setCoursedata(response2.data);
+      console.log(response2.data);
     };
     fetchdata();
-  }, [id]);
+  }, [id, videoIndex]);
 
   const toggleVisibility = (index) => {
     setVisibleModule(visibleModule === index ? null : index);
   };
 
+  // Handle invalid or missing data
+  if (!data || !data.content) {
+    return <div>Loading...</div>;
+  }
+
+  // Get the specific video based on the index from the URL
+  const videoData = data.content[videoIndex];
+
+  if (!videoData) {
+    return <p>Video not found</p>;
+  }
+
   return (
     <div className="mx-48 mt-20 bg-zinc-50 font-mono p-6 h-full flex flex-col items-center">
-      {data.content?.length > 0 && (
-        <video width="740" height="360" controls className="rounded-md">
-          <source src={data.content[0]?.url} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )}
+      <div>
+        <div className="mb-4">
+          <video
+            width="740"
+            height="360"
+            controls
+            className="rounded-md bg-zinc-200 p-4"
+          >
+            <source src={videoData.url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div className="m-2 capitalize text-lg font-bold">
+          {courseData.title}
+        </div>
+        <div className="m-2 capitalize text-sm font-semibold text-zinc-500">
+          {videoData.title}
+        </div>
+      </div>
       <div className="max-h-[70vh] my-4 overflow-auto scrollbar-hide w-full">
         {courseData.module?.map((data, index) => (
           <div className="my-4 bg-zinc-100 rounded-md mx-24 " key={index}>
@@ -64,13 +87,17 @@ function Viewvideo() {
               />
             </div>
             {visibleModule === index && (
-              <Link to={`/viewvideos/${data._id}`} key={data._id}>
-                <div className="p-2 flex flex-col gap-2">
-                  {data.content?.map((data, index) => (
-                    // console.log(data, "sdhafkjhfjk")
-                    <div
-                      className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded"
-                      key={index}
+              // <Link to={`/viewvideos/${data._id}`} key={data._id}>
+              <div className="p-2 flex flex-col gap-2">
+                {data.content?.map((contentdata, index) => (
+                  // console.log(data, "sdhafkjhfjk")
+                  <div
+                    className="flex justify-between items-center px-2 hover:bg-zinc-200 active:bg-zinc-200 rounded"
+                    key={index}
+                  >
+                    <Link
+                      to={`/viewvideos/${data._id}/${index}`}
+                      key={data._id}
                     >
                       <video
                         width="200"
@@ -81,17 +108,19 @@ function Viewvideo() {
                         key={index}
                         className="rounded-md"
                       >
-                        <source src={data.url} type="video/mp4" />
+                        <source src={contentdata.url} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
-                      <h1 className="capitalize font-bold">{data.title}</h1>
-                      <p className="capitalize text-zinc-600">
-                        {data.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </Link>
+                    </Link>
+                    <h1 className="capitalize font-bold">
+                      {contentdata.title}
+                    </h1>
+                    <p className="capitalize text-zinc-600">
+                      {contentdata.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         ))}

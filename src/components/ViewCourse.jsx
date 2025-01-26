@@ -21,9 +21,9 @@ function ViewCourse() {
     };
     fetchdata();
   }, [id]);
-  setTimeout(() => {
-    setMount(true);
-  }, 2000);
+  // setTimeout(() => {
+  //   setMount(true);
+  // }, 2000);
 
   const toggleVisibility = (index) => {
     setVisibleModule(visibleModule === index ? null : index);
@@ -106,11 +106,17 @@ function ViewCourse() {
                   />
                 </div>
                 {visibleModule === index && (
-                  <Link to={`/viewvideos/${data._id}`} key={data._id}>
-                    <div className="p-2 flex flex-col gap-2">
-                      {data.content?.map((data, index) => (
-                        // console.log(data, "sdhafkjhfjk")
-                        <div className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded-md" key={index}>
+                  <div className="p-2 flex flex-col gap-2">
+                    {data.content?.map((contentdata, index) => (
+                      // console.log(data, "sdhafkjhfjk")
+                      <div
+                        className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded-md"
+                        key={index}
+                      >
+                        <Link
+                          to={`/viewvideos/${data._id}/${index}`}
+                          key={data._id}
+                        >
                           <video
                             width="200"
                             height="200"
@@ -120,17 +126,20 @@ function ViewCourse() {
                             key={index}
                             className="rounded-md"
                           >
-                            <source src={data.url} type="video/mp4" />
+                            <source src={contentdata.url} type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
-                          <h1 className="capitalize font-bold">{data.title}</h1>
-                          <p className="capitalize text-zinc-600">
-                            {data.description}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </Link>
+                        </Link>
+
+                        <h1 className="capitalize font-bold">
+                          {contentdata.title}
+                        </h1>
+                        <p className="capitalize text-zinc-600">
+                          {contentdata.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
             ))}
@@ -143,14 +152,14 @@ function ViewCourse() {
           Add To WishList
         </button>
       </div>
-      {mount && (
-        <>
-          <h1 className="capitalize mt-8 underline underline-offset-2 text-2xl">
-            other courses you might be interested in
-          </h1>
-          <Courses />
-        </>
-      )}
+      {/* {mount && ( */}
+      <>
+        <h1 className="capitalize mt-8 underline underline-offset-2 text-2xl">
+          other courses you might be interested in
+        </h1>
+        <Courses />
+      </>
+      {/* )} */}
     </div>
   );
 }

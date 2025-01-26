@@ -19,7 +19,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/allcourses" element={<ShowCourses />} />
           <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
-          <Route path="/viewvideos/:id" element={<Viewvideo/>}/>
+          <Route path="/viewvideos/:id/:index" element={<Viewvideo/>}/>
         </Routes>
       </Router>
     </div>
