@@ -95,7 +95,7 @@ function ViewCourse() {
             {data.module?.map((data, index) => (
               <div className="my-4 bg-zinc-100 rounded-md" key={index}>
                 <div
-                  className="w-full bg-zinc-200 rounded-md items-center justify-between flex py-4 p-6"
+                  className="w-full bg-zinc-100 border-2 border-zinc-300 rounded-md items-center justify-between flex py-4 p-6"
                   onClick={() => toggleVisibility(index)}
                 >
                   <span className="font-bold text-lg">{data?.title}</span>{" "}
@@ -110,7 +110,7 @@ function ViewCourse() {
                     <div className="p-2 flex flex-col gap-2">
                       {data.content?.map((data, index) => (
                         // console.log(data, "sdhafkjhfjk")
-                        <div className="flex justify-between items-center px-2">
+                        <div className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded-md" key={index}>
                           <video
                             width="200"
                             height="200"
