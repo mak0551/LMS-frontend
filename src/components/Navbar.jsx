@@ -21,11 +21,6 @@ const Navbar = () => {
 
       <ul className="flex items-center space-x-6 text-gray-700">
         <li>
-          <a href="/categories" className="hover:text-pink-500">
-            Categories
-          </a>
-        </li>
-        <li>
           <Link to={"/viewteachers"}>tutors</Link>
         </li>
         <li>
