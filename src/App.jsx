@@ -7,10 +7,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ShowCourses from "./components/ShowCourses";
 import ViewCourse from "./components/ViewCourse";
 import Viewvideo from "./components/Viewvideo";
+import ViewTeachers from "./components/ViewTeachers";
+import Getcoursebyteacher from "./components/Getcoursebyteacher";
 
 function App() {
   return (
-    <div className="bg-green-50 ">
+    <div className="bg-green-50 min-h-[100vh]">
       <Router>
         <Navbar />
         <Routes>
@@ -19,7 +21,12 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/allcourses" element={<ShowCourses />} />
           <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
-          <Route path="/viewvideos/:id/:index" element={<Viewvideo/>}/>
+          <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
+          <Route path="/viewTeachers" element={<ViewTeachers />} />
+          <Route
+            path="/getcoursebyteacher/:id"
+            element={<Getcoursebyteacher />}
+          />
         </Routes>
       </Router>
     </div>

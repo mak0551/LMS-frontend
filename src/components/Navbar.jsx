@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-10 flex h-[10vh] items-center font-mono justify-between px-6 py-4 bg-green-50 shadow-md">
-      <Link to={"/"}><div className="text-2xl font-bold text-gray-800">logo </div></Link>
+      <Link to={"/"}>
+        <div className="text-2xl font-bold text-gray-800">logo </div>
+      </Link>
 
       <div className="flex flex-1 mx-4">
         <input
@@ -24,9 +26,7 @@ const Navbar = () => {
           </a>
         </li>
         <li>
-          <a href="/teach" className="hover:text-pink-500">
-            tutors
-          </a>
+          <Link to={"/viewteachers"}>tutors</Link>
         </li>
         <li>
           <a href="/cart" className="hover:text-pink-500">
@@ -41,8 +41,18 @@ const Navbar = () => {
           alt="Profile"
           className="w-8 h-8 rounded-full"
         />
-        <Link to={"/signin"} className="tracking-tighter mx-2 px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100">Log in</Link>
-        <Link to={"/signup"} className="tracking-tighter mx-2 px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500">Sign up</Link>
+        <Link
+          to={"/signin"}
+          className="tracking-tighter mx-2 px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+        >
+          Log in
+        </Link>
+        <Link
+          to={"/signup"}
+          className="tracking-tighter mx-2 px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500"
+        >
+          Sign up
+        </Link>
         <span className="ml-2 text-gray-800">username</span>
       </div>
     </nav>

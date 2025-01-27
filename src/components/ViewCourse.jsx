@@ -7,7 +7,7 @@ import { IoIosArrowDown } from "react-icons/io";
 function ViewCourse() {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [mount, setMount] = useState(false);
+  // const [mount, setMount] = useState(false);
   const [visibleModule, setVisibleModule] = useState(null);
 
   useEffect(() => {
