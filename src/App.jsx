@@ -9,6 +9,7 @@ import ViewCourse from "./components/ViewCourse";
 import Viewvideo from "./components/Viewvideo";
 import ViewTeachers from "./components/ViewTeachers";
 import Getcoursebyteacher from "./components/Getcoursebyteacher";
+import CreateCourse from "./components/CreateCourse";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             path="/getcoursebyteacher/:id"
             element={<Getcoursebyteacher />}
           />
+          <Route path="/createcourse" element={<CreateCourse />} />
         </Routes>
       </Router>
     </div>
