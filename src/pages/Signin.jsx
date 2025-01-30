@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../state_management/AuthContext";
 
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth(); // Get login function
+  const navigate = useNavigate();
 
   const handleSignin = async (e) => {
     e.preventDefault();
@@ -15,9 +18,15 @@ function Signin() {
         "http://localhost:4040/users/login",
         formdata
       );
+      if (loginResponse) {
+        login(loginResponse.data); // Save user to Context and localStorage
+        navigate("/");
+      } else {
+        alert(loginResponse.message);
+      }
       console.log("login successful", loginResponse.data);
-      localStorage.setItem("user", JSON.stringify(loginResponse.data));
-      alert("signin success");
+      // localStorage.setItem("user", JSON.stringify(loginResponse.data)); // storing the user data in the localstorage
+      // alert("signin success");
     } catch (err) {
       console.log("unable to login user", err);
     }

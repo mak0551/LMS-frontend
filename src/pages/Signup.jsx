@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -8,6 +8,7 @@ function Signup() {
   const [mobileNo, setMobileNo] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -19,7 +20,7 @@ function Signup() {
         formData
       );
       console.log("User registered successfully:", response.data);
-      alert("Signup successful!");
+      navigate("/signin");
     } catch (error) {
       console.log(
         "Error during signup:",

@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../state_management/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useAuth(); // Get user from context api
   const [courses, setCourses] = useState([]);
   const [searchterm, setSearchterm] = useState("");
   const [filteredCourses, setFilteredCourses] = useState([]);
@@ -78,24 +80,37 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center ml-6">
-        <img
-          src="https://via.placeholder.com/30"
-          alt="Profile"
-          className="w-8 h-8 rounded-full"
-        />
-        <Link
-          to={"/signin"}
-          className="tracking-tighter mx-2 px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
-        >
-          Log in
-        </Link>
-        <Link
-          to={"/signup"}
-          className="tracking-tighter mx-2 px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500"
-        >
-          Sign up
-        </Link>
-        <span className="ml-2 text-gray-800">username</span>
+        {user ? (
+          <>
+            <img
+              src={user.user?.profileImg}
+              alt="Profile"
+              className="w-8 h-8 rounded-full"
+            />
+            <span className="mx-2 text-gray-800 ">{user.user?.name}</span>
+            <button
+              onClick={logout}
+              className="px-3 py-1 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to={"/signin"}
+              className="tracking-tighter mx-2 px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+            >
+              Log in
+            </Link>
+            <Link
+              to={"/signup"}
+              className="tracking-tighter mx-2 px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500"
+            >
+              Sign up
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
