@@ -66,7 +66,7 @@ const CreateCourse = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="bg-white py-2 px-8 mt-2 rounded-lg shadow-md ">
+      <div className="bg-white py-4 px-8 mt-2 rounded-lg shadow-md ">
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Add New Course
         </h2>
@@ -77,7 +77,7 @@ const CreateCourse = () => {
             placeholder="Course Title"
             value={courseData.title}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+            className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
             required
           />
 
@@ -86,7 +86,7 @@ const CreateCourse = () => {
             placeholder="Course Description"
             value={courseData.description}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+            className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
             required
           />
 
@@ -108,7 +108,7 @@ const CreateCourse = () => {
                 placeholder="Add Skill"
                 value={newSkill}
                 onChange={(e) => setNewSkill(e.target.value)}
-                className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+                className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
               />
               <button
                 type="button"
@@ -144,7 +144,7 @@ const CreateCourse = () => {
               name="level"
               value={courseData.level}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+              className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
             >
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -161,7 +161,7 @@ const CreateCourse = () => {
                 placeholder="Hours"
                 value={courseData.duration.hours}
                 onChange={handleChange}
-                className="w-1/2 p-3 border rounded-lg focus:ring focus:ring-blue-300"
+                className="w-1/2 p-2 border rounded-lg focus:ring focus:ring-blue-300"
               />
               <input
                 type="number"
@@ -169,20 +169,22 @@ const CreateCourse = () => {
                 placeholder="Minutes"
                 value={courseData.duration.minutes}
                 onChange={handleChange}
-                className="w-1/2 p-3 border rounded-lg focus:ring focus:ring-blue-300"
+                className="w-1/2 p-2 border rounded-lg focus:ring focus:ring-blue-300"
               />
             </div>
           </div>
-
-          <input
-            type="number"
-            name="price"
-            placeholder="Price"
-            value={courseData.price}
-            onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
-            required
-          />
+          <div>
+            <label className="text-lg font-semibold mb-2">Price</label>
+            <input
+              type="number"
+              name="price"
+              placeholder="Price"
+              value={courseData.price}
+              onChange={handleChange}
+              className="w-full p-1 border rounded-lg focus:ring focus:ring-blue-300"
+              required
+            />
+          </div>
 
           <button
             type="submit"
