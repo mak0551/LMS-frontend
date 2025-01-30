@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Signup() {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [mobileNo, setMobileNo] = useState();
-  const [address, setAddress] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -30,7 +30,10 @@ function Signup() {
   };
   return (
     <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 px-10">
-      <img src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-1-x1.webp" className="h-full"/>
+      <img
+        src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-1-x1.webp"
+        className="h-full"
+      />
       <form
         className="flex flex-col gap-8 w-[60vh] border-pink-800 h-fit p-8 rounded-lg "
         onSubmit={handleSignup}
