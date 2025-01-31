@@ -11,6 +11,7 @@ import ViewTeachers from "./components/ViewTeachers";
 import Getcoursebyteacher from "./components/Getcoursebyteacher";
 import CreateCourse from "./components/CreateCourse";
 import { AuthProvider } from "./state_management/AuthContext";
+import AddModule from "./components/AddModule";
 
 function App() {
   return (
@@ -26,11 +27,12 @@ function App() {
             <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
             <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
             <Route path="/viewTeachers" element={<ViewTeachers />} />
+            <Route path="/createcourse" element={<CreateCourse />} />
+            <Route path="/addmodule/:id" element={<AddModule />} />
             <Route
               path="/getcoursebyteacher/:id"
               element={<Getcoursebyteacher />}
             />
-            <Route path="/createcourse" element={<CreateCourse />} />
           </Routes>
         </Router>
       </AuthProvider>

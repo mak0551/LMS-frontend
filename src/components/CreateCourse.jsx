@@ -1,19 +1,22 @@
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../state_management/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const CreateCourse = () => {
   const { user } = useAuth();
   const [courseData, setCourseData] = useState({
     title: "",
     description: "",
-    teacher: user ? user.user?._id : "",
+    teacher: user && user.user?._id ,
     skillsRequired: [],
     level: "Beginner",
     duration: { hours: 0, minutes: 0 },
     price: 0,
   });
   const [newSkill, setNewSkill] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +61,14 @@ const CreateCourse = () => {
       );
       alert("Course added successfully!");
       console.log(response.data);
+
+      // Check if the response contains a valid _id before redirecting
+      if (response?.data?._id) {
+        navigate(`/addmodule/${response.data._id}`);
+      } else {
+        console.error("Course creation failed: No course ID returned.");
+        alert("Failed to create course.");
+      }
     } catch (error) {
       console.error("Error adding course:", error.message);
       alert("Failed to add course.");
