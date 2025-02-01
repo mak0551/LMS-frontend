@@ -18,10 +18,12 @@ const AddModule = () => {
     courseId: id,
   });
 
-  const handleChange = (e, index, field) => {
-    if (field === "title" || field === "courseId") {
+  const handleChange = (e, index = null, field) => {
+    if (index === null) {
+      // Handling changes for module-level fields (title, courseId)
       setFormData({ ...formData, [field]: e.target.value });
     } else {
+      // Handling changes for content inside the module
       const newContent = [...formData.content];
       newContent[index][field] = e.target.value;
       setFormData({ ...formData, content: newContent });
@@ -47,7 +49,7 @@ const AddModule = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://your-backend-api.com/chapters",
+        "http://localhost:4040/module/add",
         formData
       );
       console.log("Response:", response.data);
@@ -60,9 +62,7 @@ const AddModule = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">
-        Add module to your Course
-      </h2>
+      <h2 className="text-2xl font-bold mb-4">Add module to your Course</h2>
       <form onSubmit={handleSubmit}>
         <label className="block mb-2">Chapter Title:</label>
         <input
@@ -77,8 +77,8 @@ const AddModule = () => {
         <input
           type="text"
           value={formData.courseId}
-          onChange={(e) => handleChange(e, null, "courseId")}
           className="w-full p-2 border rounded mb-4"
+          readOnly
           required
         />
 
