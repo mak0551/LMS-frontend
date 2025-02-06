@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget"; // Import your CloudinaryUploadWidget component
 
 const AddModule = () => {
   const { id } = useParams();
@@ -13,7 +14,6 @@ const AddModule = () => {
         type: "video",
         url: "",
         duration: "",
-        file: null, // New field to store file reference
       },
     ],
     courseId: id,
@@ -24,60 +24,31 @@ const AddModule = () => {
       setFormData({ ...formData, [field]: e.target.value });
     } else {
       const newContent = [...formData.content];
-      if (field === "file") {
-        newContent[index].file = e.target.files[0]; // Store the file
-      } else {
-        newContent[index][field] = e.target.value;
-      }
+      newContent[index][field] = e.target.value;
       setFormData({ ...formData, content: newContent });
-    }
-  };
-
-  const uploadToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "your_upload_preset"); // Replace with your Cloudinary upload preset
-
-    try {
-      const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/your_cloud_name/video/upload", // Replace with your Cloudinary cloud name
-        formData
-      );
-      return response.data.secure_url; // Return the uploaded file URL
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("File upload failed");
-      return null;
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let updatedContent = [...formData.content];
-
-    // Upload all files to Cloudinary before submitting
-    for (let i = 0; i < updatedContent.length; i++) {
-      if (updatedContent[i].file) {
-        const uploadedUrl = await uploadToCloudinary(updatedContent[i].file);
-        if (uploadedUrl) {
-          updatedContent[i].url = uploadedUrl; // Replace URL with uploaded file URL
-        }
-        delete updatedContent[i].file; // Remove file from the state before sending to backend
-      }
-    }
-
     try {
-      const response = await axios.post("http://localhost:4040/module/add", {
-        ...formData,
-        content: updatedContent,
-      });
+      const response = await axios.post(
+        "http://localhost:4040/module/add",
+        formData
+      );
       console.log("Response:", response.data);
       alert("Chapter created successfully!");
     } catch (error) {
       console.error("Error posting chapter:", error);
       alert("Failed to create chapter.");
     }
+  };
+
+  const handleVideoUpload = (url, index) => {
+    const newContent = [...formData.content];
+    newContent[index].url = url;
+    setFormData({ ...formData, content: newContent });
   };
 
   return (
@@ -122,12 +93,8 @@ const AddModule = () => {
             />
 
             <label className="block mb-2">Upload Video:</label>
-            <input
-              type="file"
-              accept="video/*"
-              onChange={(e) => handleChange(e, index, "file")}
-              className="w-full p-2 border rounded mb-4"
-              required
+            <CloudinaryUploadWidget
+              onUploadSuccess={(url) => handleVideoUpload(url, index)}
             />
 
             <label className="block mb-2">Duration (seconds):</label>
@@ -142,7 +109,9 @@ const AddModule = () => {
             <button
               type="button"
               onClick={() => {
-                const newContent = formData.content.filter((_, i) => i !== index);
+                const newContent = formData.content.filter(
+                  (_, i) => i !== index
+                );
                 setFormData({ ...formData, content: newContent });
               }}
               className="bg-red-500 text-white px-4 py-2 rounded mt-2"
@@ -159,7 +128,13 @@ const AddModule = () => {
               ...formData,
               content: [
                 ...formData.content,
-                { title: "", description: "", type: "video", url: "", duration: "", file: null },
+                {
+                  title: "",
+                  description: "",
+                  type: "video",
+                  url: "",
+                  duration: "",
+                },
               ],
             })
           }
@@ -168,7 +143,10 @@ const AddModule = () => {
           Add Content
         </button>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
           Submit
         </button>
       </form>

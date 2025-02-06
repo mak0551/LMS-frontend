@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const CloudinaryUploadWidget = () => {
-  const [videoUrls, setVideoUrls] = useState([]);
+const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
   const [cloudinaryReady, setCloudinaryReady] = useState(false);
 
   useEffect(() => {
@@ -10,7 +9,7 @@ const CloudinaryUploadWidget = () => {
       script.src = "https://upload-widget.cloudinary.com/global/all.js";
       script.async = true;
       script.id = "cloudinary-upload-widget";
-      
+
       script.onload = () => {
         setCloudinaryReady(true);
       };
@@ -30,13 +29,12 @@ const CloudinaryUploadWidget = () => {
 
   const handleUpload = (error, result) => {
     if (error) {
-      console.error('Upload error:', error);
+      console.error("Upload error:", error);
       return;
     }
     
     if (result && result.event === "success") {
-      console.log('Upload success:', result.info);
-      setVideoUrls(prev => [...prev, result.info.secure_url]);
+      onUploadSuccess(result.info.secure_url);
     }
   };
 
@@ -48,13 +46,13 @@ const CloudinaryUploadWidget = () => {
 
     const myWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "dxs1abm4e", // Note: cloudName instead of cloud_name
-        uploadPreset: "ml_default", // Note: uploadPreset instead of upload_preset
+        cloudName: "dxs1abm4e",
+        uploadPreset: "ml_default",
         sources: ["local", "url", "camera"],
         showAdvancedOptions: true,
         cropping: true,
-        multiple: true,
-        resourceType: "video", // Note: resourceType instead of resource_type
+        multiple: false,
+        resourceType: "video", 
       },
       handleUpload
     );
@@ -64,16 +62,9 @@ const CloudinaryUploadWidget = () => {
 
   return (
     <div>
-      <button
-        onClick={openWidget}
-        disabled={!cloudinaryReady}
-        className="border border-red-800 p-2"
-      >
-        Upload Video(s) {!cloudinaryReady && "(Loading...)"}
+      <button onClick={openWidget} disabled={!cloudinaryReady} className="border border-red-800 p-2">
+        Upload Video
       </button>
-      {videoUrls.map((url, index) => (
-        <video key={index} src={url} controls width="300" className="mt-4" />
-      ))}
     </div>
   );
 };
