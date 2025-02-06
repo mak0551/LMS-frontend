@@ -12,7 +12,7 @@ import Getcoursebyteacher from "./components/Getcoursebyteacher";
 import CreateCourse from "./components/CreateCourse";
 import { AuthProvider } from "./state_management/AuthContext";
 import AddModule from "./components/AddModule";
-import FileUpload from "./components/FileUpload";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
             <Route path="/viewTeachers" element={<ViewTeachers />} />
             <Route path="/createcourse" element={<CreateCourse />} />
             <Route path="/addmodule/:id" element={<AddModule />} />
-            <Route path="/uploadfile" element={<FileUpload />} />
+            <Route path="/cloud" element={<CloudinaryUploadWidget />} />
             <Route
               path="/getcoursebyteacher/:id"
               element={<Getcoursebyteacher />}
