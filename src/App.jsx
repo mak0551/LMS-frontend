@@ -12,7 +12,7 @@ import Getcoursebyteacher from "./components/Getcoursebyteacher";
 import CreateCourse from "./components/CreateCourse";
 import { AuthProvider } from "./state_management/AuthContext";
 import AddModule from "./components/AddModule";
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
 
 function App() {
   return (
