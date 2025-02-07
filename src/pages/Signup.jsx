@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -20,13 +21,14 @@ function Signup() {
         formData
       );
       console.log("User registered successfully:", response.data);
+      toast.success("signup successful");
       navigate("/signin");
     } catch (error) {
       console.log(
         "Error during signup:",
         error.response?.data || error.message
       );
-      alert(`Signup failed. Please try again. ${error.message}`);
+      toast.error(`Signup failed. Please try again. ${error.message}`);
     }
   };
   return (

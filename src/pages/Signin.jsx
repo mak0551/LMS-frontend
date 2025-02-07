@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../state_management/AuthContext";
+import { toast } from "react-toastify";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -22,12 +23,17 @@ function Signin() {
         login(loginResponse.data); // Save user to Context and localStorage
         navigate("/");
       } else {
-        alert(loginResponse.message);
+        // alert(loginResponse.message);
+        toast.error(loginResponse.message);
       }
+      toast.success("login successful");
       console.log("login successful", loginResponse.data);
       // localStorage.setItem("user", JSON.stringify(loginResponse.data)); // storing the user data in the localstorage
       // alert("signin success");
     } catch (err) {
+      if (err.code === "ERR_BAD_REQUEST") {
+        toast.error("email or password is incorrect");
+      }
       console.log("unable to login user", err);
     }
   };

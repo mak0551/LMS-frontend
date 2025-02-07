@@ -32,8 +32,9 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
       console.error("Upload error:", error);
       return;
     }
-    
+
     if (result && result.event === "success") {
+      console.log(result.info.display_name);
       onUploadSuccess(result.info.secure_url);
     }
   };
@@ -52,7 +53,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
         showAdvancedOptions: true,
         cropping: true,
         multiple: false,
-        resourceType: "video", 
+        resourceType: "video",
       },
       handleUpload
     );
@@ -62,8 +63,12 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
 
   return (
     <div>
-      <button onClick={openWidget} disabled={!cloudinaryReady} className="border border-red-800 p-2">
-        Upload Video
+      <button
+        onClick={openWidget}
+        disabled={!cloudinaryReady}
+        className="border border-zinc-600 rounded-md px-2"
+      >
+        choose file
       </button>
     </div>
   );

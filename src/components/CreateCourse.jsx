@@ -2,13 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../state_management/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateCourse = () => {
   const { user } = useAuth();
   const [courseData, setCourseData] = useState({
     title: "",
     description: "",
-    teacher: user && user.user?._id ,
+    teacher: user && user.user?._id,
     skillsRequired: [],
     level: "Beginner",
     duration: { hours: 0, minutes: 0 },
@@ -59,7 +60,9 @@ const CreateCourse = () => {
         "http://localhost:4040/course/create",
         courseData
       );
-      alert("Course added successfully!");
+      toast.success(
+        "Course added successfully!! now add modules to your course"
+      );
       console.log(response.data);
 
       // Check if the response contains a valid _id before redirecting

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget"; // Import your CloudinaryUploadWidget component
+import { useParams, useNavigate } from "react-router-dom";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import { toast } from "react-toastify";
 
 const AddModule = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     content: [
@@ -33,15 +36,16 @@ const AddModule = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:4040/module/add",
-        formData
-      );
-      console.log("Response:", response.data);
-      alert("Chapter created successfully!");
+      setIsSubmitting(true);
+      await axios.post("http://localhost:4040/module/add", formData);
+      toast.success("Module created successfully!");
+      // Redirect to course page or module list
+      navigate(`/mycourses`);
     } catch (error) {
-      console.error("Error posting chapter:", error);
-      alert("Failed to create chapter.");
+      console.error("Error posting module:", error);
+      toast.error(error.response?.data?.message || "Failed to create module.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -49,13 +53,14 @@ const AddModule = () => {
     const newContent = [...formData.content];
     newContent[index].url = url;
     setFormData({ ...formData, content: newContent });
+    toast.success("Video uploaded successfully!");
   };
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Add Module to Your Course</h2>
       <form onSubmit={handleSubmit}>
-        <label className="block mb-2">Chapter Title:</label>
+        <label className="block mb-2">Module Title:</label>
         <input
           type="text"
           value={formData.title}
@@ -70,7 +75,6 @@ const AddModule = () => {
           value={formData.courseId}
           className="w-full p-2 border rounded mb-4"
           readOnly
-          required
         />
 
         {formData.content.map((item, index) => (
@@ -91,13 +95,17 @@ const AddModule = () => {
               className="w-full p-2 border rounded mb-4"
               required
             />
+            <div className="flex gap-2">
+              <label className="block mb-2">Add Video</label>
+              <CloudinaryUploadWidget
+                onUploadSuccess={(url) => handleVideoUpload(url, index)}
+              />
+            </div>
+            {item.url && (
+              <p className="text-green-600 mb-2">Video uploaded successfully</p>
+            )}
 
-            <label className="block mb-2">Upload Video:</label>
-            <CloudinaryUploadWidget
-              onUploadSuccess={(url) => handleVideoUpload(url, index)}
-            />
-
-            <label className="block mb-2">Duration (seconds):</label>
+            <label className="block mb-2 mt-4">Duration (seconds):</label>
             <input
               type="number"
               value={item.duration}
@@ -106,18 +114,20 @@ const AddModule = () => {
               required
             />
 
-            <button
-              type="button"
-              onClick={() => {
-                const newContent = formData.content.filter(
-                  (_, i) => i !== index
-                );
-                setFormData({ ...formData, content: newContent });
-              }}
-              className="bg-red-500 text-white px-4 py-2 rounded mt-2"
-            >
-              Remove Content
-            </button>
+            {formData.content.length > 1 && (
+              <button
+                type="button"
+                onClick={() => {
+                  const newContent = formData.content.filter(
+                    (_, i) => i !== index
+                  );
+                  setFormData({ ...formData, content: newContent });
+                }}
+                className="bg-red-500 text-white px-4 py-2 rounded-md mt-2 hover:bg-red-600 transition-colors"
+              >
+                Remove Content
+              </button>
+            )}
           </div>
         ))}
 
@@ -138,16 +148,19 @@ const AddModule = () => {
               ],
             })
           }
-          className="bg-green-500 text-white px-4 py-2 rounded mb-4"
+          className="bg-green-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-green-600 transition-colors"
         >
           Add Content
         </button>
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          disabled={isSubmitting}
+          className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded-md ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+          } transition-colors`}
         >
-          Submit
+          {isSubmitting ? "Creating Module..." : "Submit"}
         </button>
       </form>
     </div>

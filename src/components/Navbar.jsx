@@ -73,9 +73,7 @@ const Navbar = () => {
           <Link to={"/createcourse"}>create course</Link>
         </li>
         <li>
-          <a href="/cart" className="hover:text-pink-500">
-            my courses
-          </a>
+          <Link to={"/mycourses"}>my courses</Link>
         </li>
       </ul>
 

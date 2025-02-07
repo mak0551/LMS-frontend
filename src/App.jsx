@@ -13,6 +13,8 @@ import CreateCourse from "./components/CreateCourse";
 import { AuthProvider } from "./state_management/AuthContext";
 import AddModule from "./components/AddModule";
 import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
+import MyCourses from "./components/MyCourses";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
             <Route path="/createcourse" element={<CreateCourse />} />
             <Route path="/addmodule/:id" element={<AddModule />} />
             <Route path="/cloud" element={<CloudinaryUploadWidget />} />
+            <Route path="/mycourses" element={<MyCourses />} />
             <Route
               path="/getcoursebyteacher/:id"
               element={<Getcoursebyteacher />}
@@ -38,6 +41,7 @@ function App() {
           </Routes>
         </Router>
       </AuthProvider>
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }
