@@ -2,13 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Courses from "./Courses";
+import { useAuth } from "../state_management/AuthContext";
 import { IoIosArrowDown } from "react-icons/io";
+import { toast } from "react-toastify";
 
 function ViewCourse() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   // const [mount, setMount] = useState(false);
   const [visibleModule, setVisibleModule] = useState(null);
+  const user = useAuth();
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -27,6 +30,17 @@ function ViewCourse() {
 
   const toggleVisibility = (index) => {
     setVisibleModule(visibleModule === index ? null : index);
+  };
+
+  const handleEnrollment = async () => {
+    const payload = { courseId: id, studentId: user?.user?.user?._id };
+    console.log(payload, "sdfjklsdk");
+    const enrolll = await axios.post(
+      "http://localhost:4040/enrollment/add",
+      payload
+    );
+    console.log(enrolll);
+    toast.success("Enrolled successfully");
   };
 
   return (
@@ -145,7 +159,10 @@ function ViewCourse() {
             ))}
           </div>
         </div>
-        <button className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100">
+        <button
+          onClick={handleEnrollment}
+          className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+        >
           Enroll Now
         </button>
         <button className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500">
