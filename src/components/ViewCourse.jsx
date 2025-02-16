@@ -9,38 +9,68 @@ import { toast } from "react-toastify";
 function ViewCourse() {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  // const [mount, setMount] = useState(false);
+  const [enrolled, setEnrolled] = useState(false);
   const [visibleModule, setVisibleModule] = useState(null);
   const user = useAuth();
 
   useEffect(() => {
     const fetchdata = async () => {
-      const response = await axios.get(
-        `http://localhost:4040/course/getbyid/${id}`
-      );
-      setData(response.data);
-      console.log(response.data);
-      // console.log(response.data.module[0].content[0].url, "fsdfdsfjasdj");
+      try {
+        const response = await axios.get(
+          `http://localhost:4040/course/getbyid/${id}`
+        );
+        setData(response.data);
+      } catch (err) {
+        console.error("Error fetching course data:", error);
+      }
     };
     fetchdata();
   }, [id]);
-  // setTimeout(() => {
-  //   setMount(true);
-  // }, 2000);
+
+  useEffect(() => {
+    if (!user?.user?.user?._id) return;
+
+    const checkEnrollment = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4040/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`
+        );
+        setEnrolled(response.data.isEnrolled);
+      } catch (error) {
+        console.error("Error checking enrollment:", error);
+      }
+    };
+    checkEnrollment();
+  }, [id, user]);
 
   const toggleVisibility = (index) => {
     setVisibleModule(visibleModule === index ? null : index);
   };
 
   const handleEnrollment = async () => {
-    const payload = { courseId: id, studentId: user?.user?.user?._id };
-    console.log(payload, "sdfjklsdk");
-    const enrolll = await axios.post(
-      "http://localhost:4040/enrollment/add",
-      payload
-    );
-    console.log(enrolll);
-    toast.success("Enrolled successfully");
+    try {
+      const payload = { courseId: id, studentId: user?.user?.user?._id };
+      await axios.post("http://localhost:4040/enrollment/add", payload);
+      setEnrolled(true);
+      toast.success("Enrolled successfully");
+    } catch (err) {
+      console.error("Error enrolling:", err);
+      toast.error("Failed to enroll. Please try again.");
+    }
+  };
+
+  const removeEnrollment = async () => {
+    try {
+      const payload = { courseId: id, studentId: user?.user?.user?._id };
+      await axios.delete("http://localhost:4040/enrollment/delete", {
+        data: payload, //Correct way to send body in DELETE
+      });
+      setEnrolled(false);
+      toast.success("Enrolled successfully");
+    } catch (error) {
+      console.error("Error removing enrollment:", error);
+      toast.error("Failed to remove enrollment. Please try again.");
+    }
   };
 
   return (
@@ -159,12 +189,21 @@ function ViewCourse() {
             ))}
           </div>
         </div>
-        <button
-          onClick={handleEnrollment}
-          className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
-        >
-          Enroll Now
-        </button>
+        {enrolled ? (
+          <button
+            onClick={removeEnrollment}
+            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+          >
+            Remove Enrollment
+          </button>
+        ) : (
+          <button
+            onClick={handleEnrollment}
+            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+          >
+            Enroll Now
+          </button>
+        )}
         <button className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500">
           Add To WishList
         </button>
