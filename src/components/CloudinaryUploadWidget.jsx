@@ -35,7 +35,8 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
 
     if (result && result.event === "success") {
       console.log(result.info.display_name);
-      onUploadSuccess(result.info.secure_url);
+      const fileName = result.info.public_id.split("/").pop(); // Extract file name
+      onUploadSuccess(result.info.secure_url, fileName);
     }
   };
 
@@ -53,7 +54,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
         showAdvancedOptions: true,
         cropping: true,
         multiple: false,
-        resourceType: "video",
+        resourceType: "auto",
       },
       handleUpload
     );

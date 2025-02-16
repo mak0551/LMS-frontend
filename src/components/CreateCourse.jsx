@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "../state_management/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 
 const CreateCourse = () => {
   const { user } = useAuth();
@@ -21,11 +22,12 @@ const CreateCourse = () => {
     teacher: user?.user?._id || "",
     skillsRequired: [],
     level: "Beginner",
-    duration: { hours: 0, minutes: 0 },
-    price: 0,
+    thumbNail: "",
+    duration: { hours: "", minutes: "" },
+    price: "",
   });
   const [newSkill, setNewSkill] = useState("");
-
+  const [imgName, setImgName] = useState("");
   // Update teacher ID when user becomes available
   useEffect(() => {
     if (user?.user?._id) {
@@ -48,6 +50,12 @@ const CreateCourse = () => {
         [name]: value,
       }));
     }
+  };
+
+  const handleThumbnail = (url) => {
+    const thumbnail = url;
+    setCourseData({ ...courseData, thumbNail: thumbnail });
+    toast.success("uploaded successfully");
   };
 
   const addSkill = () => {
@@ -95,7 +103,7 @@ const CreateCourse = () => {
   return (
     <>
       {user && (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center font-mono">
           <div className="bg-white py-4 px-8 mt-2 rounded-lg shadow-md ">
             <h2 className="text-2xl font-semibold mb-4 text-center">
               Add New Course
@@ -167,7 +175,24 @@ const CreateCourse = () => {
                   ))}
                 </ul>
               </div>
-
+              <hr />
+              <div className="flex gap-2">
+                <label className="block mb-2 text-lg font-semibold">
+                  Add a thumbnail
+                </label>
+                <CloudinaryUploadWidget
+                  onUploadSuccess={(url, fileName) => {
+                    handleThumbnail(url);
+                    setImgName(fileName);
+                  }}
+                />
+              </div>
+              {imgName && (
+                <div className="w-[70%] flex">
+                  <span className="text-gray-700 mt-2 truncate whitespace-nowrap overflow-hidden">Uploaded successfully: {imgName}</span>
+                </div>
+              )}
+              <hr />
               <div>
                 <h4 className="text-lg font-semibold mb-2">Level</h4>
                 <select
@@ -204,11 +229,14 @@ const CreateCourse = () => {
                 </div>
               </div>
               <div>
-                <label className="text-lg font-semibold mb-2">Price</label>
+                <label className="text-lg font-semibold mb-2">
+                  Enrollment Fee {"\u20B9"}
+                </label>
                 <input
                   type="number"
                   name="price"
-                  placeholder="Price"
+                  placeholder={"\u20B9"}
+                  initial
                   value={courseData.price}
                   onChange={handleChange}
                   className="w-full p-1 border rounded-lg focus:ring focus:ring-blue-300"
