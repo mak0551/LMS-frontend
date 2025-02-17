@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className="text-2xl font-bold text-gray-800">logo </div>
       </Link>
 
-      <div className="relative flex flex-1 mx-4">
+      <div className="relative flex flex-1 mx-4 ">
         <input
           type="text"
           placeholder="Search for courses"
@@ -65,15 +65,18 @@ const Navbar = () => {
         )}
       </div>
 
-      <ul className="flex items-center space-x-6 text-gray-700">
+      <ul className="flex items-center space-x-6 text-gray-700 ">
         <li>
-          <Link to={"/viewteachers"}>tutors</Link>
+          <Link to={"/viewteachers"} className="hover:text-pink-700">tutors</Link>
         </li>
         <li>
-          <Link to={"/createcourse"}>create course</Link>
+          <Link to={"/mylearnings"} className="hover:text-pink-700">my learning</Link>
         </li>
         <li>
-          <Link to={"/mycourses"}>my courses</Link>
+          <Link to={"/createcourse"} className="hover:text-pink-700">create course</Link>
+        </li>
+        <li>
+          <Link to={"/mycourses"} className="hover:text-pink-700">my courses</Link>
         </li>
       </ul>
 

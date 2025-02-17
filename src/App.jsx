@@ -15,6 +15,7 @@ import AddModule from "./components/AddModule";
 import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
 import MyCourses from "./components/MyCourses";
 import { ToastContainer } from "react-toastify";
+import Mylearnimgs from "./components/Mylearnimgs";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/addmodule/:id" element={<AddModule />} />
             <Route path="/cloud" element={<CloudinaryUploadWidget />} />
             <Route path="/mycourses" element={<MyCourses />} />
+            <Route path="/mylearnings/:id" element={<Mylearnimgs />} />
             <Route
               path="/getcoursebyteacher/:id"
               element={<Getcoursebyteacher />}
