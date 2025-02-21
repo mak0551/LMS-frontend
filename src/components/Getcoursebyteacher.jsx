@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Courses from "./Courses";
 
 function Getcoursebyteacher() {
   const { id } = useParams();
@@ -23,8 +22,8 @@ function Getcoursebyteacher() {
           {data.length > 0 ? (
             data.map((data, index) => (
               <Link to={`/viewcoursedetails/${data._id}`} key={index}>
-                <div className="h-[350px] w-[300px] flex flex-col overflow-hidden bg-zinc-50 rounded-lg m-2 flex-shrink-0">
-                  <div className="h-[50%]">
+                <div className="h-[250px] w-[200px] sm:h-[300px] sm:w-[250px] md:h-[350px] md:w-[300px] lg:h-[400px] lg:w-[350px] flex m-4 flex-col overflow-hidden bg-zinc-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex-shrink-0 border border-gray-100">
+                  <div className="h-[50%] overflow-hidden">
                     <img
                       src={`${
                         data.thumbNail
@@ -32,21 +31,23 @@ function Getcoursebyteacher() {
                           : "https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       }`}
                       alt=""
-                      className="h-full w-full hover:brightness-125"
+                      className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="h-[50%] px-4 py-2 font-mono flex flex-col">
+                  <div className="h-[50%] px-5 py-3 font-mono flex flex-col ">
                     <div className="h-[50%]">
-                      <h1 className="text-lg capitalize">{data.title}</h1>
-                      <p className="text-zinc-500 text-nowrap">
+                      <h1 className="text-lg font-semibold capitalize text-gray-800 truncate">
+                        {data.title}
+                      </h1>
+                      <p className="text-gray-600 text-sm truncate">
                         {data.description}
                       </p>
-                      <span className="text-zinc-600 text-nowrap text-sm capitalize">
+                      <span className="text-gray-500 text-sm capitalize">
                         {data.teacher?.name || ""}
                       </span>
                     </div>
                     <div className="h-[50%] relative">
-                      <span>&#8377;{data.price}</span>
+                      <span className="text-lg font-semibold text-gray-900">₹{data.price}</span>
                       <div
                         className={`${
                           data.level === "Advance"
@@ -72,12 +73,6 @@ function Getcoursebyteacher() {
             Go Back
           </button>
         </Link>
-      </div>
-      <div className="mx-40 mt-20 p-2">
-        <h1 className="capitalize font-semibold text-2xl p-2 pt-1 mt-4 border-t-2 border-zinc-700">
-          recommended courses
-        </h1>
-        <Courses />
       </div>
     </>
   );
