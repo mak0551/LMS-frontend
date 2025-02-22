@@ -44,18 +44,20 @@ export default function Landingpage() {
     },
   ];
   return (
-    <div className="mx-20 relative">
-      <h1 className="absolute top-36 text-white font-mono text-5xl w-[40%] pl-8">Empower Learning, Unlock Potential.</h1>
+    <div className="px-4 sm:px-20 relative max-w-screen-xl mx-auto">
+      <h1 className="absolute top-28 w-[80%] sm:w-[50%] sm:top-10 md:top-10 xl:top-36 text-white font-mono text-3xl sm:text-4xl pl-4 sm:pl-8 text-center sm:text-left">
+        Empower Learning, Unlock Potential.
+      </h1>
       <img
-        className="w-full"
+        className="w-full h-[250px] sm:h-full sm:w-full md:w-full lg:w-full object-cover rounded-lg mt-2"
         src="https://img-c.udemycdn.com/notices/web_carousel_slide/image/e410d3ca-ed4a-4309-8e0f-5bab9a8be938.png"
-        alt=""
+        alt="Learning Banner"
       />
-      <div className="m-8 font-mono ">
+      <div className="m-4 sm:m-8 font-mono text-center sm:text-left">
         <h1 className="text-3xl mb-2 capitalize font-semibold text-zinc-700">
           All the skills you need in one place
         </h1>
-        <h6>
+        <h6 className="text-sm sm:text-base">
           Empower learning with seamless access to knowledge and tools. Unlock
           potential by transforming the way you teach and learn.
         </h6>
@@ -64,7 +66,12 @@ export default function Landingpage() {
         <div className="flex my-4">
           {imgobj.map((data, index) => {
             return (
-              <img className="h-20 mx-10 rounded-md" src={data.img} alt="" key={index}/>
+              <img
+                className="h-20 mx-10 rounded-md"
+                src={data.img}
+                alt=""
+                key={index}
+              />
             );
           })}
         </div>
