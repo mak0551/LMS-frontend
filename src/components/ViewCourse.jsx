@@ -74,8 +74,8 @@ function ViewCourse() {
   };
 
   return (
-    <div className="mx-48 mt-20 font-mono p-2 h-full ">
-      <div className="flex gap-4 items-center">
+    <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full ">
+      <div className="flex flex-col xl:flex-row gap-4 items-center">
         <img
           src={`${
             data.thumbNail
@@ -83,22 +83,22 @@ function ViewCourse() {
               : "https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }`}
           alt=""
-          className="h-[200px] w-[300px] rounded-md hover:brightness-125"
+          className="xl:h-[200px] xl:w-[300px] rounded-md object-cover hover:scale-105 transition-transform duration-300"
         />
-        <div className="m-4 flex flex-col gap-2">
-          <h1 className="font-mono text-4xl capitalize">{data.title}</h1>
-          <p className="text-zinc-500 text-base">{data.description}</p>
-          <span className="capitalize">instructor - {data.teacher?.name}</span>
-          <span className="text-sm">
+        <div className="md:m-4 flex flex-col gap-2">
+          <h1 className="font-mono xl:text-4xl md:text-6xl capitalize">{data.title}</h1>
+          <p className="text-zinc-500 my-2 xl:text-base md:text-3xl">{data.description}</p>
+          <span className="capitalize md:text-2xl xl:text-lg">instructor - {data.teacher?.name}</span>
+          <span className="xl:text-sm md:text-xl">
             <b>Date Created:</b> {data.createdAt?.slice(0, 10)}
           </span>
-          <span className="text-sm">
+          <span className="xl:text-sm md:text-xl">
             <b>Last Updated:</b> {data.updatedAt?.slice(0, 10)}
           </span>
         </div>
       </div>
-      <div className="flex flex-col gap-4">
-        <span className="mt-4">
+      <div className="flex flex-col gap-4 md:mx-4">
+        <span className="mt-4 md:text-2xl xl:text-lg">
           <b>Course Duration:</b>{" "}
           {`${
             data.duration?.hours > 1
@@ -106,7 +106,7 @@ function ViewCourse() {
               : `${data.duration?.hours} hour`
           } ${data.duration?.minutes} minutes`}
         </span>
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4 md:text-2xl xl:text-base">
           <span>
             <b>Difficulty Level:</b>{" "}
             <span
@@ -114,7 +114,7 @@ function ViewCourse() {
                 data.level === "Advance" ? "bg-red-300" : "bg-green-300"
               } ${
                 data.level === "Intermediate" && "bg-yellow-200"
-              } w-fit p-1 rounded-md text-zinc-800 `}
+              } w-fit p-2 rounded-md text-zinc-800 `}
             >
               {data.level}
             </span>
@@ -133,8 +133,8 @@ function ViewCourse() {
             <b>Enrollment Fee:</b> &#8377;{data.price}
           </div>
         </div>
-        <div className="p-6 mr-40 w-[80%] bg-zinc-50 rounded-md">
-          <h1 className="font-mono font-semibold text-lg">Course content</h1>
+        <div className="p-6 xl:mr-40 md:mx-auto xl:w-[80%] md:w-full bg-zinc-50 rounded-md">
+          <h1 className="font-mono font-semibold xl:text-lg md:text-2xl">Course content</h1>
           <div className="max-h-[70vh] overflow-auto scrollbar-hide">
             {data.module?.map((data, index) => (
               <div className="my-4 bg-zinc-100 rounded-md" key={index}>
@@ -142,7 +142,7 @@ function ViewCourse() {
                   className="w-full bg-zinc-100 border-2 border-zinc-300 rounded-md items-center justify-between flex py-4 p-6"
                   onClick={() => toggleVisibility(index)}
                 >
-                  <span className="font-bold text-lg">{data?.title}</span>{" "}
+                  <span className="font-bold xl:text-lg md:text-2xl">{data?.title}</span>{" "}
                   <IoIosArrowDown
                     className={`transition-transform ${
                       visibleModule === index ? "rotate-180" : ""
@@ -175,10 +175,10 @@ function ViewCourse() {
                           </video>
                         </Link>
 
-                        <h1 className="capitalize font-bold">
+                        <h1 className="capitalize font-bold md:text-lg xl:text-base">
                           {contentdata.title}
                         </h1>
-                        <p className="capitalize text-zinc-600">
+                        <p className="capitalize text-zinc-600 truncate">
                           {contentdata.description}
                         </p>
                       </div>
@@ -192,25 +192,25 @@ function ViewCourse() {
         {enrolled ? (
           <button
             onClick={removeEnrollment}
-            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
           >
             Remove Enrollment
           </button>
         ) : (
           <button
             onClick={handleEnrollment}
-            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
           >
             Enroll Now
           </button>
         )}
-        <button className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500">
+        <button className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl">
           Add To WishList
         </button>
       </div>
       {/* {mount && ( */}
       <>
-        <h1 className="capitalize mt-8 underline underline-offset-2 text-2xl">
+        <h1 className="capitalize mt-8 underline underline-offset-2 md:text-2xl text-sm">
           other courses you might be interested in
         </h1>
         <Courses />
