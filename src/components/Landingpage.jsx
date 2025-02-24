@@ -44,7 +44,7 @@ export default function Landingpage() {
     },
   ];
   return (
-    <div className="px-4 sm:px-20 relative max-w-screen-xl mx-auto">
+    <div className="px-4 sm:px-20 relative max-w-screen-2xl mx-auto">
       <h1 className="absolute top-28 w-[80%] sm:w-[50%] sm:top-10 md:top-10 xl:top-36 text-white font-mono text-3xl sm:text-4xl pl-4 sm:pl-8 text-center sm:text-left">
         Empower Learning, Unlock Potential.
       </h1>

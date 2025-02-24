@@ -7,7 +7,7 @@ function ShowCoursesComponent({ data }) {
       {data.length > 0 ? (
         data.map((data, index) => (
           <div
-            className="w-full sm:h-[300px] md:h-fit sm:flex flex-col rounded-lg overflow-hidden my-8 bg-white hover:bg-zinc-50 font-mono p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
+            className="w-full sm:h-[300px] md:h-fit sm:flex md:flex-row flex-col rounded-lg overflow-hidden my-8 bg-white hover:bg-zinc-50 font-mono p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
             key={index}
           >
             <div className="sm:w-[40%] md:w-full overflow-hidden rounded-md">
