@@ -103,12 +103,12 @@ const CreateCourse = () => {
   return (
     <>
       {user && (
-        <div className="flex justify-center items-center font-mono">
-          <div className="bg-white py-4 px-8 mt-2 rounded-lg shadow-md ">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
+        <div className="flex justify-center items-center font-mono m-2">
+          <div className="bg-white sm:py-4 py-2 px-8 mt-2 rounded-lg shadow-md ">
+            <h2 className="sm:text-2xl text-base font-semibold mb-4 text-center">
               Add New Course
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="sm:space-y-4 space-y-2">
               <input
                 type="text"
                 name="title"
@@ -139,7 +139,7 @@ const CreateCourse = () => {
         /> */}
 
               <div>
-                <h4 className="text-lg font-semibold mb-2">Skills Required</h4>
+                <h4 className="sm:text-lg font-semibold mb-2">Skills Required</h4>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -177,7 +177,7 @@ const CreateCourse = () => {
               </div>
               <hr />
               <div className="flex gap-2">
-                <label className="block mb-2 text-lg font-semibold">
+                <label className="block mb-2 sm:text-lg font-semibold">
                   Add a thumbnail
                 </label>
                 <CloudinaryUploadWidget
@@ -194,12 +194,12 @@ const CreateCourse = () => {
               )}
               <hr />
               <div>
-                <h4 className="text-lg font-semibold mb-2">Level</h4>
+                <h4 className="sm:text-lg font-semibold mb-2">Level</h4>
                 <select
                   name="level"
                   value={courseData.level}
                   onChange={handleChange}
-                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
+                  className="w-1/2 p-2 border rounded-lg focus:ring focus:ring-blue-300"
                 >
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
@@ -208,8 +208,8 @@ const CreateCourse = () => {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold mb-2">Duration</h4>
-                <div className="flex gap-4">
+                <h4 className="sm:text-lg font-semibold mb-2">Duration</h4>
+                <div className="flex sm:gap-4 gap-2">
                   <input
                     type="number"
                     name="duration.hours"
@@ -229,7 +229,7 @@ const CreateCourse = () => {
                 </div>
               </div>
               <div>
-                <label className="text-lg font-semibold mb-2">
+                <label className="sm:text-lg font-semibold mb-2">
                   Enrollment Fee {"\u20B9"}
                 </label>
                 <input
@@ -246,7 +246,7 @@ const CreateCourse = () => {
 
               <button
                 type="submit"
-                className="w-full bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-500 transition"
+                className="w-full bg-pink-600 text-white px-6 sm:py-3 py-1 rounded-lg hover:bg-pink-500 transition text-base"
               >
                 Add Course
               </button>
