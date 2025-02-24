@@ -38,16 +38,16 @@ function Signin() {
     }
   };
   return (
-    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 px-10">
+    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 lg:px-10">
       <img
         src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-2-x1.webp"
-        className="h-full"
+        className="xl:h-full hidden lg:block lg:h-[350px]"
       />
       <form
-        className="flex flex-col gap-8 w-[60vh]  border-pink-800 h-fit p-8 rounded-lg "
+        className="flex flex-col gap-8 sm:max-w-[60vh] border-pink-800 h-fit p-8 rounded-lg "
         onSubmit={handleSignin}
       >
-        <h1 className="font-mono text-center text-2xl capitalize text-pink-900">
+        <h1 className="font-mono text-center text-xl sm:text-2xl lg:4xl capitalize text-pink-900">
           Sign in and start learning
         </h1>
 
@@ -72,11 +72,11 @@ function Signin() {
         <div>
           <button
             type="submit"
-            className="w-full bg-pink-200 h-12 font-mono rounded-md hover:bg-pink-100"
+            className="w-full bg-pink-200 h-12 lg:text-base text-lg font-mono rounded-md hover:bg-pink-100"
           >
             Sign in
           </button>
-          <h6 className="text-sm text-center mt-1 font-semibold">
+          <h6 className="lg:text-sm text-center mt-1 font-semibold">
             don't have an account?{" "}
             <Link
               to={"/signup"}

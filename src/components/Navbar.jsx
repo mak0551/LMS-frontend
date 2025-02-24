@@ -110,7 +110,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-2">
             <Link
               to="/signin"
-              className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+              className="px-3 py-1 mx-2 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
             >
               Log in
             </Link>
