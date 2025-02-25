@@ -35,7 +35,7 @@ function App() {
             <Route path="/addmodule/:id" element={<AddModule />} />
             <Route path="/cloud" element={<CloudinaryUploadWidget />} />
             <Route path="/mycourses" element={<MyCourses />} />
-            <Route path="/mylearnings/:id" element={<Mylearnimgs />} />
+            <Route path="/mylearnings" element={<Mylearnimgs />} />
             <Route
               path="/getcoursebyteacher/:id"
               element={<Getcoursebyteacher />}
