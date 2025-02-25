@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function ShowCoursesComponent({ data }) {
   return (
-    <div className="sm:mx-40 mx-4 py-12">
+    <div className="sm:mx-40 mx-4 py-2">
       {data.length > 0 ? (
         data.map((data, index) => (
           <div

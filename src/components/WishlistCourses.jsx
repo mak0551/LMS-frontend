@@ -36,8 +36,8 @@ const WishlistCourses = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">My Wishlist</h2>
+    <div className="px-4">
+      {/* <h2 className="text-2xl font-bold">My Wishlist</h2> */}
       {courses.length > 0 ? (
         <ShowCoursesComponent data={courses} />
       ) : (
