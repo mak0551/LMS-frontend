@@ -11,6 +11,7 @@ function ViewCourse() {
   const [data, setData] = useState([]);
   const [enrolled, setEnrolled] = useState(false);
   const [visibleModule, setVisibleModule] = useState(null);
+  const [wishlist, setWishlist] = useState([]);
   const user = useAuth();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function ViewCourse() {
         );
         setData(response.data);
       } catch (err) {
-        console.error("Error fetching course data:", error);
+        console.error("Error fetching course data:", err);
       }
     };
     fetchdata();
@@ -42,6 +43,11 @@ function ViewCourse() {
     };
     checkEnrollment();
   }, [id, user]);
+
+  useEffect(() => {
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    setWishlist(storedWishlist);
+  }, []);
 
   const toggleVisibility = (index) => {
     setVisibleModule(visibleModule === index ? null : index);
@@ -73,6 +79,25 @@ function ViewCourse() {
     }
   };
 
+  // Add to Wishlist
+  const addToWishlist = () => {
+    let updatedWishlist = [...wishlist];
+    if (!updatedWishlist.includes(id)) {
+      updatedWishlist.push(id);
+      setWishlist(updatedWishlist);
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      toast.success("Added to Wishlist");
+    }
+  };
+
+  // Remove from Wishlist
+  const removeFromWishlist = () => {
+    let updatedWishlist = wishlist.filter((courseId) => courseId !== id);
+    setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    toast.success("Removed from Wishlist");
+  };
+
   return (
     <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full ">
       <div className="flex flex-col xl:flex-row gap-4 items-center">
@@ -86,9 +111,15 @@ function ViewCourse() {
           className="xl:h-[200px] xl:w-[300px] rounded-md object-cover hover:scale-105 transition-transform duration-300"
         />
         <div className="md:m-4 flex flex-col gap-2">
-          <h1 className="font-mono xl:text-4xl md:text-6xl capitalize">{data.title}</h1>
-          <p className="text-zinc-500 my-2 xl:text-base md:text-3xl">{data.description}</p>
-          <span className="capitalize md:text-2xl xl:text-lg">instructor - {data.teacher?.name}</span>
+          <h1 className="font-mono xl:text-4xl md:text-6xl capitalize">
+            {data.title}
+          </h1>
+          <p className="text-zinc-500 my-2 xl:text-base md:text-3xl">
+            {data.description}
+          </p>
+          <span className="capitalize md:text-2xl xl:text-lg">
+            instructor - {data.teacher?.name}
+          </span>
           <span className="xl:text-sm md:text-xl">
             <b>Date Created:</b> {data.createdAt?.slice(0, 10)}
           </span>
@@ -134,7 +165,9 @@ function ViewCourse() {
           </div>
         </div>
         <div className="p-6 xl:mr-40 md:mx-auto xl:w-[80%] md:w-full bg-zinc-50 rounded-md">
-          <h1 className="font-mono font-semibold xl:text-lg md:text-2xl">Course content</h1>
+          <h1 className="font-mono font-semibold xl:text-lg md:text-2xl">
+            Course content
+          </h1>
           <div className="max-h-[70vh] overflow-auto scrollbar-hide">
             {data.module?.map((data, index) => (
               <div className="my-4 bg-zinc-100 rounded-md" key={index}>
@@ -142,7 +175,9 @@ function ViewCourse() {
                   className="w-full bg-zinc-100 border-2 border-zinc-300 rounded-md items-center justify-between flex py-4 p-6"
                   onClick={() => toggleVisibility(index)}
                 >
-                  <span className="font-bold xl:text-lg md:text-2xl">{data?.title}</span>{" "}
+                  <span className="font-bold xl:text-lg md:text-2xl">
+                    {data?.title}
+                  </span>{" "}
                   <IoIosArrowDown
                     className={`transition-transform ${
                       visibleModule === index ? "rotate-180" : ""
@@ -204,9 +239,21 @@ function ViewCourse() {
             Enroll Now
           </button>
         )}
-        <button className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl">
-          Add To WishList
-        </button>
+        {wishlist.includes(id) ? (
+          <button
+            onClick={removeFromWishlist}
+            className="px-3 py-1 text-white bg-red-600 border-red-600 border-2 rounded-md hover:bg-red-500 xl:text-lg md:text-2xl"
+          >
+            Remove from Wishlist
+          </button>
+        ) : (
+          <button
+            onClick={addToWishlist}
+            className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl"
+          >
+            Add to Wishlist
+          </button>
+        )}
       </div>
       {/* {mount && ( */}
       <>

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import EnrollmentList from "./EnrollmentList";
+import WishlistCourses from "./WishlistCourses";
 
 export default function Mylearnimgs() {
   const [courses, setCourses] = useState([]);
@@ -40,6 +41,7 @@ export default function Mylearnimgs() {
         </div>
       </div>
       <div>{user && <EnrollmentList data={courses} />}</div>
+      <div><WishlistCourses/></div>
     </div>
   );
 }
