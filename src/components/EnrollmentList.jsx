@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 function EnrollmentList({ data }) {
   return (
-    <div className="sm:mx-40 mx-4 py-12">
+    <div className="sm:mx-8 xl:mx-40 mx-4 flex gap-4 flex-wrap py-4 justify-center">
       {data.length > 0 ? (
         data.map((data, index) => (
           <div
-            className="w-full sm:h-[300px] md:h-fit sm:flex md:flex-row flex-col rounded-lg overflow-hidden my-8 bg-white hover:bg-zinc-50 font-mono p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
+            className="flex w-[350px] h-[400px] flex-col rounded-lg overflow-hidden my-2 bg-white hover:bg-zinc-50 font-mono p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
             key={index}
           >
-            <div className="sm:w-[40%] overflow-hidden rounded-md">
+            <div className=" overflow-hidden rounded-md">
               <img
                 src={`${
                   data?.courseId?.thumbNail
@@ -21,7 +21,7 @@ function EnrollmentList({ data }) {
                 className="h-full w-full rounded-md transition-transform duration-300 group-hover:scale-105"
               />
             </div>
-            <div className=" sm:w-[60%] md:w-[60%] px-8 relative">
+            <div className="relative">
               <h1 className="mt-4 mb-2 text-3xl capitalize font-mono font-bold ">
                 {data?.courseId?.title}
               </h1>
