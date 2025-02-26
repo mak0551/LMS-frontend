@@ -189,7 +189,7 @@ function ViewCourse() {
                     {data.content?.map((contentdata, index) => (
                       // console.log(data, "sdhafkjhfjk")
                       <div
-                        className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded-md"
+                        className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded-md "
                         key={index}
                       >
                         <Link
@@ -203,17 +203,17 @@ function ViewCourse() {
                             onMouseLeave={(e) => e.target.pause()}
                             muted
                             key={index}
-                            className="rounded-md"
+                            className="rounded-md "
                           >
                             <source src={contentdata.url} type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
                         </Link>
 
-                        <h1 className="capitalize font-bold md:text-lg xl:text-base">
+                        <h1 className="capitalize font-bold md:text-lg xl:text-base truncate sm:w-auto w-full ">
                           {contentdata.title}
                         </h1>
-                        <p className="capitalize text-zinc-600 truncate">
+                        <p className="capitalize sm:block hidden text-zinc-600 truncate ">
                           {contentdata.description}
                         </p>
                       </div>
