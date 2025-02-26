@@ -52,9 +52,9 @@ function Viewvideo() {
   }
 
   return (
-    <div className="mx-48 mt-20 bg-zinc-50 font-mono p-6 h-full flex flex-col items-center">
+    <div className="md:mx-48 sm:mt-20 bg-zinc-50 font-mono sm:p-6 p-2 h-full flex flex-col items-center ">
       <div>
-        <div className="mb-4">
+        <div className="sm:mb-4">
           <video
             width="740"
             height="360"
@@ -71,10 +71,13 @@ function Viewvideo() {
         <div className="m-2 capitalize text-sm font-semibold text-zinc-500">
           {videoData.title}
         </div>
+        <div className="m-2 capitalize text-sm font-semibold text-zinc-500">
+          {videoData.description}
+        </div>
       </div>
-      <div className="max-h-[70vh] my-4 overflow-auto scrollbar-hide w-full">
+      <div className="max-h-[70vh] my-4 overflow-auto scrollbar-hide w-full ">
         {courseData.module?.map((data, index) => (
-          <div className="my-4 bg-zinc-100 rounded-md mx-24 " key={index}>
+          <div className="my-4 bg-zinc-100 rounded-md xl:mx-24 " key={index}>
             <div
               className="w-full bg-zinc-100 border-2 border-zinc-300 rounded-md items-center justify-between flex py-4 p-6"
               onClick={() => toggleVisibility(index)}
@@ -92,12 +95,13 @@ function Viewvideo() {
                 {data.content?.map((contentdata, index) => (
                   // console.log(data, "sdhafkjhfjk")
                   <div
-                    className="flex justify-between items-center px-2 hover:bg-zinc-200 active:bg-zinc-200 rounded"
+                    className="flex justify-between items-center px-2 hover:bg-zinc-200 active:bg-zinc-200 rounded "
                     key={index}
                   >
                     <Link
                       to={`/viewvideos/${data._id}/${index}`}
                       key={data._id}
+                      className="w-[30%]"
                     >
                       <video
                         width="200"
@@ -106,18 +110,20 @@ function Viewvideo() {
                         onMouseLeave={(e) => e.target.pause()}
                         muted
                         key={index}
-                        className="rounded-md"
+                        className="rounded-md w-full"
                       >
                         <source src={contentdata.url} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     </Link>
-                    <h1 className="capitalize font-bold">
-                      {contentdata.title}
-                    </h1>
-                    <p className="capitalize text-zinc-600">
-                      {contentdata.description}
-                    </p>
+                    <div className="flex w-[70%]">
+                      <h1 className="capitalize font-bold w-full sm:w-[40%] truncate ">
+                        {contentdata.title}
+                      </h1>
+                      <p className="capitalize text-zinc-600 hidden sm:block w-[60%] truncate">
+                        {contentdata.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
