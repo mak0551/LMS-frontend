@@ -236,7 +236,6 @@ const CreateCourse = () => {
                   type="number"
                   name="price"
                   placeholder={"\u20B9"}
-                  initial
                   value={courseData.price}
                   onChange={handleChange}
                   className="w-full p-1 border rounded-lg focus:ring focus:ring-blue-300"

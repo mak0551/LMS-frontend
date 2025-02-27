@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ShowCoursesComponent from "./ShowCoursesComponent";
 
 function ShowCourses() {
@@ -13,9 +12,11 @@ function ShowCourses() {
     };
     fetchData();
   }, []);
-  return <div>
-    <ShowCoursesComponent data={data}/>
-  </div>;
+  return (
+    <div>
+      <ShowCoursesComponent data={data} />
+    </div>
+  );
 }
 
 export default ShowCourses;
