@@ -10,13 +10,16 @@ export default function Mylearnimgs() {
   const [courses, setCourses] = useState([]);
   const [activeTab, setActiveTab] = useState("list"); // "list" or "wishlist"
   const { user } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchcourses = async () => {
-      // if (!user) {
-      // toast.error("please login to view your learnings");
-      // navigate("/signin");
-      // }
+      if (user === null) {
+        return;
+      }
+      if (user === false) {
+        toast.error("please login to view your learnings");
+        navigate("/signin");
+      }
       try {
         const id = user?.user?._id;
         const res = await axios.get(

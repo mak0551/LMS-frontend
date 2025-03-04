@@ -100,7 +100,7 @@ function ViewCourse() {
 
   return (
     <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full ">
-      <div className="flex flex-col xl:flex-row gap-4 items-center">
+      <div className="flex flex-col sm:flex-row gap-4 items-start md:items-center ">
         <img
           src={`${
             data.thumbNail
@@ -108,10 +108,10 @@ function ViewCourse() {
               : "https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }`}
           alt=""
-          className="xl:h-[200px] xl:w-[300px] rounded-md object-cover hover:scale-105 transition-transform duration-300"
+          className="xl:h-[200px] xl:w-[300px] rounded-md object-cover hover:scale-105 transition-transform duration-300 sm:w-1/2"
         />
         <div className="md:m-4 flex flex-col gap-2">
-          <h1 className="font-mono xl:text-4xl md:text-6xl capitalize">
+          <h1 className="font-mono xl:text-4xl md:text-5xl capitalize">
             {data.title}
           </h1>
           <p className="text-zinc-500 my-2 xl:text-base md:text-3xl">
