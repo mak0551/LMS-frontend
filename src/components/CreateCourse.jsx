@@ -10,7 +10,8 @@ const CreateCourse = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (user === null) return;
+    if (user === false) {
       toast.error("please login to create your course");
       navigate("/signin");
     }
@@ -139,7 +140,9 @@ const CreateCourse = () => {
         /> */}
 
               <div>
-                <h4 className="sm:text-lg font-semibold mb-2">Skills Required</h4>
+                <h4 className="sm:text-lg font-semibold mb-2">
+                  Skills Required
+                </h4>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -189,7 +192,9 @@ const CreateCourse = () => {
               </div>
               {imgName && (
                 <div className="w-[70%] flex">
-                  <span className="text-gray-700 mt-2 truncate whitespace-nowrap overflow-hidden">Uploaded successfully: {imgName}</span>
+                  <span className="text-gray-700 mt-2 truncate whitespace-nowrap overflow-hidden">
+                    Uploaded successfully: {imgName}
+                  </span>
                 </div>
               )}
               <hr />
