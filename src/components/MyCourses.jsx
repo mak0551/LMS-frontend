@@ -14,7 +14,8 @@ export default function MyCourses() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!user) {
+      if (user === null) return;
+      if (user === false) {
         toast.error("Please login to view your courses");
         navigate("/signin");
         return;
