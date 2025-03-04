@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Landingpage from "./components/Landingpage";
 import Signup from "./pages/Signup";
@@ -16,12 +16,24 @@ import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
 import MyCourses from "./components/MyCourses";
 import { ToastContainer } from "react-toastify";
 import Mylearnimgs from "./components/Mylearnimgs";
+import { useLocation } from "react-router-dom";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]); // Runs whenever the route changes
+
+  return null;
+}
 
 function App() {
   return (
     <div className="bg-green-50 min-h-[100vh]">
       <AuthProvider>
         <Router>
+          <ScrollToTop />
           <Navbar />
           <Routes>
             <Route path="/" element={<Landingpage />} />
