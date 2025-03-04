@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -126,30 +126,27 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-zinc-100">
-              Newsletter
+              Contact Info
             </h4>
-            <p className="text-zinc-400 text-sm mb-4">
-              Get updates on new courses and offers.
-            </p>
-            <form className="flex flex-col space-y-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="px-4 py-2 rounded-md bg-zinc-700 text-zinc-200 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-pink-500"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-zinc-50 rounded-md transition-colors duration-300"
-              >
-                Subscribe
-              </button>
-            </form>
+            <ul className="space-y-3 ">
+              <li className="flex items-center space-x-2">
+                <FaEnvelope className="text-pink-500" />
+                <span>support@lms.com</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <FaPhone className="text-pink-500" />
+                <span>+1 (555) 123-4567</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <FaMapMarkerAlt className="text-pink-500" />
+                <span>123 Learning St, Edu City</span>
+              </li>
+            </ul>
           </div>
         </div>
-
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-zinc-700 flex flex-col md:flex-row justify-between items-center text-zinc-400 text-sm">
           <p>© {new Date().getFullYear()} LearnHub. All rights reserved.</p>
