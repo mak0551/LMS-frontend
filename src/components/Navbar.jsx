@@ -187,7 +187,7 @@ const Navbar = () => {
                     logout();
                     setMenuOpen(false);
                   }}
-                  className="px-4 py-2 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
+                  className="px-4 py-1 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
                 >
                   Logout
                 </button>

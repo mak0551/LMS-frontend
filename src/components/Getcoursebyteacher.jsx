@@ -17,12 +17,12 @@ function Getcoursebyteacher() {
   }, []);
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
-        <div className="font-mono mt-8 p-4 pl-0 flex flex-wrap justify-center items-center">
+      <div className="flex flex-col justify-center items-center ">
+        <div className="font-mono mt-8 p-4 pl-0 flex flex-wrap justify-center items-center h-fit">
           {data.length > 0 ? (
             data.map((data, index) => (
               <Link to={`/viewcoursedetails/${data._id}`} key={index}>
-                <div className="h-[250px] w-[200px] sm:h-[300px] sm:w-[250px] md:h-[350px] md:w-[300px] lg:h-[400px] lg:w-[350px] flex m-4 flex-col overflow-hidden bg-zinc-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex-shrink-0 border border-gray-100">
+                <div className="h-[280px] w-[200px] sm:h-[300px] sm:w-[250px] md:h-[350px] md:w-[300px] lg:h-[400px] lg:w-[350px] flex m-4 flex-col overflow-hidden bg-zinc-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex-shrink-0 border border-gray-100">
                   <div className="h-[50%] overflow-hidden">
                     <img
                       src={`${
@@ -34,31 +34,27 @@ function Getcoursebyteacher() {
                       className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="h-[50%] px-5 py-3 font-mono flex flex-col ">
-                    <div className="h-[50%]">
-                      <h1 className="text-lg font-semibold capitalize text-gray-800 truncate">
-                        {data.title}
-                      </h1>
-                      <p className="text-gray-600 text-sm truncate">
-                        {data.description}
-                      </p>
-                      <span className="text-gray-500 text-sm capitalize">
-                        {data.teacher?.name || ""}
-                      </span>
-                    </div>
-                    <div className="h-[50%] relative">
-                      <span className="text-lg font-semibold text-gray-900">₹{data.price}</span>
-                      <div
-                        className={`${
-                          data.level === "Advance"
-                            ? "bg-red-300"
-                            : "bg-green-300"
-                        } ${
-                          data.level === "Intermediate" && "bg-yellow-200"
-                        } w-fit px-2 py-1 rounded-md text-zinc-800 absolute bottom-2`}
-                      >
-                        {data.level}
-                      </div>
+                  <div className="h-[50%] px-5 py-3 font-mono flex flex-col">
+                    <h1 className="text-lg font-semibold capitalize text-gray-800 truncate">
+                      {data.title}
+                    </h1>
+                    <p className="text-gray-600 text-sm truncate">
+                      {data.description}
+                    </p>
+                    <span className="text-gray-500 text-sm capitalize">
+                      {data.teacher?.name || ""}
+                    </span>
+                    <span className="text-lg font-semibold text-gray-900">
+                      ₹{data.price}
+                    </span>
+                    <div
+                      className={`${
+                        data.level === "Advance" ? "bg-red-300" : "bg-green-300"
+                      } ${
+                        data.level === "Intermediate" && "bg-yellow-200"
+                      } w-fit px-2 py-1 rounded-md text-zinc-800 text-sm mt-2`}
+                    >
+                      {data.level}
                     </div>
                   </div>
                 </div>
