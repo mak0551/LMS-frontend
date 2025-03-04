@@ -66,7 +66,7 @@ function Courses() {
         )}
       </div>
       <Link to={"/allcourses"}>
-        <p className="mx-2 px-3 py-1 text-zinc-50 bg-pink-500 rounded-lg hover:bg-pink-400 w-fit capitalize">
+        <p className="mx-2 px-3 py-1 text-zinc-50 bg-pink-500 hover:bg-pink-600 rounded-lg w-fit capitalize">
           show all courses
         </p>
       </Link>

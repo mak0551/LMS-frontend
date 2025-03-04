@@ -17,6 +17,7 @@ import MyCourses from "./components/MyCourses";
 import { ToastContainer } from "react-toastify";
 import Mylearnimgs from "./components/Mylearnimgs";
 import { useLocation } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -53,6 +54,7 @@ function App() {
               element={<Getcoursebyteacher />}
             />
           </Routes>
+          <Footer />
         </Router>
       </AuthProvider>
       <ToastContainer position="top-center" autoClose={1000} />
