@@ -65,6 +65,7 @@ const CloudinaryUploadWidget = ({ onUploadSuccess }) => {
   return (
     <div>
       <button
+        type="button"
         onClick={openWidget}
         disabled={!cloudinaryReady}
         className="border border-zinc-600 rounded-md px-2"

@@ -35,7 +35,7 @@ export default function Mylearnimgs() {
   }, [user]);
   return (
     <div>
-      <div className="bg-zinc-700 md:h-44 w-full p-2 relative">
+      <div className="bg-gray-800 md:h-44 w-full p-2 relative">
         <h1 className="sm:ml-24 ml-4 sm:mt-16 my-16 text-4xl text-white font-semibold">
           My Learnings
         </h1>
