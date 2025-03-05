@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { toast } from "react-toastify";
 
-const AddModule = () => {
-  const { id } = useParams();
+const EditModule = () => {
+  const { id, moduleId } = useParams(); // id is courseId, moduleId is the module to edit
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
     content: [
@@ -21,6 +22,23 @@ const AddModule = () => {
     ],
     courseId: id,
   });
+
+  useEffect(() => {
+    const fetchModule = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4040/module/${moduleId}`
+        );
+        setFormData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching module:", error);
+        toast.error("Failed to load module data");
+        setIsLoading(false);
+      }
+    };
+    fetchModule();
+  }, [moduleId]);
 
   const handleChange = (e, index = null, field) => {
     if (index === null) {
@@ -37,13 +55,12 @@ const AddModule = () => {
 
     try {
       setIsSubmitting(true);
-      await axios.post("http://localhost:4040/module/add", formData);
-      toast.success("Module created successfully!");
-      // Redirect to course page or module list
+      await axios.put(`http://localhost:4040/module/${moduleId}`, formData);
+      toast.success("Module updated successfully!");
       navigate(`/mycourses`);
     } catch (error) {
-      console.error("Error posting module:", error);
-      toast.error(error.response?.data?.message || "Failed to create module.");
+      console.error("Error updating module:", error);
+      toast.error(error.response?.data?.message || "Failed to update module.");
     } finally {
       setIsSubmitting(false);
     }
@@ -53,12 +70,20 @@ const AddModule = () => {
     const newContent = [...formData.content];
     newContent[index].url = url;
     setFormData({ ...formData, content: newContent });
-    // toast.success("Video uploaded successfully!");
+    toast.success("Video uploaded successfully!");
   };
+
+  if (isLoading) {
+    return (
+      <div className="max-w-3xl mx-auto p-6">
+        <p>Loading module data...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Add Module to Your Course</h2>
+      <h2 className="text-2xl font-bold mb-4">Edit Module</h2>
       <form onSubmit={handleSubmit}>
         <label className="block mb-2">Module Title:</label>
         <input
@@ -96,13 +121,15 @@ const AddModule = () => {
               required
             />
             <div className="flex gap-2">
-              <label className="block mb-2">Add Video</label>
+              <label className="block mb-2">Update Video</label>
               <CloudinaryUploadWidget
                 onUploadSuccess={(url) => handleVideoUpload(url, index)}
               />
             </div>
             {item.url && (
-              <p className="text-green-600 mb-2">Video uploaded successfully</p>
+              <div className="mt-2">
+                <p className="text-green-600 mb-2">Current video: {item.url}</p>
+              </div>
             )}
 
             <label className="block mb-2 mt-4">Duration (seconds):</label>
@@ -160,11 +187,11 @@ const AddModule = () => {
             isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
           } transition-colors`}
         >
-          {isSubmitting ? "Creating Module..." : "Submit"}
+          {isSubmitting ? "Updating Module..." : "Update Module"}
         </button>
       </form>
     </div>
   );
 };
 
-export default AddModule;
+export default EditModule;

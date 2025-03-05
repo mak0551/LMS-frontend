@@ -19,6 +19,7 @@ import Mylearnimgs from "./components/Mylearnimgs";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import EditCourse from "./components/EditCourse";
+import EditModule from "./components/EditModule";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -51,6 +52,7 @@ function App() {
             <Route path="/mycourses" element={<MyCourses />} />
             <Route path="/mylearnings" element={<Mylearnimgs />} />
             <Route path="/edit-course/:id" element={<EditCourse />} />
+            <Route path="/editmodule/:id/:moduleId" element={<EditModule />} />
             <Route
               path="/getcoursebyteacher/:id"
               element={<Getcoursebyteacher />}

@@ -186,10 +186,10 @@ function ViewCourse() {
                 </div>
                 {visibleModule === index && (
                   <div className="p-2 flex flex-col gap-2">
-                    {data.content?.map((contentdata, index) => (
+                    {data?.content?.map((contentdata, index) => (
                       // console.log(data, "sdhafkjhfjk")
                       <div
-                        className="flex justify-between items-center px-2 hover:bg-zinc-200 rounded-md "
+                        className="flex gap-8 items-center px-2 hover:bg-zinc-200 rounded-md "
                         key={index}
                       >
                         <Link
@@ -209,13 +209,14 @@ function ViewCourse() {
                             Your browser does not support the video tag.
                           </video>
                         </Link>
-
-                        <h1 className="capitalize font-bold md:text-lg xl:text-base truncate sm:w-auto w-full ">
-                          {contentdata.title}
-                        </h1>
-                        <p className="capitalize sm:block hidden text-zinc-600 truncate ">
-                          {contentdata.description}
-                        </p>
+                        <div className="h-full w-full flex justify-between">
+                          <h1 className="capitalize font-bold md:text-lg xl:text-base truncate sm:w-auto w-full sm:ml-8">
+                            {contentdata.title}
+                          </h1>
+                          <p className="capitalize md:block hidden text-zinc-600 truncate ">
+                            {contentdata.description}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
