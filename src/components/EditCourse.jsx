@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../state_management/AuthContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 
@@ -126,8 +126,8 @@ const EditCourse = () => {
   }
 
   return (
-    <div className="flex justify-center items-center font-mono m-2">
-      <div className="bg-white sm:py-4 py-2 px-8 mt-2 rounded-lg shadow-md">
+    <div className="flex justify-center items-center font-mono m-2 ">
+      <div className="bg-white sm:py-4 py-2 px-8 mt-2 rounded-lg shadow-md xl:w-1/3">
         <h2 className="sm:text-2xl text-base font-semibold mb-4 text-center">
           Edit Course
         </h2>
@@ -269,12 +269,22 @@ const EditCourse = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-pink-600 text-white px-6 sm:py-3 py-1 rounded-lg hover:bg-pink-500 transition text-base"
-          >
-            Update Course
-          </button>
+          <div className="flex flex-col gap-2">
+            <button
+              type="submit"
+              className="w-full bg-pink-600 text-white px-6 sm:py-2 py-1 rounded-lg hover:bg-pink-500 transition text-base"
+            >
+              Update 
+            </button>
+            <Link to={`/editmodule/${id}`}>
+              <button
+                type="button"
+                className="w-full border border-pink-600 text-pink-600 px-6 sm:py-2 py-1 rounded-lg hover:bg-zinc-50 transition text-base"
+              >
+                Edit Modules
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>
