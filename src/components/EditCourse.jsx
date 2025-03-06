@@ -207,7 +207,7 @@ const EditCourse = () => {
               <span className="text-gray-700 mt-2 truncate whitespace-nowrap overflow-hidden">
                 {imgName}
               </span>
-              <div className="max-h-[150px] max-w-[250px]">
+              <div className="max-h-[150px] overflow-hidden max-w-[250px]">
                 <img
                   src={courseData.thumbNail}
                   alt="cannot load image"
