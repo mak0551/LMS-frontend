@@ -18,6 +18,7 @@ const EditModules = () => {
           `http://localhost:4040/module/getbycourse/${id}`
         );
         setFormData(response.data);
+        console.log(response.data);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching modules:", error);
@@ -31,7 +32,7 @@ const EditModules = () => {
   const handleChange = (e, moduleIndex, contentIndex = null, field) => {
     const newFormData = [...formData];
     if (contentIndex === null) {
-      // Update module-level field (e.g., title)
+      // Update module-level field
       newFormData[moduleIndex][field] = e.target.value;
     } else {
       // Update content-level field
@@ -71,7 +72,6 @@ const EditModules = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Update all modules concurrently
       const updatePromises = formData.map((module) =>
         axios.put(`http://localhost:4040/module/update/${module._id}`, module)
       );
@@ -193,13 +193,14 @@ const EditModules = () => {
                       />
                     </div>
                     {item.url && (
-                      <div className="flex">
-                        <span className="text-sm  mb-4 break-all">
+                      <div className="flex flex-col">
+                        <div className="text-sm w-full">
                           Current video:
-                        </span>
+                        </div>
                         <video
                           src={item.url}
-                          className="w-[200px] h-[150px]"
+                          controls
+                          className="w-[200px] h-[150px] rounded-lg"
                         ></video>
                       </div>
                     )}
