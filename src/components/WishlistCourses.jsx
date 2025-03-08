@@ -7,7 +7,7 @@ const WishlistCourses = () => {
 
   // Fetch wishlist from localStorage on component mount
   useEffect(() => {
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) ;
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
     // console.log(storedWishlist, 'wishlist');
     setWishlist(storedWishlist);
   }, []);
@@ -28,15 +28,15 @@ const WishlistCourses = () => {
             .catch((err) => console.log(err))
         )
       );
-      setCourses(responses);
-      // console.log(responses);
+      const extractedCourses = responses.map((response) => response.findCourse);
+      setCourses(extractedCourses);
     } catch (error) {
       console.error("Error fetching wishlisted courses:", error);
     }
   };
 
   return (
-    <div className="px-4">
+    <div>
       {/* <h2 className="text-2xl font-bold">My Wishlist</h2> */}
       {courses.length > 0 ? (
         <ShowCoursesComponent data={courses} />

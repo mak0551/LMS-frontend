@@ -8,7 +8,7 @@ function ShowCourses() {
     const fetchData = async () => {
       const response = await axios.get("http://localhost:4040/course/getall");
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     };
     fetchData();
   }, []);
