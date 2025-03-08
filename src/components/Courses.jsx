@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import StarRating from "./StarRating";
 
 function Courses() {
   var [data, setData] = useState([]);
@@ -38,21 +39,27 @@ function Courses() {
                 <div className="h-[50%] px-4 py-2 font-mono flex flex-col">
                   <div className="h-[50%]">
                     <h1 className="text-lg capitalize">{data.title}</h1>
-                    <p className="text-zinc-500 truncate">
-                      {data.description}
-                    </p>
+                    <p className="text-zinc-500 truncate">{data.description}</p>
                     <span className="text-zinc-600 text-nowrap text-sm capitalize">
                       {data.teacher?.name || ""}
                     </span>
                   </div>
                   <div className="h-[50%] relative">
+                    <div className="flex items-center gap-1">
+                      <span className="text-pink-900">
+                        {data.averageRating}
+                      </span>
+                      <div className="pb-[2px]">
+                        <StarRating rating={data.averageRating} />
+                      </div>
+                    </div>
                     <span>&#8377;{data.price}</span>
                     <div
                       className={`${
                         data.level === "Advance" ? "bg-red-300" : "bg-green-300"
                       } ${
                         data.level === "Intermediate" && "bg-yellow-200"
-                      } w-fit px-2 py-1 rounded-md text-zinc-800 absolute bottom-2`}
+                      } w-fit px-2 py-1 rounded-md text-zinc-800 absolute bottom-0`}
                     >
                       {data.level}
                     </div>
