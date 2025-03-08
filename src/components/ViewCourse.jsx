@@ -20,7 +20,9 @@ function ViewCourse() {
         const response = await axios.get(
           `http://localhost:4040/course/getbyid/${id}`
         );
-        setData(response.data);
+        const res = response?.data?.findCourse;
+        setData(res);
+        console.log(response);
       } catch (err) {
         console.error("Error fetching course data:", err);
       }
@@ -108,7 +110,7 @@ function ViewCourse() {
               : "https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }`}
           alt=""
-          className="xl:h-[200px] xl:w-[300px] rounded-md object-cover hover:scale-105 transition-transform duration-300 sm:w-1/2"
+          className="h-[200px] w-[300px] md:h-[200px] md:w-[300px] rounded-md object-cover hover:scale-105 transition-transform duration-300 sm:w-1/2"
         />
         <div className="md:m-4 flex flex-col gap-2">
           <h1 className="font-mono xl:text-4xl md:text-5xl capitalize">
@@ -128,7 +130,7 @@ function ViewCourse() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col gap-4 md:mx-4">
+      <div className="flex flex-col gap-4 md:mx-4 ">
         <span className="mt-4 md:text-2xl xl:text-lg">
           <b>Course Duration:</b>{" "}
           {`${
@@ -228,14 +230,14 @@ function ViewCourse() {
         {enrolled ? (
           <button
             onClick={removeEnrollment}
-            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
           >
             Remove Enrollment
           </button>
         ) : (
           <button
             onClick={handleEnrollment}
-            className="px-3 py-1 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
           >
             Enroll Now
           </button>
@@ -243,14 +245,14 @@ function ViewCourse() {
         {wishlist.includes(id) ? (
           <button
             onClick={removeFromWishlist}
-            className="px-3 py-1 text-white bg-red-600 border-red-600 border-2 rounded-md hover:bg-red-500 xl:text-lg md:text-2xl"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-pink-600 border-red-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl"
           >
             Remove from Wishlist
           </button>
         ) : (
           <button
             onClick={addToWishlist}
-            className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl"
           >
             Add to Wishlist
           </button>
