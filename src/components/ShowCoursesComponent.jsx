@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import StarRating from "./StarRating";
 
 function ShowCoursesComponent({ data }) {
   return (
@@ -33,6 +34,12 @@ function ShowCoursesComponent({ data }) {
               </div>
               <div className="text-xs mb-2 font-base">
                 Last Updated {data?.updatedAt?.slice(0, 10)}
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="text-pink-900">{data?.averageRating}</span>
+                <div className="pb-[2px]">
+                  <StarRating rating={data?.averageRating} />
+                </div>
               </div>
               <span className="absolute sm:top-4 sm:right-10 right-4 top-10 text-xl">
                 &#8377;{data.price}

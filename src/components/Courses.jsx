@@ -28,40 +28,40 @@ function Courses() {
                 <div className="h-[50%] overflow-hidden">
                   <img
                     src={`${
-                      data.thumbNail
-                        ? data.thumbNail
+                      data?.thumbNail
+                        ? data?.thumbNail
                         : "https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     }`}
                     alt=""
                     className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="h-[50%] px-4 py-2 font-mono flex flex-col">
+                <div className="h-[60%] px-4 py-2 font-mono flex flex-col">
                   <div className="h-[50%]">
-                    <h1 className="text-lg capitalize">{data.title}</h1>
-                    <p className="text-zinc-500 truncate">{data.description}</p>
+                    <h1 className="text-lg capitalize">{data?.title}</h1>
+                    <p className="text-zinc-500 truncate">{data?.description}</p>
                     <span className="text-zinc-600 text-nowrap text-sm capitalize">
-                      {data.teacher?.name || ""}
+                      {data?.teacher?.name || ""}
                     </span>
                   </div>
                   <div className="h-[50%] relative">
                     <div className="flex items-center gap-1">
                       <span className="text-pink-900">
-                        {data.averageRating}
+                        {data?.averageRating}
                       </span>
                       <div className="pb-[2px]">
-                        <StarRating rating={data.averageRating} />
+                        <StarRating rating={data?.averageRating} />
                       </div>
                     </div>
-                    <span>&#8377;{data.price}</span>
+                    <span>&#8377;{data?.price}</span>
                     <div
                       className={`${
-                        data.level === "Advance" ? "bg-red-300" : "bg-green-300"
+                        data?.level === "Advance" ? "bg-red-300" : "bg-green-300"
                       } ${
-                        data.level === "Intermediate" && "bg-yellow-200"
+                        data?.level === "Intermediate" && "bg-yellow-200"
                       } w-fit px-2 py-1 rounded-md text-zinc-800 absolute bottom-0`}
                     >
-                      {data.level}
+                      {data?.level}
                     </div>
                   </div>
                 </div>
