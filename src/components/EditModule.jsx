@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { toast } from "react-toastify";
-import AddModule from "./AddModule";
 
 const EditModules = () => {
   const { id } = useParams(); // id is courseId

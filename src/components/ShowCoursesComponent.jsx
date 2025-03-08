@@ -32,7 +32,7 @@ function ShowCoursesComponent({ data }) {
                 {data.teacher?.name ? `By ${data.teacher.name}` : ""}
               </div>
               <div className="text-xs mb-2 font-base">
-                Last Updated {data.updatedAt.slice(0, 10)}
+                Last Updated {data?.updatedAt?.slice(0, 10)}
               </div>
               <span className="absolute sm:top-4 sm:right-10 right-4 top-10 text-xl">
                 &#8377;{data.price}

@@ -38,7 +38,7 @@ const EditCourse = () => {
         const response = await axios.get(
           `http://localhost:4040/course/getbyid/${id}`
         );
-        const course = response.data;
+        const course = response?.data?.findCourse;
         setCourseData({
           title: course.title,
           description: course.description,
