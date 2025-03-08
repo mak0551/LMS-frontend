@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { toast } from "react-toastify";
+import AddModule from "./AddModule";
 
 const EditModules = () => {
   const { id } = useParams(); // id is courseId
@@ -22,7 +23,7 @@ const EditModules = () => {
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching modules:", error);
-        toast.error("Failed to load modules");
+        toast.success("modules not found please create one");
         setIsLoading(false);
       }
     };
@@ -104,12 +105,13 @@ const EditModules = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           {formData.length === 0 ? (
-            <div className="bg-white rounded-xl shadow-md p-6 text-center">
-              <p className="text-gray-500 text-lg">
-                No modules found for this course.
-              </p>
-            </div>
+            <>{navigate(`/addmodule/${id}`)}</>
           ) : (
+            // <div className="bg-white rounded-xl shadow-md p-6 text-center">
+            //   <p className="text-gray-500 text-lg">
+            //     No modules found for this course.
+            //   </p>
+            // </div>
             formData.map((module, moduleIndex) => (
               <div
                 key={module._id}
@@ -194,9 +196,7 @@ const EditModules = () => {
                     </div>
                     {item.url && (
                       <div className="flex flex-col">
-                        <div className="text-sm w-full">
-                          Current video:
-                        </div>
+                        <div className="text-sm w-full">Current video:</div>
                         <video
                           src={item.url}
                           controls
