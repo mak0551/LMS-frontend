@@ -29,8 +29,7 @@ function Viewvideo() {
       const response2 = await axios.get(
         `https://lms-htvh.onrender.com/course/getbyid/${response.data.courseId}`
       );
-      setCoursedata(response2.data);
-      console.log(response2.data);
+      setCoursedata(response2.data.findCourse);
     };
     fetchdata();
   }, [id, videoIndex]);
@@ -52,7 +51,7 @@ function Viewvideo() {
   }
 
   return (
-    <div className="md:mx-48 sm:mt-20 bg-zinc-50 font-mono sm:p-6 p-2 h-full flex flex-col items-center ">
+    <div className="md:mx-48 sm:mt-20 bg-white font-mono sm:p-6 p-2 h-full flex flex-col items-center ">
       <div>
         <div className="sm:mb-4">
           <video
@@ -66,7 +65,7 @@ function Viewvideo() {
           </video>
         </div>
         <div className="m-2 capitalize text-lg font-bold">
-          {courseData.title}
+          {courseData?.title}
         </div>
         <div className="m-2 capitalize text-sm font-semibold text-zinc-500">
           {videoData.title}

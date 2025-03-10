@@ -165,7 +165,7 @@ function ViewCourse() {
   });
 
   return (
-    <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full">
+    <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full text-black">
       {/* Existing course details */}
       <div className="flex flex-col sm:flex-row gap-4 items-start md:items-center">
         <img
@@ -305,14 +305,14 @@ function ViewCourse() {
         {enrolled ? (
           <button
             onClick={removeEnrollment}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-black border-black border-2 rounded-md hover:bg-zinc-50 md:text-2xl xl:text-lg"
           >
             Remove Enrollment
           </button>
         ) : (
           <button
             onClick={handleEnrollment}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100 md:text-2xl xl:text-lg"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-black border-black border-2 rounded-md hover:bg-zinc-50 md:text-2xl xl:text-lg"
           >
             Enroll Now
           </button>
@@ -320,14 +320,14 @@ function ViewCourse() {
         {wishlist.includes(id) ? (
           <button
             onClick={removeFromWishlist}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-pink-600 border-red-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-black border-white border-2 rounded-md hover:bg-zinc-700 xl:text-lg md:text-2xl"
           >
             Remove from Wishlist
           </button>
         ) : (
           <button
             onClick={addToWishlist}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500 xl:text-lg md:text-2xl"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-black border-white border-2 rounded-md hover:bg-zinc-700 xl:text-lg md:text-2xl"
           >
             Add to Wishlist
           </button>
@@ -367,7 +367,7 @@ function ViewCourse() {
               </div>
               <button
                 type="submit"
-                className="px-3 py-1 bg-pink-600 text-white rounded-md hover:bg-pink-500"
+                className="px-3 py-1 bg-white text-black rounded-md hover:bg-zinc-50 border-2 border-black"
               >
                 Submit Review
               </button>
