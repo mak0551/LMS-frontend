@@ -1,17 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+} from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-gray-800 text-zinc-200 pt-12 pb-8 font-mono mt-10">
+    <footer className="bg-black text-white pt-12 pb-8 font-mono mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold tracking-tight">
-              <span className="text-pink-500">Learn</span>Hub
+            <h3 className="text-2xl text-red-500 font-bold tracking-tight">
+              LMS <span className="text-sm text-white">learner's platform</span>
             </h3>
             <p className="text-zinc-400 text-sm">
               Your gateway to knowledge with top-tier courses and instructors.
@@ -19,25 +27,25 @@ function Footer() {
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-zinc-400 hover:text-pink-500 transition-colors duration-300"
+                className="hover:text-zinc-400 text-white transition-colors duration-300"
               >
                 <FaFacebook size={20} />
               </a>
               <a
                 href="#"
-                className="text-zinc-400 hover:text-pink-500 transition-colors duration-300"
+                className="hover:text-zinc-400 text-white transition-colors duration-300"
               >
                 <FaTwitter size={20} />
               </a>
               <a
                 href="#"
-                className="text-zinc-400 hover:text-pink-500 transition-colors duration-300"
+                className="hover:text-zinc-400 text-white transition-colors duration-300"
               >
                 <FaInstagram size={20} />
               </a>
               <a
                 href="#"
-                className="text-zinc-400 hover:text-pink-500 transition-colors duration-300"
+                className="hover:text-zinc-400 text-white transition-colors duration-300"
               >
                 <FaLinkedin size={20} />
               </a>
@@ -53,7 +61,7 @@ function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   Home
                 </Link>
@@ -61,7 +69,7 @@ function Footer() {
               <li>
                 <Link
                   to="/allcourses"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   All Courses
                 </Link>
@@ -69,7 +77,7 @@ function Footer() {
               <li>
                 <Link
                   to="/viewTeachers"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   Teachers
                 </Link>
@@ -77,7 +85,7 @@ function Footer() {
               <li>
                 <Link
                   to="/mylearnings"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   My Learnings
                 </Link>
@@ -94,7 +102,7 @@ function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   FAQ
                 </Link>
@@ -102,7 +110,7 @@ function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   Contact Us
                 </Link>
@@ -110,7 +118,7 @@ function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   Terms
                 </Link>
@@ -118,7 +126,7 @@ function Footer() {
               <li>
                 <Link
                   to="/"
-                  className="hover:text-pink-500 transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   Privacy
                 </Link>
@@ -133,16 +141,16 @@ function Footer() {
             </h4>
             <ul className="space-y-3 ">
               <li className="flex items-center space-x-2">
-                <FaEnvelope className="text-pink-500" />
-                <span>support@lms.com</span>
+                <FaEnvelope className="text-white-500" />
+                <span className="text-zinc-400">support@lms.com</span>
               </li>
               <li className="flex items-center space-x-2">
-                <FaPhone className="text-pink-500" />
-                <span>+1 (555) 123-4567</span>
+                <FaPhone className="text-white-500" />
+                <span className="text-zinc-400">+1 (555) 123-4567</span>
               </li>
               <li className="flex items-center space-x-2">
-                <FaMapMarkerAlt className="text-pink-500" />
-                <span>123 Learning St, Edu City</span>
+                <FaMapMarkerAlt className="text-white-500" />
+                <span className="text-zinc-400">123 Learning St, Edu City</span>
               </li>
             </ul>
           </div>
@@ -151,7 +159,7 @@ function Footer() {
         <div className="mt-12 pt-8 border-t border-zinc-700 flex flex-col md:flex-row justify-between items-center text-zinc-400 text-sm">
           <p>© {new Date().getFullYear()} LearnHub. All rights reserved.</p>
           <p>
-            Built with <span className="text-pink-500">♥</span> for learners
+            Built with <span className="text-red-500">♥</span> for learners
           </p>
         </div>
       </div>

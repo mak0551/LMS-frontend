@@ -33,7 +33,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <div className="bg-green-50 min-h-[100vh]">
+    <div className="bg-white min-h-[100vh]">
       <AuthProvider>
         <Router>
           <ScrollToTop />

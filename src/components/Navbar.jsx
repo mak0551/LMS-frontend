@@ -14,7 +14,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("https://lms-htvh.onrender.com/course/getall");
+      const res = await axios.get(
+        "https://lms-htvh.onrender.com/course/getall"
+      );
       setCourses(res.data);
     };
     fetchData();
@@ -32,8 +34,8 @@ const Navbar = () => {
   }, [searchTerm, courses]);
 
   return (
-    <nav className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-green-50 shadow-md font-mono">
-      <Link to="/" className="text-2xl font-bold text-gray-800">
+    <nav className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-white shadow-md font-mono">
+      <Link to="/" className="text-2xl font-bold text-black">
         LMS
       </Link>
 
@@ -43,7 +45,7 @@ const Navbar = () => {
           placeholder="Search for courses"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-pink-400"
+          className="w-full px-4 py-2 border border-black rounded-md focus:outline-none focus:ring focus:ring-gray-300"
         />
         {searchTerm.trim() !== "" && (
           <div className="absolute top-full left-0 mt-1 w-full bg-white shadow-lg border border-gray-200 rounded-md">
@@ -65,24 +67,27 @@ const Navbar = () => {
         )}
       </div>
 
-      <ul className="hidden md:flex items-center space-x-6 text-gray-700">
-        <li>
-          <Link to="/viewteachers" className="hover:text-pink-700">
+      <ul className="hidden md:flex font-bold items-center space-x-6 text-black">
+        <li className="hover:scale-105 transition-transform">
+          <Link
+            to="/viewteachers"
+            className="hover:text-gray-700"
+          >
             Tutors
           </Link>
         </li>
-        <li>
-          <Link to="/mylearnings" className="hover:text-pink-700">
+        <li className="hover:scale-105 transition-transform">
+          <Link to="/mylearnings" className="hover:text-gray-700">
             My Learning
           </Link>
         </li>
-        <li>
-          <Link to="/createcourse" className="hover:text-pink-700">
+        <li className="hover:scale-105 transition-transform">
+          <Link to="/createcourse" className="hover:text-gray-700">
             Create Course
           </Link>
         </li>
-        <li>
-          <Link to="/mycourses" className="hover:text-pink-700">
+        <li className="hover:scale-105 transition-transform">
+          <Link to="/mycourses" className="hover:text-gray-700">
             My Courses
           </Link>
         </li>
