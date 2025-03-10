@@ -234,7 +234,7 @@ const EditModules = () => {
                 <button
                   type="button"
                   onClick={() => addContent(moduleIndex)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-200 mb-4"
+                  className="bg-white border-2 border-black text-black px-4 py-1 rounded-lg hover:bg-zinc-50 transition-colors duration-200 mb-4"
                 >
                   Add Content
                 </button>
@@ -246,10 +246,10 @@ const EditModules = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-blue-500 text-white px-6 py-3 rounded-lg ${
+              className={`w-full bg-black text-white px-6 py-2 rounded-lg ${
                 isSubmitting
                   ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-blue-600"
+                  : "hover:bg-zinc-700"
               } transition-colors duration-200`}
             >
               {isSubmitting ? "Updating Modules..." : "Update All Modules"}

@@ -169,7 +169,7 @@ const EditCourse = () => {
               <button
                 type="button"
                 onClick={addSkill}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                className="bg-black text-white px-4 py-2 rounded-lg hover:bg-zinc-700 transition"
               >
                 Add
               </button>
@@ -272,14 +272,14 @@ const EditCourse = () => {
           <div className="flex flex-col gap-2">
             <button
               type="submit"
-              className="w-full bg-pink-600 text-white px-6 sm:py-2 py-1 rounded-lg hover:bg-pink-500 transition text-base"
+              className="w-full bg-black border-2 border-black text-white px-6 sm:py-2 py-1 rounded-lg hover:bg-zinc-700 transition text-base"
             >
               Update 
             </button>
             <Link to={`/editmodule/${id}`}>
               <button
                 type="button"
-                className="w-full border border-pink-600 text-pink-600 px-6 sm:py-2 py-1 rounded-lg hover:bg-zinc-50 transition text-base"
+                className="w-full border border-black text-black px-6 sm:py-2 py-1 rounded-lg hover:bg-zinc-50 transition text-base"
               >
                 Edit Modules
               </button>
