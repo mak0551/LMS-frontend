@@ -115,13 +115,13 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-2">
             <Link
               to="/signin"
-              className="px-3 py-1 mx-2 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+              className="px-3 py-1 mx-2 bg-black text-white  border-black border-2 rounded-md hover:bg-zinc-700"
             >
               Log in
             </Link>
             <Link
               to="/signup"
-              className="px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500"
+              className="px-3 py-1 text-black bg-white border-black border-2 rounded-md hover:bg-zinc-50"
             >
               Sign up
             </Link>
@@ -202,14 +202,14 @@ const Navbar = () => {
                 <Link
                   to="/signin"
                   onClick={() => setMenuOpen(false)}
-                  className="px-4 py-2 bg-white text-pink-500 border-pink-600 border-2 rounded-md hover:bg-zinc-100"
+                  className="px-4 py-2 w-[90px] h-[40px] text-center bg-black text-white border-black border-2 rounded-md hover:bg-zinc-700"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/signup"
                   onClick={() => setMenuOpen(false)}
-                  className="px-4 py-2 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500"
+                  className="px-4 py-2 w-[90px] h-[40px] text-center text-sm text-black bg-white border-black border-2 rounded-md hover:bg-zinc-50"
                 >
                   Sign up
                 </Link>
