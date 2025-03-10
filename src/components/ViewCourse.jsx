@@ -6,6 +6,7 @@ import { useAuth } from "../state_management/AuthContext";
 import { IoIosArrowDown } from "react-icons/io";
 import { toast } from "react-toastify";
 import StarRating from "./StarRating";
+import { MdSort } from "react-icons/md";
 
 function ViewCourse() {
   const { id } = useParams();
@@ -16,6 +17,8 @@ function ViewCourse() {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [sort, setsort] = useState(false);
+  const [sortBy, setSortBy] = useState("date"); // Default sort by date
   const user = useAuth();
 
   // Fetch course data
@@ -27,7 +30,6 @@ function ViewCourse() {
         );
         const res = response?.data?.findCourse;
         res.rating = response?.data?.rating;
-        // console.log(res);
         setData(res);
       } catch (err) {
         console.error("Error fetching course data:", err);
@@ -58,7 +60,7 @@ function ViewCourse() {
     setWishlist(storedWishlist);
   }, []);
 
-  // Fetch reviews (assuming an API endpoint exists)
+  // Fetch reviews
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -66,7 +68,6 @@ function ViewCourse() {
           `http://localhost:4040/review/getbycourse/${id}`
         );
         setReviews(response.data || []);
-        // console.log(response, "reviews");
       } catch (err) {
         console.error("Error fetching reviews:", err);
       }
@@ -121,7 +122,6 @@ function ViewCourse() {
     toast.success("Removed from Wishlist");
   };
 
-  // Handle review submission
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     if (!user?.user?.user?._id) {
@@ -153,6 +153,16 @@ function ViewCourse() {
       toast.error("Failed to submit review. Please try again.");
     }
   };
+
+  // Sort reviews based on sortBy state
+  const sortedReviews = [...reviews].sort((a, b) => {
+    if (sortBy === "rating") {
+      return b.rating - a.rating; // Highest rating first
+    } else if (sortBy === "date") {
+      return new Date(b.createdAt) - new Date(a.createdAt); // Newest first
+    }
+    return 0;
+  });
 
   return (
     <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full">
@@ -328,7 +338,6 @@ function ViewCourse() {
           <h1 className="font-mono font-semibold xl:text-lg md:text-2xl mb-4">
             Reviews
           </h1>
-
           {/* Review Form */}
           {enrolled && (
             <form
@@ -364,11 +373,31 @@ function ViewCourse() {
               </button>
             </form>
           )}
-
-          {/* Display Reviews */}
-          <div className="space-y-4">
-            {reviews.length > 0 ? (
-              reviews.map((review, index) => (
+          <div className="font-bold text-xl p-2 flex gap-8 items-center">
+            <h1>{reviews.length} Reviews</h1>
+            <div
+              className="flex items-center gap-1"
+              onMouseEnter={() => setsort(true)}
+              onMouseLeave={() => setsort(false)}
+            >
+              <MdSort className="text-2xl" />
+              <span className="font-medium text-base">Sort by</span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className={`border border-zinc-50 rounded-md px-1 ${
+                  sort ? "" : "hidden"
+                }`}
+              >
+                <option value="date">Newest First</option>
+                <option value="rating">Highest Rating</option>
+              </select>
+            </div>
+          </div>
+          {/* Display Sorted Reviews */}
+          <div className="space-y-4 max-h-[600px] overflow-auto">
+            {sortedReviews.length > 0 ? (
+              sortedReviews.map((review, index) => (
                 <div key={index} className="bg-zinc-100 p-4 rounded-md">
                   <div className="flex items-center justify-between">
                     <span className="font-bold">
@@ -379,7 +408,7 @@ function ViewCourse() {
                       {"☆".repeat(5 - review.rating)}
                     </span>
                   </div>
-                  <p className="text-zinc-600 mt-2">{review.text}</p>
+                  <p className="text-zinc-600 mt-2">{review.comment}</p>
                   <span className="text-sm text-zinc-500">
                     {new Date(review.createdAt).toLocaleDateString()}
                   </span>

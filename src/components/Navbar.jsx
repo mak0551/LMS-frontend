@@ -34,7 +34,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-green-50 shadow-md font-mono">
       <Link to="/" className="text-2xl font-bold text-gray-800">
-        Logo
+        LMS
       </Link>
 
       <div className="relative flex-1 mx-4 hidden lg:flex">
