@@ -16,7 +16,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:4040/file/upload",
+//         "https://lms-htvh.onrender.com/file/upload",
 //         formData
 //       );
 //       console.log(response?.data?.secure_url, "image url");

@@ -8,7 +8,7 @@ function Getcoursebyteacher() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:4040/course/getbyteacher/${id}`
+        `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
       );
       setData(response.data);
       console.log(response.data);

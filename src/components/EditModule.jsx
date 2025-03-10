@@ -15,7 +15,7 @@ const EditModules = () => {
     const fetchModules = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4040/module/getbycourse/${id}`
+          `https://lms-htvh.onrender.com/module/getbycourse/${id}`
         );
         setFormData(response.data);
         console.log(response.data);
@@ -73,7 +73,7 @@ const EditModules = () => {
     setIsSubmitting(true);
     try {
       const updatePromises = formData.map((module) =>
-        axios.put(`http://localhost:4040/module/update/${module._id}`, module)
+        axios.put(`https://lms-htvh.onrender.com/module/update/${module._id}`, module)
       );
       await Promise.all(updatePromises);
       toast.success("All modules updated successfully!");

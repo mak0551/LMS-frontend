@@ -36,7 +36,7 @@ const EditCourse = () => {
       }
       try {
         const response = await axios.get(
-          `http://localhost:4040/course/getbyid/${id}`
+          `https://lms-htvh.onrender.com/course/getbyid/${id}`
         );
         const course = response?.data?.findCourse;
         setCourseData({
@@ -108,7 +108,7 @@ const EditCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:4040/course/update/${id}`, courseData);
+      await axios.put(`https://lms-htvh.onrender.com/course/update/${id}`, courseData);
       toast.success("Course updated successfully!");
       navigate("/mycourses");
     } catch (error) {

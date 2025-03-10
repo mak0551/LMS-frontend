@@ -26,7 +26,7 @@ function ViewCourse() {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4040/course/getbyid/${id}`
+          `https://lms-htvh.onrender.com/course/getbyid/${id}`
         );
         const res = response?.data?.findCourse;
         res.rating = response?.data?.rating;
@@ -44,7 +44,7 @@ function ViewCourse() {
     const checkEnrollment = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4040/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`
+          `https://lms-htvh.onrender.com/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`
         );
         setEnrolled(response.data.isEnrolled);
       } catch (error) {
@@ -65,7 +65,7 @@ function ViewCourse() {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4040/review/getbycourse/${id}`
+          `https://lms-htvh.onrender.com/review/getbycourse/${id}`
         );
         setReviews(response.data || []);
       } catch (err) {
@@ -82,7 +82,7 @@ function ViewCourse() {
   const handleEnrollment = async () => {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
-      await axios.post("http://localhost:4040/enrollment/add", payload);
+      await axios.post("https://lms-htvh.onrender.com/enrollment/add", payload);
       setEnrolled(true);
       toast.success("Enrolled successfully");
     } catch (err) {
@@ -94,7 +94,7 @@ function ViewCourse() {
   const removeEnrollment = async () => {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
-      await axios.delete("http://localhost:4040/enrollment/delete", {
+      await axios.delete("https://lms-htvh.onrender.com/enrollment/delete", {
         data: payload,
       });
       setEnrolled(false);
@@ -141,7 +141,7 @@ function ViewCourse() {
         comment: newReview,
       };
       const response = await axios.post(
-        "http://localhost:4040/review/create",
+        "https://lms-htvh.onrender.com/review/create",
         payload
       );
       setReviews([...reviews, response.data.review]);

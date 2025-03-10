@@ -17,7 +17,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4040/users/register",
+        "https://lms-htvh.onrender.com/users/register",
         formData
       );
       console.log("User registered successfully:", response.data);

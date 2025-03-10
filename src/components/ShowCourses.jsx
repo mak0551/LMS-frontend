@@ -6,7 +6,7 @@ function ShowCourses() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:4040/course/getall");
+      const response = await axios.get("https://lms-htvh.onrender.com/course/getall");
       setData(response.data);
       // console.log(response.data);
     };

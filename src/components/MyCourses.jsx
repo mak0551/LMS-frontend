@@ -23,7 +23,7 @@ export default function MyCourses() {
       try {
         const id = user?.user?._id;
         const res = await axios.get(
-          `http://localhost:4040/course/getbyteacher/${id}`
+          `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
         );
         setCourses(res.data);
         const enrollments = res.data.flatMap((data) => data.enrolledBy);
@@ -49,7 +49,7 @@ export default function MyCourses() {
   const handleDelete = async (courseId) => {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
-        await axios.delete(`http://localhost:4040/course/delete/${courseId}`);
+        await axios.delete(`https://lms-htvh.onrender.com/course/delete/${courseId}`);
         setCourses(courses.filter((course) => course._id !== courseId));
         toast.success("Course deleted successfully");
       } catch (error) {

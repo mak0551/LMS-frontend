@@ -21,13 +21,13 @@ function Viewvideo() {
       setData([]);
       setCoursedata([]);
       const response = await axios.get(
-        `http://localhost:4040/module/getone/${id}`
+        `https://lms-htvh.onrender.com/module/getone/${id}`
       );
       setData(response.data);
       console.log(response.data);
 
       const response2 = await axios.get(
-        `http://localhost:4040/course/getbyid/${response.data.courseId}`
+        `https://lms-htvh.onrender.com/course/getbyid/${response.data.courseId}`
       );
       setCoursedata(response2.data);
       console.log(response2.data);

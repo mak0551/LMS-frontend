@@ -23,7 +23,7 @@ export default function Mylearnimgs() {
       try {
         const id = user?.user?._id;
         const res = await axios.get(
-          `http://localhost:4040/enrollment/getenrolled-courses/${id}`
+          `https://lms-htvh.onrender.com/enrollment/getenrolled-courses/${id}`
         );
         setCourses(res.data);
         console.log(res.data, id);

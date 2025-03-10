@@ -37,7 +37,7 @@ const AddModule = () => {
 
     try {
       setIsSubmitting(true);
-      await axios.post("http://localhost:4040/module/add", formData);
+      await axios.post("https://lms-htvh.onrender.com/module/add", formData);
       toast.success("Module created successfully!");
       // Redirect to course page or module list
       navigate(`/mycourses`);
