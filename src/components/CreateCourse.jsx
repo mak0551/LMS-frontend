@@ -154,7 +154,7 @@ const CreateCourse = () => {
                   <button
                     type="button"
                     onClick={addSkill}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="bg-black text-white px-4 py-2 rounded-lg hover:bg-zinc-700 transition"
                   >
                     Add
                   </button>
@@ -204,7 +204,7 @@ const CreateCourse = () => {
                   name="level"
                   value={courseData.level}
                   onChange={handleChange}
-                  className="w-1/2 p-2 border rounded-lg focus:ring focus:ring-blue-300"
+                  className="w-1/2 p-2 border rounded-lg"
                 >
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
@@ -250,7 +250,7 @@ const CreateCourse = () => {
 
               <button
                 type="submit"
-                className="w-full bg-pink-600 text-white px-6 sm:py-3 py-1 rounded-lg hover:bg-pink-500 transition text-base"
+                className="w-full bg-white border-2 border-black text-black px-6 py-1 text-lg rounded-lg hover:bg-zinc-50"
               >
                 Add Course
               </button>

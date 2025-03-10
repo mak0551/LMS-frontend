@@ -148,7 +148,7 @@ const AddModule = () => {
               ],
             })
           }
-          className="bg-green-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-green-600 transition-colors"
+          className="bg-black text-white px-4 py-1 border-2 border-black rounded-md mb-4 hover:bg-zinc-700 transition-colors"
         >
           Add Content
         </button>
@@ -156,8 +156,8 @@ const AddModule = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`ml-2 bg-blue-500 text-white px-4 py-2 rounded-md ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+          className={`ml-2 bg-white border-2 border-black text-black px-4 py-1 rounded-md ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:bg-zinc-50"
           } transition-colors`}
         >
           {isSubmitting ? "Creating Module..." : "Submit"}
