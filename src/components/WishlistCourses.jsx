@@ -14,7 +14,7 @@ const WishlistCourses = () => {
 
   // Fetch course details for wishlisted items
   useEffect(() => {
-    if (wishlist.length > 0) {
+    if (wishlist?.length > 0) {
       fetchCourses();
     }
   }, [wishlist]);
@@ -22,7 +22,7 @@ const WishlistCourses = () => {
   const fetchCourses = async () => {
     try {
       const responses = await Promise.all(
-        wishlist.map((id) =>
+        wishlist?.map((id) =>
           fetch(`https://lms-htvh.onrender.com/course/getbyid/${id}`)
             .then((res) => res.json())
             .catch((err) => console.log(err))
