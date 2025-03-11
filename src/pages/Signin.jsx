@@ -7,14 +7,20 @@ import { toast } from "react-toastify";
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth(); // Get login function
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSignin = async (e) => {
     e.preventDefault();
     const formdata = { email, password };
-
     try {
+      setLoading(true);
+      if (email.length < 1 || password.length < 1) {
+        toast.error("email and password required");
+        setLoading(false);
+        return;
+      }
       const loginResponse = await axios.post(
         "https://lms-htvh.onrender.com/users/login",
         formdata
@@ -26,6 +32,7 @@ function Signin() {
         // alert(loginResponse.message);
         toast.error(loginResponse.message);
       }
+      setLoading(false);
       toast.success("login successful");
       // console.log("login successful", loginResponse.data);
       // localStorage.setItem("user", JSON.stringify(loginResponse.data)); // storing the user data in the localstorage
@@ -34,6 +41,7 @@ function Signin() {
       if (err.code === "ERR_BAD_REQUEST") {
         toast.error("email or password is incorrect");
       }
+      setLoading(false);
       // console.log("unable to login user", err);
     }
   };
@@ -74,7 +82,13 @@ function Signin() {
             type="submit"
             className="w-full text-white bg-black h-12 lg:text-base text-lg font-mono rounded-md hover:bg-zinc-700"
           >
-            Sign in
+            {loading ? (
+              <div className="flex items-center justify-center h-fit bg-black">
+                <div className="w-6 h-6 border-4 border-white border-t-black rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              "Sign in"
+            )}
           </button>
           <h6 className="lg:text-sm text-center mt-1 font-semibold">
             don't have an account?{" "}
