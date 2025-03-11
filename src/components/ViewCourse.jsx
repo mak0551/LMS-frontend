@@ -181,7 +181,7 @@ function ViewCourse() {
           <h1 className="font-mono xl:text-4xl md:text-5xl capitalize">
             {data.title}
           </h1>
-          <p className="text-zinc-500 my-2 xl:text-base md:text-3xl">
+          <p className="text-zinc-500 xl:text-base md:text-3xl">
             {data.description}
           </p>
           <div className="flex items-center gap-1">
