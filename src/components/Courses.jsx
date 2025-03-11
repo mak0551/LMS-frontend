@@ -20,6 +20,7 @@ function Courses() {
         // console.log(response.data);
       } catch (err) {
         console.log("Error fetching data:", err);
+        setLoading(false);
       }
     };
     fetchdata();

@@ -20,6 +20,7 @@ function ViewTeachers() {
       } catch (err) {
         setError("Failed to load teachers");
         console.error("Error fetching teachers:", err);
+        setLoading(false);
       } finally {
         setLoading(false);
       }

@@ -33,6 +33,7 @@ export default function Mylearnimgs() {
         // console.log(res.data, id);
       } catch (err) {
         console.log("error fetching data", err);
+        setLoading(false);
       }
     };
     fetchcourses();

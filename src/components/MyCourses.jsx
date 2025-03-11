@@ -35,6 +35,7 @@ export default function MyCourses() {
         // console.log(courses, "course");
         // console.log(enrollments, "students id");
       } catch (error) {
+        setLoading(false);
         console.log("Error fetching data:", error);
         // toast.error("Failed to load courses");
       }

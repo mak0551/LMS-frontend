@@ -9,11 +9,16 @@ function ShowCourses() {
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const response = await axios.get(
-        "https://lms-htvh.onrender.com/course/getall"
-      );
-      setData(response.data);
-      setLoading(false);
+      try {
+        const response = await axios.get(
+          "https://lms-htvh.onrender.com/course/getall"
+        );
+        setData(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.log("error fetching data", err);
+        setLoading(false);
+      }
       // console.log(response.data);
     };
     fetchData();
