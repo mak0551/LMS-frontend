@@ -339,40 +339,40 @@ function ViewCourse() {
             Reviews
           </h1>
           {/* Review Form */}
-          {enrolled && (
-            <form
-              onSubmit={handleReviewSubmit}
-              className="mb-6 bg-zinc-50 p-4 rounded-md"
+          {/* {enrolled ? ( */}
+          <form
+            onSubmit={handleReviewSubmit}
+            className="mb-6 bg-zinc-50 p-4 rounded-md"
+          >
+            <textarea
+              value={newReview}
+              onChange={(e) => setNewReview(e.target.value)}
+              placeholder="Write your review here..."
+              className="w-full p-2 border border-zinc-300 rounded-md mb-2"
+              rows="4"
+            />
+            <div className="flex items-center mb-2">
+              <label className="mr-2">Rating:</label>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span
+                  key={star}
+                  onClick={() => setRating(star)}
+                  className={`cursor-pointer text-2xl ${
+                    star <= rating ? "text-yellow-400" : "text-gray-300"
+                  }`}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+            <button
+              type="submit"
+              className="px-3 py-1 bg-white text-black rounded-md hover:bg-zinc-50 border-2 border-black"
             >
-              <textarea
-                value={newReview}
-                onChange={(e) => setNewReview(e.target.value)}
-                placeholder="Write your review here..."
-                className="w-full p-2 border border-zinc-300 rounded-md mb-2"
-                rows="4"
-              />
-              <div className="flex items-center mb-2">
-                <label className="mr-2">Rating:</label>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    onClick={() => setRating(star)}
-                    className={`cursor-pointer text-2xl ${
-                      star <= rating ? "text-yellow-400" : "text-gray-300"
-                    }`}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-              <button
-                type="submit"
-                className="px-3 py-1 bg-white text-black rounded-md hover:bg-zinc-50 border-2 border-black"
-              >
-                Submit Review
-              </button>
-            </form>
-          )}
+              Submit Review
+            </button>
+          </form>
+          {/* ) : <div>please enroll to add review</div>} */}
           <div className="font-bold text-xl p-2 flex gap-8 items-center">
             <h1>{reviews.length} Reviews</h1>
             <div
