@@ -27,31 +27,31 @@ function Signin() {
         toast.error(loginResponse.message);
       }
       toast.success("login successful");
-      console.log("login successful", loginResponse.data);
+      // console.log("login successful", loginResponse.data);
       // localStorage.setItem("user", JSON.stringify(loginResponse.data)); // storing the user data in the localstorage
       // alert("signin success");
     } catch (err) {
       if (err.code === "ERR_BAD_REQUEST") {
         toast.error("email or password is incorrect");
       }
-      console.log("unable to login user", err);
+      // console.log("unable to login user", err);
     }
   };
   return (
-    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 lg:px-10">
+    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-white lg:px-10">
       <img
         src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-2-x1.webp"
         className="xl:h-full hidden lg:block lg:h-[350px]"
       />
       <form
-        className="flex flex-col gap-8 sm:max-w-[60vh] border-pink-800 h-fit p-8 rounded-lg "
+        className="flex flex-col gap-8 sm:max-w-[60vh] h-fit p-8 rounded-lg "
         onSubmit={handleSignin}
       >
-        <h1 className="font-mono text-center text-xl sm:text-2xl lg:4xl capitalize text-pink-900">
+        <h1 className="font-mono text-center text-xl sm:text-2xl lg:4xl capitalize text-black font-semibold">
           Sign in and start learning
         </h1>
 
-        <div className="border-2 h-12 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Email</label>
           <input
             type="email"
@@ -60,7 +60,7 @@ function Signin() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="border-2 h-12 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Password</label>
           <input
             type="password"
@@ -72,7 +72,7 @@ function Signin() {
         <div>
           <button
             type="submit"
-            className="w-full bg-pink-200 h-12 lg:text-base text-lg font-mono rounded-md hover:bg-pink-100"
+            className="w-full text-white bg-black h-12 lg:text-base text-lg font-mono rounded-md hover:bg-zinc-700"
           >
             Sign in
           </button>
@@ -80,7 +80,7 @@ function Signin() {
             don't have an account?{" "}
             <Link
               to={"/signup"}
-              className="text-pink-800 font-mono underline underline-offset-4"
+              className="text-red-600 font-mono underline underline-offset-4"
             >
               Sign up
             </Link>

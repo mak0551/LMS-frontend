@@ -32,19 +32,19 @@ function Signup() {
     }
   };
   return (
-    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-green-50 lg:px-10">
+    <div className="flex justify-center gap-24 items-center h-[90vh] w-full bg-white lg:px-10">
       <img
         src="https://frontends.udemycdn.com/components/auth/desktop-illustration-step-1-x1.webp"
         className="xl:h-full hidden lg:block lg:h-[350px]"
       />
       <form
-        className="flex flex-col gap-8 w-[60vh] border-pink-800 h-fit p-8 rounded-lg "
+        className="flex flex-col gap-8 w-[60vh] h-fit p-8 rounded-lg "
         onSubmit={handleSignup}
       >
-        <h1 className="font-mono text-center sm:text-3xl capitalize text-pink-900">
+        <h1 className="font-mono text-center sm:text-3xl capitalize text-black font-semibold">
           Sign up and start learning
         </h1>
-        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Full Name</label>
           <input
             type="text"
@@ -53,7 +53,7 @@ function Signup() {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Email</label>
           <input
             type="email"
@@ -62,7 +62,7 @@ function Signup() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Mobile Number</label>
           <input
             type="text"
@@ -71,7 +71,7 @@ function Signup() {
             onChange={(e) => setMobileNo(e.target.value)}
           />
         </div>
-        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Address</label>
           <input
             type="text"
@@ -80,7 +80,7 @@ function Signup() {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
-        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-pink-800 rounded-md">
+        <div className="border-2 h-12 xl:h-12 lg:h-16 flex flex-col p-2 hover:border-black rounded-md">
           <label className="font-medium text-xs"> Password</label>
           <input
             type="password"
@@ -92,7 +92,7 @@ function Signup() {
         <div>
           <button
             type="submit"
-            className="w-full bg-pink-200 h-12 xl:h-12 lg:h-16 font-mono rounded-md hover:bg-pink-100 lg:text-2xl xl:text-lg"
+            className="w-full bg-black text-white h-12 xl:h-12 lg:h-16 font-mono rounded-md hover:bg-zinc-700 lg:text-2xl xl:text-lg"
           >
             Sign up
           </button>
@@ -100,7 +100,7 @@ function Signup() {
             already have an account?{" "}
             <Link
               to={"/signin"}
-              className="text-pink-800 font-mono underline underline-offset-4"
+              className="text-red-600 font-mono underline underline-offset-4"
             >
               Sign in
             </Link>
