@@ -16,6 +16,8 @@ const WishlistCourses = () => {
   useEffect(() => {
     if (wishlist?.length > 0) {
       fetchCourses();
+    } else {
+      setCourses([]);
     }
   }, [wishlist]);
 
@@ -28,7 +30,15 @@ const WishlistCourses = () => {
             .catch((err) => console.log(err))
         )
       );
-      const extractedCourses = responses.map((response) => response.findCourse);
+      const extractedCourses = responses
+        .map((response) => response.findCourse)
+        .filter((course) => course !== null && course !== undefined); // Remove null/undefined courses
+
+      // Update wishlist to remove any course that doesn't exist anymore
+      const updatedWishlist = extractedCourses.map((course) => course._id);
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+
+      setWishlist(updatedWishlist);
       setCourses(extractedCourses);
     } catch (error) {
       console.error("Error fetching wishlisted courses:", error);
