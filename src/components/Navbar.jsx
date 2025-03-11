@@ -69,10 +69,7 @@ const Navbar = () => {
 
       <ul className="hidden md:flex font-bold items-center space-x-6 text-black">
         <li className="hover:scale-105 transition-transform">
-          <Link
-            to="/viewteachers"
-            className="hover:text-gray-700"
-          >
+          <Link to="/viewteachers" className="hover:text-gray-700">
             Tutors
           </Link>
         </li>
@@ -88,7 +85,7 @@ const Navbar = () => {
         </li>
         <li className="hover:scale-105 transition-transform">
           <Link to="/mycourses" className="hover:text-gray-700">
-            My Courses
+            Teacher's dashboard
           </Link>
         </li>
       </ul>
@@ -102,7 +99,7 @@ const Navbar = () => {
                 alt="Profile"
                 className="w-8 h-8 rounded-full"
               />
-              <span className="text-gray-800">{user.user?.name}</span>
+              <span className="text-black font-semibold">{user.user?.name}</span>
             </div>
             <button
               onClick={logout}
@@ -137,8 +134,8 @@ const Navbar = () => {
       </div>
 
       {menuOpen && (
-        <div className="absolute top-[100%] left-0 w-full bg-green-50 shadow-md flex flex-col items-center space-y-4 py-4 md:hidden">
-          <ul className="flex flex-col items-center space-y-4 text-gray-700">
+        <div className="absolute top-[100%] left-0 w-full bg-white shadow-md flex flex-col items-center space-y-4 py-4 md:hidden">
+          <ul className="flex flex-col items-center space-y-4 text-black font-semibold">
             <li>
               <Link
                 to="/viewteachers"
@@ -172,7 +169,7 @@ const Navbar = () => {
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-pink-700"
               >
-                My Courses
+                Teacher's dashboard
               </Link>
             </li>
           </ul>
@@ -185,7 +182,7 @@ const Navbar = () => {
                     alt="Profile"
                     className="w-10 h-10 rounded-full"
                   />
-                  <span className="text-gray-800">{user.user?.name}</span>
+                  <span className="text-black font-semibold">{user.user?.name}</span>
                 </div>
                 <button
                   onClick={() => {
