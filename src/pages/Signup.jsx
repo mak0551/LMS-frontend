@@ -9,6 +9,7 @@ function Signup() {
   const [mobileNo, setMobileNo] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
@@ -16,6 +17,12 @@ function Signup() {
     const formData = { name, email, mobileNo, address, password };
 
     try {
+      setLoading(true);
+      if (email.length < 1 || password.length < 1) {
+        toast.error("email and password required");
+        setLoading(false);
+        return;
+      }
       const response = await axios.post(
         "https://lms-htvh.onrender.com/users/register",
         formData
@@ -94,7 +101,13 @@ function Signup() {
             type="submit"
             className="w-full bg-black text-white h-12 xl:h-12 lg:h-16 font-mono rounded-md hover:bg-zinc-700 lg:text-2xl xl:text-lg"
           >
-            Sign up
+            {loading ? (
+              <div className="flex items-center justify-center h-fit bg-black">
+                <div className="w-6 h-6 border-4 border-white border-t-black rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              "Sign up"
+            )}
           </button>
           <h6 className="text-sm lg:text-xl xl:text-sm text-center mt-1 font-semibold">
             already have an account?{" "}
