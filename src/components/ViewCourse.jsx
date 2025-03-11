@@ -401,7 +401,7 @@ function ViewCourse() {
                 <div key={index} className="bg-zinc-100 p-4 rounded-md">
                   <div className="flex items-center justify-between">
                     <span className="font-bold">
-                      {review.userId?.name || "Anonymous"}
+                      {review.userId?.name || user.user?.user?.name}
                     </span>
                     <span className="text-yellow-400">
                       {"★".repeat(review.rating)}
