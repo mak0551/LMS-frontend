@@ -2,23 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
+import Loader from "./Loader";
 
 function Courses() {
   var [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get("https://lms-htvh.onrender.com/course/getall");
+        setLoading(true);
+        const response = await axios.get(
+          "https://lms-htvh.onrender.com/course/getall"
+        );
         setData(response.data);
-        console.log(response.data);
+        setLoading(false);
+        // console.log(response.data);
       } catch (err) {
         console.log("Error fetching data:", err);
       }
     };
     fetchdata();
   }, []);
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="font-mono flex flex-col items-center">
       <div className="py-4 flex flex-wrap flex-auto gap-4 items-center justify-center w-full">
         {data.length > 0 ? (
@@ -39,7 +47,9 @@ function Courses() {
                 <div className="h-[60%] px-4 py-2 font-mono flex flex-col">
                   <div className="h-[50%]">
                     <h1 className="text-lg capitalize">{data?.title}</h1>
-                    <p className="text-zinc-500 truncate">{data?.description}</p>
+                    <p className="text-zinc-500 truncate">
+                      {data?.description}
+                    </p>
                     <span className="text-zinc-600 text-nowrap text-sm capitalize">
                       {data?.teacher?.name || ""}
                     </span>
@@ -56,7 +66,9 @@ function Courses() {
                     <span>&#8377;{data?.price}</span>
                     <div
                       className={`${
-                        data?.level === "Advance" ? "bg-red-300" : "bg-green-300"
+                        data?.level === "Advance"
+                          ? "bg-red-300"
+                          : "bg-green-300"
                       } ${
                         data?.level === "Intermediate" && "bg-yellow-200"
                       } w-fit px-2 py-1 rounded-md text-zinc-800 absolute bottom-0`}

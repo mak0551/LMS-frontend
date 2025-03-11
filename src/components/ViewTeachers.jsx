@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Courses from "./Courses";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 function ViewTeachers() {
   const [data, setData] = useState([]);
@@ -29,7 +30,7 @@ function ViewTeachers() {
   if (loading) {
     return (
       <div className="min-h-[300px] flex items-center justify-center">
-        <div className="text-gray-600">Loading teachers...</div>
+        <Loader />
       </div>
     );
   }

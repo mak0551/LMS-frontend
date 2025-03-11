@@ -5,10 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import EnrollmentList from "./EnrollmentList";
 import WishlistCourses from "./WishlistCourses";
+import Loader from "./Loader";
 
 export default function Mylearnimgs() {
   const [courses, setCourses] = useState([]);
-  const [activeTab, setActiveTab] = useState("list"); // "list" or "wishlist"
+  const [activeTab, setActiveTab] = useState("list");
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,12 +23,14 @@ export default function Mylearnimgs() {
         navigate("/signin");
       }
       try {
+        setLoading(true);
         const id = user?.user?._id;
         const res = await axios.get(
           `https://lms-htvh.onrender.com/enrollment/getenrolled-courses/${id}`
         );
         setCourses(res.data);
-        console.log(res.data, id);
+        setLoading(false);
+        // console.log(res.data, id);
       } catch (err) {
         console.log("error fetching data", err);
       }
@@ -54,10 +58,14 @@ export default function Mylearnimgs() {
           </button>
         </div>
       </div>
-      <div className="container mx-auto mt-6">
-        {activeTab === "list" && user && <EnrollmentList data={courses} />}
-        {activeTab === "wishlist" && <WishlistCourses />}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="container mx-auto mt-6">
+          {activeTab === "list" && user && <EnrollmentList data={courses} />}
+          {activeTab === "wishlist" && <WishlistCourses />}
+        </div>
+      )}
     </div>
   );
 }
