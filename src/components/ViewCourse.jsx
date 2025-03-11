@@ -36,7 +36,7 @@ function ViewCourse() {
       }
     };
     fetchdata();
-  }, [id]);
+  }, [id, newReview]);
 
   // Check enrollment status
   useEffect(() => {
