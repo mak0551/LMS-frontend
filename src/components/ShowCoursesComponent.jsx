@@ -59,7 +59,7 @@ function ShowCoursesComponent({ data }) {
             <option value="all">All Levels</option>
             <option value="beginner">Beginner</option>
             <option value="intermediate">Intermediate</option>
-            <option value="advance">Advanced</option>
+            <option value="advanced">Advanced</option>
           </select>
         </div>
       </div>
@@ -108,16 +108,16 @@ function ShowCoursesComponent({ data }) {
               <div className="mt-4 flex gap-2 items-center">
                 <span
                   className={`${
-                    data.level === "Advance" ? "bg-red-300" : "bg-green-300"
+                    data.level === "Advanced" ? "bg-red-300" : "bg-green-300"
                   } ${
                     data.level === "Intermediate" && "bg-yellow-200"
-                  } w-fit px-2 py-1 rounded-md text-zinc-800 `}
+                  } w-fit px-2 py-1 rounded-md text-zinc-800 text-xs sm:text-lg`}
                 >
                   {data.level}
                 </span>
                 <Link
                   to={`/viewcoursedetails/${data._id}`}
-                  className="text-sm underline underline-offset-4"
+                  className="underline underline-offset-4 text-xs sm:text-sm"
                 >
                   View Details
                 </Link>
