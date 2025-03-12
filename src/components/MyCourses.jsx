@@ -12,6 +12,7 @@ export default function MyCourses() {
   const [courses, setCourses] = useState([]);
   const [enrolledBy, setenrolledby] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [studentData, setStudentData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,11 +30,10 @@ export default function MyCourses() {
           `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
         );
         setCourses(res.data);
+        // console.log(res.data)
         const enrollments = res.data.flatMap((data) => data.enrolledBy);
         setenrolledby(enrollments);
         setLoading(false);
-        // console.log(courses, "course");
-        // console.log(enrollments, "students id");
       } catch (error) {
         setLoading(false);
         console.log("Error fetching data:", error);
@@ -42,6 +42,20 @@ export default function MyCourses() {
     };
     fetchData();
   }, [user, navigate]);
+
+  const fetchStudents = async () => {
+    try {
+      const res = await Promise.all(
+        enrolledBy.map((e) =>
+          axios.get(`https://lms-htvh.onrender.com/users/getbyid/${e}`)
+        )
+      );
+      setStudentData(res.map((e) => e.data));
+      console.log(studentData, " studentdata");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const formatDuration = (duration) => {
     return `${duration.hours}h ${duration.minutes}m`;
@@ -77,11 +91,16 @@ export default function MyCourses() {
             <span className="font-semibold text-black">Total Courses:</span>{" "}
             <span className="text-zinc-800">{courses.length}</span>
           </div>
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-black w-1/2">
+          <div
+            className="bg-white px-4 py-2 rounded-lg shadow-sm border border-black w-1/2"
+            onClick={fetchStudents}
+          >
             <span className="font-semibold text-black">
               Total Enrolled Students:
             </span>{" "}
-            <span className="text-zinc-800">{enrolledBy?.length}</span>
+            <span className="text-zinc-800">
+              {enrolledBy ? enrolledBy.length : 0}
+            </span>
           </div>
         </div>
         {loading ? (
@@ -94,9 +113,9 @@ export default function MyCourses() {
               </p>
             )}
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-gray-200 text-gray-700">
+              <table className="w-full text-left border-collapse border rounded-md">
+                <thead className="text-center">
+                  <tr className="bg-gray-200 text-gray-700 ">
                     <th className="p-3 sm:text-sm text-xs font-semibold uppercase tracking-wide">
                       Thumbnail
                     </th>
@@ -119,6 +138,12 @@ export default function MyCourses() {
                       Skills Required
                     </th>
                     <th className="p-3 sm:text-sm text-xs font-semibold uppercase tracking-wide">
+                      Enrolled By
+                    </th>
+                    <th className="p-3 sm:text-sm text-xs font-semibold uppercase tracking-wide">
+                      Total Reviews
+                    </th>
+                    <th className="p-3 sm:text-sm text-xs font-semibold uppercase tracking-wide">
                       Actions
                     </th>
                   </tr>
@@ -127,9 +152,7 @@ export default function MyCourses() {
                   {courses.map((course, index) => (
                     <tr
                       key={course._id}
-                      className={`border-b ${
-                        index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                      } hover:bg-blue-50 transition-colors`}
+                      className="border-b bg-white hover:bg-blue-50 transition-colors"
                     >
                       <td className="p-3">
                         <img
@@ -180,6 +203,12 @@ export default function MyCourses() {
                             None
                           </span>
                         )}
+                      </td>
+                      <td className="p-3 sm:text-sm text-xs text-gray-800 font-medium">
+                        {course.enrolledBy?.length}
+                      </td>
+                      <td className="p-3 sm:text-sm text-xs text-gray-800 font-medium">
+                        {course.reviews?.length}
                       </td>
                       <td className="p-3 sm:text-sm text-xs">
                         <div className="flex gap-2">
