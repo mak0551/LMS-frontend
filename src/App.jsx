@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="bg-white min-h-[100vh]">
       <AuthProvider>
-        <Router>
+        <Router basename="/">
           <ScrollToTop />
           <Navbar />
           <Routes>
