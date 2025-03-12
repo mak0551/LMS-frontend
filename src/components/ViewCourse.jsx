@@ -276,7 +276,7 @@ function ViewCourse() {
                             onMouseEnter={(e) => e.target.play()}
                             onMouseLeave={(e) => e.target.pause()}
                             muted
-                            className="rounded-md max-h-[100px]"
+                            className="rounded-md sm:max-h-[100px] max-h-[60px]"
                           >
                             <source src={contentdata.url} type="video/mp4" />
                             Your browser does not support the video tag.
