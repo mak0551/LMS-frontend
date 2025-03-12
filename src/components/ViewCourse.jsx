@@ -181,9 +181,7 @@ function ViewCourse() {
           <h1 className="font-mono xl:text-4xl md:text-2xl font-bold capitalize">
             {data.title}
           </h1>
-          <p className="text-zinc-500 xl:text-base ">
-            {data.description}
-          </p>
+          <p className="text-zinc-500 xl:text-base ">{data.description}</p>
           <div className="flex items-center gap-1">
             <span className="text-pink-900">{data?.rating}</span>
             <div className="pb-[2px]">
@@ -271,7 +269,6 @@ function ViewCourse() {
                         <Link
                           to={`/viewvideos/${data._id}/${index}`}
                           key={data._id}
-                          className=""
                         >
                           <video
                             width="200"
@@ -279,7 +276,7 @@ function ViewCourse() {
                             onMouseEnter={(e) => e.target.play()}
                             onMouseLeave={(e) => e.target.pause()}
                             muted
-                            className="rounded-md"
+                            className="rounded-md max-h-[100px]"
                           >
                             <source src={contentdata.url} type="video/mp4" />
                             Your browser does not support the video tag.
