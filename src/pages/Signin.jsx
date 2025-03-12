@@ -64,7 +64,7 @@ function Signin() {
           <input
             type="email"
             value={email}
-            className="appearance-none border-none outline-none focus:ring-0 bg-transparent"
+            className="appearance-none border-none outline-none focus:ring-0 bg-transparent mb-1"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -73,7 +73,7 @@ function Signin() {
           <input
             type="password"
             value={password}
-            className="appearance-none border-none outline-none focus:ring-0 bg-transparent "
+            className="appearance-none border-none outline-none focus:ring-0 bg-transparent mb-1"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>

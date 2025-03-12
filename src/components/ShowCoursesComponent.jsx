@@ -27,26 +27,26 @@ function ShowCoursesComponent({ data }) {
   return (
     <div className="xl:mx-40 mx-4 py-2">
       {/* Sorting and Filtering Controls */}
-      <div className="flex flesx-col sm:flex-row justify-between items-start sm:items-center text-sm my-3 gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm sm:my-3 gap-1 sm:gap-4">
         {/* Sort Dropdown */}
-        <div className="flex items-center gap-2 px-2">
+        <div className="flex items-center gap-2 px-2 ">
           <label className="font-mono text-sm flex gap-2 items-center">
             <span className="hidden sm:block">Sort by</span>
-            <FaSortAmountDown />
+            <FaSortAmountDown className="text-lg"/>
           </label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border border-zinc-300 rounded-md p-1 text-sm"
+            className="border border-zinc-300 rounded-md p-1 sm:text-sm text-xs w-[100px]"
           >
-            <option value="default">Default</option>
-            <option value="price">Price (Low to High)</option>
-            <option value="rating">Rating (High to Low)</option>
+            <option value="default" className="text-xs">Default</option>
+            <option value="price" className="text-xs">Price (Low to High)</option>
+            <option value="rating" className="text-xs">Rating (High to Low)</option>
           </select>
         </div>
 
         {/* Filter Dropdown */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 px-2 ">
           <label className="font-mono text-sm flex items-center gap-2">
             <span className="hidden sm:block">Filter</span>
             <RiFilter2Fill className="text-lg" />
@@ -54,7 +54,7 @@ function ShowCoursesComponent({ data }) {
           <select
             value={filterLevel}
             onChange={(e) => setFilterLevel(e.target.value)}
-            className="border border-zinc-300 rounded-md p-1 text-sm"
+            className="border border-zinc-300 rounded-md p-1 sm:text-sm text-xs w-[100px]"
           >
             <option value="all">All Levels</option>
             <option value="beginner">Beginner</option>

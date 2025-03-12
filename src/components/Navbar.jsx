@@ -99,7 +99,9 @@ const Navbar = () => {
                 alt="Profile"
                 className="w-8 h-8 rounded-full"
               />
-              <span className="text-black font-semibold">{user.user?.name}</span>
+              <span className="text-black font-semibold">
+                {user.user?.name}
+              </span>
             </div>
             <button
               onClick={logout}
@@ -182,7 +184,9 @@ const Navbar = () => {
                     alt="Profile"
                     className="w-10 h-10 rounded-full"
                   />
-                  <span className="text-black font-semibold">{user.user?.name}</span>
+                  <span className="text-black font-semibold">
+                    {user.user?.name}
+                  </span>
                 </div>
                 <button
                   onClick={() => {
@@ -199,7 +203,7 @@ const Navbar = () => {
                 <Link
                   to="/signin"
                   onClick={() => setMenuOpen(false)}
-                  className="px-4 py-2 w-[90px] h-[40px] text-center bg-black text-white border-black border-2 rounded-md hover:bg-zinc-700"
+                  className="px-4 py-2 w-[90px] h-[40px] text-sm text-center bg-black text-white border-black border-2 rounded-md hover:bg-zinc-700"
                 >
                   Log in
                 </Link>
