@@ -203,14 +203,14 @@ const Navbar = () => {
                 <Link
                   to="/signin"
                   onClick={() => setMenuOpen(false)}
-                  className="px-4 py-2 w-[90px] h-[40px] text-sm text-center bg-black text-white border-black border-2 rounded-md hover:bg-zinc-700"
+                  className="sm:px-4 px-1 py-2 w-[90px] h-[40px] text-sm text-center bg-black text-white border-black border-2 rounded-md hover:bg-zinc-700"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/signup"
                   onClick={() => setMenuOpen(false)}
-                  className="px-4 py-2 w-[90px] h-[40px] text-center text-sm text-black bg-white border-black border-2 rounded-md hover:bg-zinc-50"
+                  className="sm:px-4 px-1 py-2 w-[90px] h-[40px] text-center text-sm text-black bg-white border-black border-2 rounded-md hover:bg-zinc-50"
                 >
                   Sign up
                 </Link>
