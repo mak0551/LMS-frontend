@@ -11,7 +11,7 @@ function Getcoursebyteacher() {
         `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
       );
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     };
     fetchData();
   }, []);
@@ -65,7 +65,7 @@ function Getcoursebyteacher() {
           )}
         </div>
         <Link to={"/viewTeachers"} className="m-4">
-          <button className="tracking-tighter mx-2 px-3 py-1 text-white bg-pink-600 border-pink-600 border-2 rounded-md hover:bg-pink-500">
+          <button className="tracking-tighter mx-2 px-3 py-1 text-black border-black border rounded-md hover:bg-zinc-50">
             Go Back
           </button>
         </Link>

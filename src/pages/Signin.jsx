@@ -80,10 +80,10 @@ function Signin() {
         <div>
           <button
             type="submit"
-            className="w-full text-white bg-black h-12 lg:text-base text-lg font-mono rounded-md hover:bg-zinc-700"
+            className="w-full text-white bg-black h-12 lg:text-base text-lg font-mono rounded-md hover:bg-zinc-700 overflow-hidden"
           >
             {loading ? (
-              <div className="flex items-center justify-center h-fit bg-black">
+              <div className="flex items-center justify-center h-full bg-black">
                 <div className="w-6 h-6 border-4 border-white border-t-black rounded-full animate-spin"></div>
               </div>
             ) : (

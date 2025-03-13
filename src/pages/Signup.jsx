@@ -99,10 +99,10 @@ function Signup() {
         <div>
           <button
             type="submit"
-            className="w-full bg-black text-white h-12 xl:h-12 lg:h-16 font-mono rounded-md hover:bg-zinc-700 lg:text-2xl xl:text-lg"
+            className="w-full bg-black text-white h-12 xl:h-12 lg:h-16 font-mono overflow-hidden rounded-md hover:bg-zinc-700 lg:text-2xl xl:text-lg"
           >
             {loading ? (
-              <div className="flex items-center justify-center h-fit bg-black">
+              <div className="flex items-center justify-center h-full bg-black">
                 <div className="w-6 h-6 border-4 border-white border-t-black rounded-full animate-spin"></div>
               </div>
             ) : (
