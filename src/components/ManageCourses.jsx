@@ -53,11 +53,11 @@ function ManageCourses() {
   const getLevelColor = (level) => {
     switch (level) {
       case "Beginner":
-        return "bg-emerald-500";
+        return "text-green-500 border border-green-500";
       case "Intermediate":
-        return "bg-amber-500";
+        return "text-yellow-500 border border-yellow-500";
       case "Advanced":
-        return "bg-rose-500";
+        return "text-rose-500 border border-rose-500";
       default:
         return "bg-gray-500";
     }
@@ -70,13 +70,13 @@ function ManageCourses() {
   if (loading) return <Loader />;
 
   return (
-    <div>
+    <div className="w-full">
       {/* Courses Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="flex md:flex-row gap-10 flex-wrap items-center justify-center p-4">
         {courses.map((course) => (
           <div
             key={course._id}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
+            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 w-[300px]"
           >
             <img
               src={course.thumbNail}
@@ -127,15 +127,15 @@ function ManageCourses() {
               <div className="flex gap-2">
                 <button
                   onClick={() => navigate(`/edit-course/${course._id}`)}
-                  className="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 bg-white text-black border border-black py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
                 >
-                  <FiEdit /> Edit
+                  <FiEdit className="text-sky-500"/> Edit
                 </button>
                 <button
                   onClick={() => handleDelete(course._id)}
-                  className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 bg-white text-black border border-black py-2 rounded-lg hover:bg-zinc-50 transition-colors flex items-center justify-center gap-2"
                 >
-                  <FiTrash2 /> Delete
+                  <FiTrash2 className="text-rose-500"/> Delete
                 </button>
               </div>
             </div>

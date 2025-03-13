@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function Sidebar() {
   const [show, setShow] = useState(false);
   return (
-    <div className="h-screen w-fit bg-white p-4 shadow-xl">
+    <div className="h-screen w-fit bg-white p-4">
       <div className="space-y-4 mx-2">
         <div className="mb-12">
           <TbLayoutSidebarLeftExpand

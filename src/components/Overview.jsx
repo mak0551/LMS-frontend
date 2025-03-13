@@ -67,7 +67,7 @@ export default function Overview() {
               </div>
               <div className="flex items-center gap-3 lg:ml-14">
                 <button
-                  onClick={() => navigate("/create-course")}
+                  onClick={() => navigate("/createcourse")}
                   className="w-full flex items-center md:justify-center gap-2 py-2 md:px-4 rounded-lg hover:scale-105 transition-transform font-medium"
                 >
                   <RiAddLargeLine />
