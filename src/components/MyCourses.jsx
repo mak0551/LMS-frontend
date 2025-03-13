@@ -83,7 +83,7 @@ export default function MyCourses() {
     }
   };
   return (
-    <div className="flex overflow-hidden overflow-x-auto">
+    <div className="flex overflow-hidden overflow-x-auto h-[90vh]">
       <Sidebar />
       <Routes>
         <Route index element={<Overview />} />

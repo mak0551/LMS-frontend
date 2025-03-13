@@ -38,12 +38,12 @@ export default function Overview() {
   }, [user, navigate]);
 
   return (
-    <div className="min-h-screen bg-white p-6 xl:w-3/4 w-full">
+    <div className="h-screen bg-white p-6 xl:w-3/4 w-full">
       {loading ? (
         <Loader />
       ) : (
         <>
-          <div className="bg-gradient-to-r from-white to-zinc-50 rounded-2xl p-6 mb-8 space-y-4 text-zinc-700 shadow-lg ">
+          <div className="bg-gradient-to-r from-white to-zinc-50 rounded-2xl p-6 mb-8 space-y-4 text-zinc-700 shadow-lg">
             <h1 className="text-3xl font-bold mb-2">Teacher's Dashboard</h1>
             <div className="flex flex-col md:flex-row md:gap-[70px] gap-4">
               <div className="flex items-center gap-3">
@@ -77,7 +77,7 @@ export default function Overview() {
             </div>
           </div>
           {courses.length > 0 ? (
-            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden overflow-x-auto">
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden overflow-x-auto max-h-[75vh] overflow-y-auto border-2 border-black">
               <h2 className="text-2xl font-semibold mb-4">Your Courses</h2>
               <table className="w-full border-collapse">
                 <thead>
