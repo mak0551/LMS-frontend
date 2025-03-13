@@ -38,7 +38,7 @@ export default function Overview() {
   }, [user, navigate]);
 
   return (
-    <div className="h-screen bg-white p-6 xl:w-3/4 w-full">
+    <div className="h-full bg-white p-6 xl:w-3/4 w-full">
       {loading ? (
         <Loader />
       ) : (
@@ -77,7 +77,7 @@ export default function Overview() {
             </div>
           </div>
           {courses.length > 0 ? (
-            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden overflow-x-auto max-h-[75vh] overflow-y-auto ">
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden overflow-x-auto h-fit">
               <h2 className="text-2xl font-semibold mb-4">Your Courses</h2>
               <table className="w-full border-collapse">
                 <thead>
