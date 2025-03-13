@@ -45,16 +45,16 @@ export default function Overview() {
         <>
           <div className="bg-gradient-to-r from-white to-zinc-50 rounded-2xl p-6 mb-8 space-y-4 text-zinc-700 shadow-lg ">
             <h1 className="text-3xl font-bold mb-2">Teacher's Dashboard</h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex flex-col md:flex-row md:gap-[70px] gap-4">
               <div className="flex items-center gap-3">
-                <FiBook className="text-2xl" />
+                <FiBook className="sm:text-2xl text-xl" />
                 <div>
                   <p className="text-sm opacity-80">Total Courses</p>
                   <p className="text-2xl font-semibold">{courses.length}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <FiUsers className="text-2xl" />
+                <FiUsers className="sm:text-2xl text-xl" />
                 <div>
                   <p className="text-sm opacity-80">Total Students</p>
                   <p className="text-2xl font-semibold">
@@ -65,10 +65,10 @@ export default function Overview() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 lg:ml-14">
                 <button
                   onClick={() => navigate("/create-course")}
-                  className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg hover:scale-105 transition-transform font-medium"
+                  className="w-full flex items-center md:justify-center gap-2 py-2 md:px-4 rounded-lg hover:scale-105 transition-transform font-medium"
                 >
                   <RiAddLargeLine />
                   Create New Course

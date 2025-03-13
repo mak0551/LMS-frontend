@@ -183,18 +183,18 @@ function ViewCourse() {
           </h1>
           <p className="text-zinc-500 xl:text-base ">{data.description}</p>
           <div className="flex items-center gap-1">
-            <span className="text-pink-900">{data?.rating}</span>
+            <span className="text-red-900 text-base">{data?.rating}</span>
             <div className="pb-[2px]">
               <StarRating rating={data?.rating} />
             </div>
           </div>
-          <span className="capitalize font-semibold xl:text-lg">
+          <span className="capitalize font-semibold text-xs sm:text-base xl:text-lg">
             instructor - {data.teacher?.name}
           </span>
-          <span className="xl:text-sm ">
+          <span className="text-xs sm:text-base xl:text-sm ">
             <b>Date Created:</b> {data.createdAt?.slice(0, 10)}
           </span>
-          <span className="xl:text-sm ">
+          <span className="text-xs sm:text-base xl:text-sm ">
             <b>Last Updated:</b> {data.updatedAt?.slice(0, 10)}
           </span>
         </div>
@@ -202,15 +202,15 @@ function ViewCourse() {
 
       {/* Course metadata */}
       <div className="flex flex-col gap-4 md:mx-4">
-        <span className="mt-4 md:text-base xl:text-lg">
+        <span className="mt-4 text-xs sm:text-sm md:text-base xl:text-lg">
           <b>Course Duration:</b>{" "}
           {`${
             data.duration?.hours > 1
-              ? `${data.duration?.hours} hours`
-              : `${data.duration?.hours} hour`
-          } ${data.duration?.minutes} minutes`}
+              ? `${data.duration?.hours} hrs`
+              : `${data.duration?.hours} hr`
+          } ${data.duration?.minutes} mins`}
         </span>
-        <div className="flex flex-col gap-4 md:text-base xl:text-base">
+        <div className="flex flex-col gap-4 text-xs sm:text-sm md:text-base xl:text-base">
           <span>
             <b>Difficulty Level:</b>{" "}
             <span
@@ -218,7 +218,7 @@ function ViewCourse() {
                 data.level === "Advance" ? "bg-red-300" : "bg-green-300"
               } ${
                 data.level === "Intermediate" && "bg-yellow-200"
-              } w-fit p-2 rounded-md text-zinc-800`}
+              } w-fit sm:p-2 p-1 rounded-md text-zinc-800`}
             >
               {data.level}
             </span>
