@@ -77,7 +77,7 @@ export default function Overview() {
             </div>
           </div>
           {courses.length > 0 ? (
-            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden overflow-x-auto max-h-[75vh] overflow-y-auto border-2 border-black">
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden overflow-x-auto max-h-[75vh] overflow-y-auto ">
               <h2 className="text-2xl font-semibold mb-4">Your Courses</h2>
               <table className="w-full border-collapse">
                 <thead>
