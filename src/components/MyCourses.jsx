@@ -87,7 +87,7 @@ export default function MyCourses() {
       <Sidebar />
       <Routes>
         <Route index element={<Overview />} />
-        <Route path="overview" element={<Overview />} />
+        <Route path="overview/*" element={<Overview />} />
         <Route path="managecourses" element={<ManageCourses />} />
       </Routes>
     </div>
