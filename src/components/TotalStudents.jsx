@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsChevronCompactRight } from "react-icons/bs";
+import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 
 function TotalStudents() {
@@ -19,9 +19,9 @@ function TotalStudents() {
   }, [id]);
   return (
     <div className="hidden-scrollbar p-2 relative max-h-[150vh] overflow-hidden overflow-y-auto">
-      <BsChevronCompactRight
+      <MdArrowBackIos
         onClick={() => navigate("/mycourses")}
-        className="absolute left-[-5px] bg-zinc-100 rounded-full top-5"
+        className="sticky left-[-5px] bg-white rounded-full top-5 font-black h-5 w-5"
       />
       <div className="mt-10 flex flex-col gap-2 w-[300px]">
         {student ? (
