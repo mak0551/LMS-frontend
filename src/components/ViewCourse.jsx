@@ -240,7 +240,7 @@ function ViewCourse() {
 
         {/* Course content */}
         <div className="p-6 xl:mr-40 md:mx-auto xl:w-[80%] md:w-full bg-zinc-50 rounded-md">
-          <h1 className="font-mono font-semibold xl:text-lg md:text-xl">
+          <h1 className="font-mono font-semibold xl:text-lg md:text-xl sm:text-base text-sm">
             Course content
           </h1>
           <div className="max-h-[70vh] overflow-auto scrollbar-hide">
@@ -250,7 +250,7 @@ function ViewCourse() {
                   className="w-full bg-zinc-100 border-2 border-zinc-300 rounded-md items-center justify-between flex py-4 p-6"
                   onClick={() => toggleVisibility(index)}
                 >
-                  <span className="font-bold xl:text-lg md:text-base">
+                  <span className="font-bold xl:text-lg md:text-base sm:text-base text-xs truncate">
                     {data?.title}
                   </span>
                   <IoIosArrowDown
@@ -303,14 +303,14 @@ function ViewCourse() {
         {enrolled ? (
           <button
             onClick={removeEnrollment}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-black border-black border-2 rounded-md hover:bg-zinc-50 md:text-base xl:text-lg"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-black border-black border-2 rounded-md hover:bg-zinc-50 sm:text-base text-sm md:text-base xl:text-lg"
           >
             Remove Enrollment
           </button>
         ) : (
           <button
             onClick={handleEnrollment}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-black border-black border-2 rounded-md hover:bg-zinc-50 md:text-base xl:text-lg"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full bg-white text-black border-black border-2 rounded-md hover:bg-zinc-50 sm:text-base text-sm md:text-base xl:text-lg"
           >
             Enroll Now
           </button>
@@ -318,14 +318,14 @@ function ViewCourse() {
         {wishlist.includes(id) ? (
           <button
             onClick={removeFromWishlist}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-black border-black border-2 rounded-md hover:bg-zinc-700 xl:text-lg md:text-base"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-black border-black border-2 rounded-md hover:bg-zinc-700 sm:text-base text-sm xl:text-lg md:text-base"
           >
             Remove from Wishlist
           </button>
         ) : (
           <button
             onClick={addToWishlist}
-            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-black border-black border-2 rounded-md hover:bg-zinc-700 xl:text-lg md:text-base"
+            className="px-3 py-1 xl:mr-40 md:mx-auto xl:w-[80%] w-full text-white bg-black border-black border-2 rounded-md hover:bg-zinc-700 sm:text-base text-sm xl:text-lg md:text-base"
           >
             Add to Wishlist
           </button>
@@ -333,7 +333,7 @@ function ViewCourse() {
 
         {/* Review Section */}
         <div className="mt-8 xl:mr-40 md:mx-auto xl:w-[80%] w-full">
-          <h1 className="font-mono font-semibold xl:text-lg md:text-2xl mb-4">
+          <h1 className="font-mono font-semibold sm:text-base text-sm xl:text-lg md:text-2xl mb-4">
             Reviews
           </h1>
           {/* Review Form */}
@@ -346,10 +346,10 @@ function ViewCourse() {
               value={newReview}
               onChange={(e) => setNewReview(e.target.value)}
               placeholder="Write your review here..."
-              className="w-full p-2 border border-zinc-300 rounded-md mb-2"
-              rows="4"
+              className="w-full p-2 border border-zinc-300 rounded-md mb-2 sm:text-base text-sm"
+              rows="2"
             />
-            <div className="flex items-center mb-2">
+            <div className="flex items-center mb-2 sm:text-base text-sm">
               <label className="mr-2">Rating:</label>
               {[1, 2, 3, 4, 5].map((star) => (
                 <span
@@ -365,31 +365,35 @@ function ViewCourse() {
             </div>
             <button
               type="submit"
-              className="px-3 py-1 bg-white text-black rounded-md hover:bg-zinc-50 border-2 border-black"
+              className="px-3 py-1 bg-white text-black rounded-md hover:bg-zinc-50 border-2 border-black sm:text-base text-xs"
             >
               Submit Review
             </button>
           </form>
           {/* ) : <div>please enroll to add review</div>} */}
-          <div className="font-bold text-xl p-2 flex gap-8 items-center">
+          <div className="font-bold text-xs sm:text-xl sm:p-2 flex sm:gap-8 gap-1 sm:items-center sm:flex-row flex-col">
             <h1>{reviews.length} Reviews</h1>
             <div
               className="flex items-center gap-1"
               onMouseEnter={() => setsort(true)}
               onMouseLeave={() => setsort(false)}
             >
-              <MdSort className="text-2xl" />
-              <span className="font-medium text-base">Sort by</span>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className={`border border-zinc-50 rounded-md px-1 ${
-                  sort ? "" : "hidden"
-                }`}
-              >
-                <option value="date">Newest First</option>
-                <option value="rating">Highest Rating</option>
-              </select>
+              <div className="flex gap-1">
+                <MdSort className="text-sm sm:text-2xl" />
+                <span className="font-medium text-xs sm:text-base ">
+                  Sort by
+                </span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className={`border border-zinc-50 rounded-md sm:px-1 ${
+                    sort ? "" : "hidden"
+                  }`}
+                >
+                  <option value="date">Newest First</option>
+                  <option value="rating">Highest Rating</option>
+                </select>
+              </div>
             </div>
           </div>
           {/* Display Sorted Reviews */}
@@ -398,16 +402,16 @@ function ViewCourse() {
               sortedReviews.map((review, index) => (
                 <div key={index} className="bg-zinc-100 p-4 rounded-md">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold">
+                    <span className=" sm:font-bold font-medium text-sm sm:text-base">
                       {review.userId?.name || user.user?.user?.name}
                     </span>
-                    <span className="text-yellow-400">
+                    <span className="text-yellow-400 text-sm sm:text-base">
                       {"★".repeat(review.rating)}
                       {"☆".repeat(5 - review.rating)}
                     </span>
                   </div>
-                  <p className="text-zinc-600 mt-2">{review.comment}</p>
-                  <span className="text-sm text-zinc-500">
+                  <p className="text-zinc-600 mt-2 text-xs sm:text-base">{review.comment}</p>
+                  <span className="text-xs sm:text-sm text-zinc-500">
                     {new Date(review.createdAt).toLocaleDateString()}
                   </span>
                 </div>

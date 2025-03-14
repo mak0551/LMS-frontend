@@ -67,21 +67,23 @@ function Viewvideo() {
         <div className="m-2 capitalize text-lg font-bold">
           {courseData?.title}
         </div>
-        <div className="m-2 capitalize text-sm font-semibold text-zinc-500">
-          {videoData.title}
+        <div className="m-2 capitalize text-base font-semibold text-zinc-500">
+          {data?.title} - <span className="text-sm">{videoData?.title}</span>
         </div>
         <div className="m-2 capitalize text-sm font-semibold text-zinc-500">
-          {videoData.description}
+          {videoData?.description}
         </div>
       </div>
       <div className="max-h-[70vh] my-4 overflow-auto scrollbar-hide w-full ">
-        {courseData.module?.map((data, index) => (
+        {courseData?.module?.map((data, index) => (
           <div className="my-4 bg-zinc-100 rounded-md xl:mx-24 " key={index}>
             <div
               className="w-full bg-zinc-100 border-2 border-zinc-300 rounded-md items-center justify-between flex py-4 p-6"
               onClick={() => toggleVisibility(index)}
             >
-              <span className="font-bold text-lg">{data?.title}</span>{" "}
+              <span className="font-bold xl:text-lg md:text-base sm:text-base text-xs truncate">
+                {data?.title}
+              </span>{" "}
               <IoIosArrowDown
                 className={`transition-transform ${
                   visibleModule === index ? "rotate-180" : ""
@@ -109,17 +111,17 @@ function Viewvideo() {
                         onMouseLeave={(e) => e.target.pause()}
                         muted
                         key={index}
-                        className="rounded-md w-full"
+                        className="rounded-md sm:max-h-[100px] max-h-[60px]"
                       >
                         <source src={contentdata.url} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     </Link>
-                    <div className="flex w-[70%]">
-                      <h1 className="capitalize font-bold w-full sm:w-[40%] truncate ">
+                    <div className="h-full max-w-[100px] sm:max-w-full text-xs sm:text-base overflow-hidden w-full flex justify-between ">
+                      <h1 className="capitalize font-bold md:text-lg xl:text-base truncate sm:w-auto w-full sm:ml-8">
                         {contentdata.title}
                       </h1>
-                      <p className="capitalize text-zinc-600 hidden sm:block w-[60%] truncate">
+                      <p className="capitalize md:block hidden text-zinc-600 truncate">
                         {contentdata.description}
                       </p>
                     </div>

@@ -18,7 +18,7 @@ function TotalStudents() {
     fetchData();
   }, [id]);
   return (
-    <div className="p-2 relative">
+    <div className="p-2 relative max-h-[120vh] overflow-hidden overflow-y-auto">
       <BsChevronCompactRight
         onClick={() => navigate("/mycourses")}
         className="absolute left-[-5px] bg-zinc-100 rounded-full top-5"
