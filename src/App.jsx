@@ -38,26 +38,28 @@ function App() {
         <Router basename="/">
           <ScrollToTop />
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Landingpage />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/allcourses" element={<ShowCourses />} />
-            <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
-            <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
-            <Route path="/viewTeachers" element={<ViewTeachers />} />
-            <Route path="/createcourse" element={<CreateCourse />} />
-            <Route path="/addmodule/:id" element={<AddModule />} />
-            <Route path="/cloud" element={<CloudinaryUploadWidget />} />
-            <Route path="/mycourses/*" element={<MyCourses />} />
-            <Route path="/mylearnings" element={<Mylearnimgs />} />
-            <Route path="/edit-course/:id" element={<EditCourse />} />
-            <Route path="/editmodule/:id" element={<EditModule />} />
-            <Route
-              path="/getcoursebyteacher/:id"
-              element={<Getcoursebyteacher />}
-            />
-          </Routes>
+          <div className="min-h-screen">
+            <Routes>
+              <Route path="/" element={<Landingpage />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/allcourses" element={<ShowCourses />} />
+              <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
+              <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
+              <Route path="/viewTeachers" element={<ViewTeachers />} />
+              <Route path="/createcourse" element={<CreateCourse />} />
+              <Route path="/addmodule/:id" element={<AddModule />} />
+              <Route path="/cloud" element={<CloudinaryUploadWidget />} />
+              <Route path="/mycourses/*" element={<MyCourses />} />
+              <Route path="/mylearnings" element={<Mylearnimgs />} />
+              <Route path="/edit-course/:id" element={<EditCourse />} />
+              <Route path="/editmodule/:id" element={<EditModule />} />
+              <Route
+                path="/getcoursebyteacher/:id"
+                element={<Getcoursebyteacher />}
+              />
+            </Routes>
+          </div>
           <Footer />
         </Router>
       </AuthProvider>
