@@ -17,11 +17,11 @@ export default function Overview() {
   useEffect(() => {
     const fetchCourses = async () => {
       if (user === null) return;
-      if (user === false) {
-        toast.error("Please login to view your courses");
-        navigate("/signin");
-        return;
-      }
+      // if (user === false) {
+      //   toast.error("Please login to view your courses");
+      //   navigate("/signin");
+      //   return;
+      // }
       try {
         setLoading(true);
         const res = await fetch(

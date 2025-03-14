@@ -86,7 +86,7 @@ export default function MyCourses() {
     <div className="flex overflow-hidden overflow-x-auto">
       <Sidebar />
       <Routes>
-        <Route index element={<Overview />} />
+        <Route path="/*" element={<Overview />} />
         <Route path="overview/*" element={<Overview />} />
         <Route path="managecourses" element={<ManageCourses />} />
       </Routes>

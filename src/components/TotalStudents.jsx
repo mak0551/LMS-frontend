@@ -18,15 +18,15 @@ function TotalStudents() {
     fetchData();
   }, [id]);
   return (
-    <div className="p-2 relative max-h-[120vh] overflow-hidden overflow-y-auto">
+    <div className="hidden-scrollbar p-2 relative max-h-[150vh] overflow-hidden overflow-y-auto">
       <BsChevronCompactRight
         onClick={() => navigate("/mycourses")}
         className="absolute left-[-5px] bg-zinc-100 rounded-full top-5"
       />
-      <div className="mt-10 flex flex-col gap-2">
+      <div className="mt-10 flex flex-col gap-2 w-[300px]">
         {student ? (
           student.map((courseData, index) => (
-            <div key={index} className="space-y-6">
+            <div key={index} className="space-y-6 w-full">
               <div className="bg-white shadow-md rounded-lg p-4">
                 <h2 className="text-lg capitalize font-medium gap-1 items-center flex text-gray-800">
                   {courseData?.title}

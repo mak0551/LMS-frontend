@@ -15,11 +15,12 @@ function ManageCourses() {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      if (!user) {
-        toast.error("Please login to view your dashboard");
-        navigate("/signin");
-        return;
-      }
+      if (user === null) return;
+      // if (!user) {
+      //   toast.error("Please login to view your dashboard");
+      //   navigate("/signin");
+      //   return;
+      // }
       try {
         setLoading(true);
         const res = await axios.get(
@@ -129,13 +130,13 @@ function ManageCourses() {
                   onClick={() => navigate(`/edit-course/${course._id}`)}
                   className="flex-1 bg-white text-black border border-black py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
                 >
-                  <FiEdit className="text-sky-500"/> Edit
+                  <FiEdit className="text-sky-500" /> Edit
                 </button>
                 <button
                   onClick={() => handleDelete(course._id)}
                   className="flex-1 bg-white text-black border border-black py-2 rounded-lg hover:bg-zinc-50 transition-colors flex items-center justify-center gap-2"
                 >
-                  <FiTrash2 className="text-rose-500"/> Delete
+                  <FiTrash2 className="text-rose-500" /> Delete
                 </button>
               </div>
             </div>
