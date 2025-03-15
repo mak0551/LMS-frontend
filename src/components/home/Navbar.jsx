@@ -69,22 +69,22 @@ const Navbar = () => {
 
       <ul className="hidden md:flex font-bold items-center space-x-6 text-black">
         <li className="hover:scale-105 transition-transform">
-          <Link to="/viewteachers" className="hover:text-gray-700">
+          <Link to="/viewteachers" className="hover:text-gray-700 tracking-tighte">
             Tutors
           </Link>
         </li>
         <li className="hover:scale-105 transition-transform">
-          <Link to="/mylearnings" className="hover:text-gray-700">
+          <Link to="/mylearnings" className="hover:text-gray-700 tracking-tighte">
             My Learning
           </Link>
         </li>
         <li className="hover:scale-105 transition-transform">
-          <Link to="/createcourse" className="hover:text-gray-700">
+          <Link to="/createcourse" className="hover:text-gray-700 tracking-tighte">
             Create Course
           </Link>
         </li>
         <li className="hover:scale-105 transition-transform">
-          <Link to="/mycourses" className="hover:text-gray-700">
+          <Link to="/mycourses" className="hover:text-gray-700 tracking-tighte">
             Teacher's dashboard
           </Link>
         </li>

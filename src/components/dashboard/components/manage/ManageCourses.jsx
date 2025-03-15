@@ -6,6 +6,7 @@ import { FiEdit, FiTrash2, FiUsers, FiStar } from "react-icons/fi";
 import axios from "axios";
 import Loader from "../../../commonComponents/Loader";
 import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
+import { IoCloseSharp } from "react-icons/io5";
 
 function ManageCourses() {
   const { user } = useAuth();
@@ -25,6 +26,7 @@ function ManageCourses() {
       const res = await axios.get(
         `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`
       );
+      console.log(res.data);
       setCourses(res.data);
     } catch (error) {
       console.error("Error fetching courses:", error);
@@ -57,25 +59,28 @@ function ManageCourses() {
       <table className="min-w-full bg-white border border-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Course
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Level
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Duration
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Price
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Students
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+              Reviews
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Rating
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Actions
             </th>
           </tr>
@@ -105,28 +110,28 @@ function ManageCourses() {
                   {course.level}
                 </span>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                 {formatDuration(course.duration)}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                 ₹{course.price}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
                   onClick={() => setSelectedCourse(course)}
-                  className="text-indigo-600 hover:text-indigo-900"
+                  className="text-gray-800 hover:text-zinc-700 hover:scale-125 transition-transform"
                 >
                   <FiUsers className="inline mr-1" />
                   {course.enrolledBy?.length || 0}
                 </button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
+                {course.reviews?.length || 0}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                   <FiStar className="text-yellow-400 mr-1" />
                   <span>{course.averageRating || "N/A"}</span>
-                  <span className="text-gray-500 ml-1">
-                    ({course.reviews?.length || 0})
-                  </span>
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -150,50 +155,81 @@ function ManageCourses() {
     </div>
   );
 
-  const StudentModal = ({ course, onClose }) => (
+  const StudentModal = ({ courseData }) => (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-        <h2 className="text-xl font-semibold mb-4">
-          Students enrolled in {course.title}
-        </h2>
-        <div className="max-h-96 overflow-y-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="px-4 py-2 text-left">Student ID</th>
-                <th className="px-4 py-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {course.enrolledBy.map((student) => (
-                <tr key={student._id} className="border-b">
-                  <td className="px-4 py-2">{student._id}</td>
-                  <td className="px-4 py-2">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      View Profile
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="bg-white rounded-lg md:p-6 w-full max-w-2xl relative max-h-screen overflow-hidden overflow-y-auto">
+        <div className="bg-white rounded-lg p-4">
+          <h2 className="text-lg capitalize font-medium gap-1 items-center flex text-gray-800 mb-2">
+            {courseData?.title}
+            <span className="text-sm">
+              {" "}
+              - Total Students {courseData?.enrolledBy?.length}
+            </span>
+          </h2>
+          {courseData?.enrolledBy?.length > 0 ? (
+            <>
+              <div className="flex flex-col gap-2 ">
+                {courseData?.enrolledBy?.map((student) => (
+                  <div
+                    key={student._id}
+                    className="bg-white shadow-md rounded-lg p-2 flex gap-2 md:gap-4 items-start md:p-4"
+                  >
+                    <img
+                      src={student.profileImg}
+                      alt={student.name}
+                      className="w-16 h-16 rounded-full object-cover md:w-20 md:h-20 md:mt-2"
+                    />
+                    <div className="overflow-hidden">
+                      <h4 className="font-semibold text-gray-800 truncate md:text-xl">
+                        {student.name}
+                      </h4>
+                      <p className="text-xs text-gray-600 truncate md:text-base">
+                        {student.email}
+                      </p>
+                      <p className="text-xs text-gray-600 md:text-base">
+                        {student.mobileNo}
+                      </p>
+                      <p className="text-xs capitalize text-gray-500 md:text-base">
+                        {student.address}
+                      </p>
+                      <p className="text-xs text-gray-500 md:text-sm">
+                        Joined:{" "}
+                        {new Date(student.createdAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="capitalize py-8 text-center">
+              no students enrolled yet
+            </div>
+          )}
         </div>
         <button
-          onClick={onClose}
-          className="mt-4 bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
+          onClick={() => setSelectedCourse(null)}
+          className="mt-4 font-bold text-2xl px-4 py-2 absolute top-[-10px] right-0"
         >
-          Close
+          <IoCloseSharp />
         </button>
       </div>
     </div>
   );
 
-  if (loading) return <Loader />;
+  if (loading)
+    return (
+      <div className="w-full">
+        <Loader />;
+      </div>
+    );
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Manage Courses</h1>
+      <div className="flex sm:flex-row flex-col gap-4 sm:justify-between sm:items-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-900 hidden sm:inline-block">
+          Manage Courses
+        </h1>
         <CreateCourseBtn />
       </div>
 
@@ -213,12 +249,7 @@ function ManageCourses() {
         <CourseTable />
       )}
 
-      {selectedCourse && (
-        <StudentModal
-          course={selectedCourse}
-          onClose={() => setSelectedCourse(null)}
-        />
-      )}
+      {selectedCourse && <StudentModal courseData={selectedCourse} />}
     </div>
   );
 }
