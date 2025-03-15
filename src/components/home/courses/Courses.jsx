@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import StarRating from "./StarRating";
-import Loader from "./Loader";
+import StarRating from "../../commonComponents/StarRating";
+import Loader from "../../commonComponents/Loader";
 
 function Courses() {
   var [data, setData] = useState([]);

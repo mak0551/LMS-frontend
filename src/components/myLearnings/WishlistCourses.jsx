@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ShowCoursesComponent from "./ShowCoursesComponent";
+import ShowCoursesComponent from "../home/courses/ShowCoursesComponent";
 
 const WishlistCourses = () => {
   const [wishlist, setWishlist] = useState([]);

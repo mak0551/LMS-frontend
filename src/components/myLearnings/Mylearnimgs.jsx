@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../state_management/AuthContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import EnrollmentList from "./EnrollmentList";
 import WishlistCourses from "./WishlistCourses";
-import Loader from "./Loader";
+import Loader from "../commonComponents/Loader";
+import { useAuth } from "../../state_management/AuthContext";
 
 export default function Mylearnimgs() {
   const [courses, setCourses] = useState([]);

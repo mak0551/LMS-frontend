@@ -1,5 +1,5 @@
 import React from "react";
-import Courses from "./Courses";
+import Courses from "./courses/Courses";
 
 export default function Landingpage() {
   const imgobj = [

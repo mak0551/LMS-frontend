@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
-import Navbar from "./components/Navbar";
-import Landingpage from "./components/Landingpage";
+import Navbar from "./components/home/Navbar";
+import Landingpage from "./components/home/Landingpage";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ShowCourses from "./components/ShowCourses";
-import ViewCourse from "./components/ViewCourse";
-import Viewvideo from "./components/Viewvideo";
-import ViewTeachers from "./components/ViewTeachers";
-import Getcoursebyteacher from "./components/Getcoursebyteacher";
-import CreateCourse from "./components/CreateCourse";
+import ShowCourses from "./components/home/courses/ShowCourses";
+import ViewCourse from "./components/home/courses/ViewCourse";
+import Viewvideo from "./components/home/courses/Viewvideo";
+import ViewTeachers from "./components/teachers/ViewTeachers";
+import Getcoursebyteacher from "./components/teachers/Getcoursebyteacher";
+import CreateCourse from "./components/createCourse/CreateCourse";
 import { AuthProvider } from "./state_management/AuthContext";
-import AddModule from "./components/AddModule";
-import CloudinaryUploadWidget from "./components/CloudinaryUploadWidget";
-import MyCourses from "./components/MyCourses";
+import AddModule from "./components/createCourse/AddModule";
+import CloudinaryUploadWidget from "./components/commonComponents/CloudinaryUploadWidget";
+import MyCourses from "./components/dashboard/MyCourses";
 import { ToastContainer } from "react-toastify";
-import Mylearnimgs from "./components/Mylearnimgs";
 import { useLocation } from "react-router-dom";
-import Footer from "./components/Footer";
-import EditCourse from "./components/EditCourse";
-import EditModule from "./components/EditModule";
+import Footer from "./components/home/Footer";
+import Mylearnimgs from "./components/myLearnings/Mylearnimgs";
+import EditCourse from "./components/dashboard/components/manage/EditCourse";
+import EditModules from "./components/dashboard/components/manage/EditModule";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -53,7 +53,7 @@ function App() {
               <Route path="/mycourses/*" element={<MyCourses />} />
               <Route path="/mylearnings" element={<Mylearnimgs />} />
               <Route path="/edit-course/:id" element={<EditCourse />} />
-              <Route path="/editmodule/:id" element={<EditModule />} />
+              <Route path="/editmodule/:id" element={<EditModules />} />
               <Route
                 path="/getcoursebyteacher/:id"
                 element={<Getcoursebyteacher />}

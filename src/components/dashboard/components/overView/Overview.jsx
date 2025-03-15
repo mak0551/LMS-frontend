@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../state_management/AuthContext";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../state_management/AuthContext";
+import { Link, Route, Routes } from "react-router-dom";
 import { RiAddLargeLine } from "react-icons/ri";
 import { FiUsers, FiBook } from "react-icons/fi";
 import { toast } from "react-toastify";
-import Loader from "./Loader";
+import Loader from "../../../commonComponents/Loader";
 import TotalCourses from "./TotalCourses";
 import TotalStudents from "./TotalStudents";
+import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
 
 export default function Overview() {
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
       if (user === null) return;
-      // if (user === false) {
-      //   toast.error("Please login to view your courses");
-      //   navigate("/signin");
-      //   return;
-      // }
       try {
         setLoading(true);
         const res = await fetch(
@@ -37,7 +32,7 @@ export default function Overview() {
       }
     };
     fetchCourses();
-  }, [user, navigate]);
+  }, [user]);
 
   return (
     <>
@@ -77,15 +72,7 @@ export default function Overview() {
                     </Link>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 lg:ml-14">
-                  <button
-                    onClick={() => navigate("/createcourse")}
-                    className="w-full flex items-center md:justify-center gap-2 py-2 md:px-4 rounded-lg hover:scale-105 transition-transform font-medium"
-                  >
-                    <RiAddLargeLine />
-                    Create New Course
-                  </button>
-                </div>
+                <CreateCourseBtn />
               </div>
             </div>
             {courses.length > 0 ? (

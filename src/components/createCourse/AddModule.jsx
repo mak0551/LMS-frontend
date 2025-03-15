@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
 import { toast } from "react-toastify";
 
 const AddModule = () => {

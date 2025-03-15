@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../state_management/AuthContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import { useAuth } from "../../../../state_management/AuthContext";
+import CloudinaryUploadWidget from "../../../commonComponents/CloudinaryUploadWidget";
 
 const EditCourse = () => {
   const { user } = useAuth();
@@ -108,7 +108,10 @@ const EditCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://lms-htvh.onrender.com/course/update/${id}`, courseData);
+      await axios.put(
+        `https://lms-htvh.onrender.com/course/update/${id}`,
+        courseData
+      );
       toast.success("Course updated successfully!");
       navigate("/mycourses");
     } catch (error) {
@@ -274,7 +277,7 @@ const EditCourse = () => {
               type="submit"
               className="w-full bg-black border-2 border-black text-white px-6 sm:py-2 py-1 rounded-lg hover:bg-zinc-700 transition text-base"
             >
-              Update 
+              Update
             </button>
             <Link to={`/editmodule/${id}`}>
               <button

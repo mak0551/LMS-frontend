@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import StarRating from "./StarRating";
+import StarRating from "../../commonComponents/StarRating";
 import { FaSortAmountDown } from "react-icons/fa";
 import { RiFilter2Fill } from "react-icons/ri";
 

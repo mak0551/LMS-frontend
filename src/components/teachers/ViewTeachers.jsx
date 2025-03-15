@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Courses from "./Courses";
+import Courses from "../home/courses/Courses";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "../commonComponents/Loader";
 
 function ViewTeachers() {
   const [data, setData] = useState([]);

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ShowCoursesComponent from "./ShowCoursesComponent";
-import Loader from "./Loader";
+import Loader from "../../commonComponents/Loader";
 
 function ShowCourses() {
   const [data, setData] = useState([]);

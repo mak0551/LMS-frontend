@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Courses from "./Courses";
-import { useAuth } from "../state_management/AuthContext";
+import { useAuth } from "../../../state_management/AuthContext";
 import { IoIosArrowDown } from "react-icons/io";
 import { toast } from "react-toastify";
-import StarRating from "./StarRating";
+import StarRating from "../../commonComponents/StarRating";
 import { MdSort } from "react-icons/md";
 
 function ViewCourse() {

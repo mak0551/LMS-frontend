@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../state_management/AuthContext";
+import { useAuth } from "../../state_management/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
 
 const CreateCourse = () => {
   const { user } = useAuth();
