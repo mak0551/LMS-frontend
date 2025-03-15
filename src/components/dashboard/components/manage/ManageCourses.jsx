@@ -8,7 +8,8 @@ import Loader from "../../../commonComponents/Loader";
 import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaRegEye } from "react-icons/fa";
-
+import StarRating from "../../../commonComponents/StarRating";
+import { MdDeleteOutline } from "react-icons/md";
 function ManageCourses() {
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
@@ -44,11 +45,30 @@ function ManageCourses() {
         await axios.delete(
           `https://lms-htvh.onrender.com/course/delete/${courseId}`
         );
-        setCourses(courses.filter((course) => course._id !== courseId));
+        setCourses((courses) =>
+          courses.filter((course) => course._id !== courseId)
+        );
         toast.success("Course deleted successfully");
       } catch (error) {
         toast.error("Failed to delete course");
       }
+    }
+  };
+
+  const handleDeleteReview = async (id, userId) => {
+    console.log(review, "reviewer");
+    try {
+      await axios.delete(
+        `https://lms-htvh.onrender.com/review/delete/${id}/${userId}`
+      );
+      setReviews((review) => ({
+        ...review,
+        reviews: review.reviews.filter((e) => e._id !== id),
+      }));
+      toast.success("review deleted successfully");
+    } catch (error) {
+      toast.error("Failed to delete course");
+      console.log(error);
     }
   };
 
@@ -170,8 +190,8 @@ function ManageCourses() {
 
   const StudentModal = ({ courseData }) => (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg md:p-6 w-full max-w-2xl relative max-h-screen overflow-hidden overflow-y-auto">
-        <div className="bg-white rounded-lg p-4">
+      <div className="bg-zinc-50 rounded-lg md:p-6 w-full max-w-2xl relative max-h-[75vh]] overflow-hidden overflow-y-auto">
+        <div className="bg-zinc-50 rounded-lg p-4">
           <h2 className="text-lg capitalize font-medium gap-1 items-center flex text-gray-800 mb-2">
             {courseData?.title}
             <span className="text-sm">
@@ -232,8 +252,8 @@ function ManageCourses() {
 
   const ReviewModal = ({ courseData }) => (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg md:p-6 w-full max-w-2xl relative max-h-screen overflow-hidden overflow-y-auto">
-        <div className="bg-white rounded-lg p-4">
+      <div className="rounded-lg md:p-6 w-full max-w-2xl relative max-h-[75vh] overflow-hidden overflow-y-auto bg-zinc-50">
+        <div className="rounded-lg p-4 bg-zinc-50">
           <h2 className="text-lg capitalize font-medium gap-1 items-center flex text-gray-800 mb-2">
             {courseData?.title}
             <span className="text-sm">
@@ -247,30 +267,32 @@ function ManageCourses() {
                 {courseData?.reviews?.map((review) => (
                   <div
                     key={review._id}
-                    className="bg-white shadow-md rounded-lg p-2 flex gap-2 md:gap-4 items-start md:p-4"
+                    className="bg-white shadow-md rounded-lg p-2 flex gap-2 md:gap-4 items-center md:p-4 "
                   >
-                    <p>{review?.comment}</p>
-                    <div className="overflow-hidden">
-                      <h4 className="font-semibold text-gray-800 truncate md:text-xl">
-                        {review?.rating}
-                      </h4>
-                      <p className="text-xs text-gray-600 truncate md:text-base">
+                    <div className="overflow-hidden space-y-2 w-full">
+                      <p className="text-sm text-black truncate md:text-base">
                         {review?.userId?.name}
                       </p>
-
-                      <p className="text-xs text-gray-500 md:text-sm">
-                        Joined:{" "}
+                      <div className="flex items-center font-light sm:gap-4 gap-2 text-xs">
+                        <StarRating rating={review?.rating} />
                         {new Date(review?.createdAt).toLocaleDateString()}
-                      </p>
+                      </div>
+                      <p>{review?.comment}</p>
+                    </div>
+                    <div
+                      className="w-[10%] flex items-center justify-center"
+                      onClick={() =>
+                        handleDeleteReview(review?._id, review?.userId?._id)
+                      }
+                    >
+                      <MdDeleteOutline />
                     </div>
                   </div>
                 ))}
               </div>
             </>
           ) : (
-            <div className="capitalize py-8 text-center">
-              no students enrolled yet
-            </div>
+            <div className="capitalize py-8 text-center">reviews not found</div>
           )}
         </div>
         <button
