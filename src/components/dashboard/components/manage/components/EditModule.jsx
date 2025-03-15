@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import CloudinaryUploadWidget from "../../../commonComponents/CloudinaryUploadWidget";
+import CloudinaryUploadWidget from "../../../../commonComponents/CloudinaryUploadWidget";
 import { toast } from "react-toastify";
 
 const EditModules = () => {
@@ -73,7 +73,10 @@ const EditModules = () => {
     setIsSubmitting(true);
     try {
       const updatePromises = formData.map((module) =>
-        axios.put(`https://lms-htvh.onrender.com/module/update/${module._id}`, module)
+        axios.put(
+          `https://lms-htvh.onrender.com/module/update/${module._id}`,
+          module
+        )
       );
       await Promise.all(updatePromises);
       toast.success("All modules updated successfully!");

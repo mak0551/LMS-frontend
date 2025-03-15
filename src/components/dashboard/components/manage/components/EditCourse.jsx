@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../../../state_management/AuthContext";
-import CloudinaryUploadWidget from "../../../commonComponents/CloudinaryUploadWidget";
+import { useAuth } from "../../../../../state_management/AuthContext";
+import CloudinaryUploadWidget from "../../../../commonComponents/CloudinaryUploadWidget";
 
 const EditCourse = () => {
   const { user } = useAuth();

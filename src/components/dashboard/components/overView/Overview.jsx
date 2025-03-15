@@ -5,8 +5,8 @@ import { RiAddLargeLine } from "react-icons/ri";
 import { FiUsers, FiBook } from "react-icons/fi";
 import { toast } from "react-toastify";
 import Loader from "../../../commonComponents/Loader";
-import TotalCourses from "./TotalCourses";
-import TotalStudents from "./TotalStudents";
+import TotalCourses from "./components/TotalCourses";
+import TotalStudents from "./components/TotalStudents";
 import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
 
 export default function Overview() {

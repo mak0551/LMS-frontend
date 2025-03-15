@@ -18,8 +18,8 @@ import { ToastContainer } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import Footer from "./components/home/Footer";
 import Mylearnimgs from "./components/myLearnings/Mylearnimgs";
-import EditCourse from "./components/dashboard/components/manage/EditCourse";
-import EditModules from "./components/dashboard/components/manage/EditModule";
+import EditCourse from "./components/dashboard/components/manage/components/EditCourse";
+import EditModules from "./components/dashboard/components/manage/components/EditModule";
 
 function ScrollToTop() {
   const { pathname } = useLocation();

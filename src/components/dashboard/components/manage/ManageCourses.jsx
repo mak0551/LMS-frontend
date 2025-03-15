@@ -7,12 +7,14 @@ import axios from "axios";
 import Loader from "../../../commonComponents/Loader";
 import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
 import { IoCloseSharp } from "react-icons/io5";
+import { FaRegEye } from "react-icons/fa";
 
 function ManageCourses() {
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [review, setReviews] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -126,7 +128,12 @@ function ManageCourses() {
                 </button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                {course.reviews?.length || 0}
+                <button
+                  onClick={() => setReviews(course)}
+                  className="text-gray-800 hover:text-zinc-700 hover:scale-125 transition-transform"
+                >
+                  {course.reviews?.length || 0}
+                </button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
@@ -134,10 +141,16 @@ function ManageCourses() {
                   <span>{course.averageRating || "N/A"}</span>
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">
+                <button
+                  onClick={() => navigate(`/viewcoursedetails/${course._id}`)}
+                  className="text-black mr-2 hover:text-zinc-700"
+                >
+                  <FaRegEye />
+                </button>
                 <button
                   onClick={() => navigate(`/edit-course/${course._id}`)}
-                  className="text-indigo-600 hover:text-indigo-900 mr-4"
+                  className="text-indigo-600 mr-2 hover:text-indigo-900"
                 >
                   <FiEdit />
                 </button>
@@ -217,6 +230,59 @@ function ManageCourses() {
     </div>
   );
 
+  const ReviewModal = ({ courseData }) => (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white rounded-lg md:p-6 w-full max-w-2xl relative max-h-screen overflow-hidden overflow-y-auto">
+        <div className="bg-white rounded-lg p-4">
+          <h2 className="text-lg capitalize font-medium gap-1 items-center flex text-gray-800 mb-2">
+            {courseData?.title}
+            <span className="text-sm">
+              {" "}
+              - Total Reviews {courseData?.reviews?.length}
+            </span>
+          </h2>
+          {courseData?.reviews?.length > 0 ? (
+            <>
+              <div className="flex flex-col gap-2 ">
+                {courseData?.reviews?.map((review) => (
+                  <div
+                    key={review._id}
+                    className="bg-white shadow-md rounded-lg p-2 flex gap-2 md:gap-4 items-start md:p-4"
+                  >
+                    <p>{review?.comment}</p>
+                    <div className="overflow-hidden">
+                      <h4 className="font-semibold text-gray-800 truncate md:text-xl">
+                        {review?.rating}
+                      </h4>
+                      <p className="text-xs text-gray-600 truncate md:text-base">
+                        {review?.userId?.name}
+                      </p>
+
+                      <p className="text-xs text-gray-500 md:text-sm">
+                        Joined:{" "}
+                        {new Date(review?.createdAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="capitalize py-8 text-center">
+              no students enrolled yet
+            </div>
+          )}
+        </div>
+        <button
+          onClick={() => setReviews(null)}
+          className="mt-4 font-bold text-2xl px-4 py-2 absolute top-[-10px] right-0"
+        >
+          <IoCloseSharp />
+        </button>
+      </div>
+    </div>
+  );
+
   if (loading)
     return (
       <div className="w-full">
@@ -250,6 +316,7 @@ function ManageCourses() {
       )}
 
       {selectedCourse && <StudentModal courseData={selectedCourse} />}
+      {review && <ReviewModal courseData={review} />}
     </div>
   );
 }
