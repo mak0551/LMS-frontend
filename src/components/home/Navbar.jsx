@@ -69,17 +69,26 @@ const Navbar = () => {
 
       <ul className="hidden md:flex font-bold items-center space-x-6 text-black">
         <li className="hover:scale-105 transition-transform">
-          <Link to="/viewteachers" className="hover:text-gray-700 tracking-tighte">
+          <Link
+            to="/viewteachers"
+            className="hover:text-gray-700 tracking-tighte"
+          >
             Tutors
           </Link>
         </li>
         <li className="hover:scale-105 transition-transform">
-          <Link to="/mylearnings" className="hover:text-gray-700 tracking-tighte">
+          <Link
+            to="/mylearnings"
+            className="hover:text-gray-700 tracking-tighte"
+          >
             My Learning
           </Link>
         </li>
         <li className="hover:scale-105 transition-transform">
-          <Link to="/createcourse" className="hover:text-gray-700 tracking-tighte">
+          <Link
+            to="/createcourse"
+            className="hover:text-gray-700 tracking-tighte"
+          >
             Create Course
           </Link>
         </li>
@@ -93,7 +102,10 @@ const Navbar = () => {
       <div className="flex items-center">
         {user ? (
           <div className="hidden md:flex items-center space-x-3">
-            <div className="flex gap-2 items-center mx-2">
+            <Link
+              to="/updateprofile"
+              className="flex gap-2 items-center mx-2 hover:scale-105 transition-transform"
+            >
               <img
                 src={user.user?.profileImg}
                 alt="Profile"
@@ -102,7 +114,7 @@ const Navbar = () => {
               <span className="text-black font-semibold">
                 {user.user?.name}
               </span>
-            </div>
+            </Link>
             <button
               onClick={logout}
               className="px-3 py-1 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
@@ -178,7 +190,10 @@ const Navbar = () => {
           <div className="flex flex-col items-center space-y-3">
             {user ? (
               <>
-                <div className="flex gap-2 items-center justify-center">
+                <Link
+                  to="updataprofile"
+                  className="flex gap-2 items-center justify-center"
+                >
                   <img
                     src={user.user?.profileImg}
                     alt="Profile"
@@ -187,7 +202,7 @@ const Navbar = () => {
                   <span className="text-black font-semibold">
                     {user.user?.name}
                   </span>
-                </div>
+                </Link>
                 <button
                   onClick={() => {
                     logout();
