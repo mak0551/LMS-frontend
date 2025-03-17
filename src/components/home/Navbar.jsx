@@ -193,6 +193,7 @@ const Navbar = () => {
                 <Link
                   to="updateprofile"
                   className="flex gap-2 items-center justify-center"
+                  onClick={() => setMenuOpen(false)}
                 >
                   <img
                     src={user.user?.profileImg}
