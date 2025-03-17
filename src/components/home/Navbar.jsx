@@ -67,7 +67,7 @@ const Navbar = () => {
         )}
       </div>
 
-      <ul className="hidden md:flex font-bold items-center space-x-6 text-black w-1/3 gap-2">
+      <ul className="hidden md:flex font-bold items-center space-x-6 text-black lg:w-1/2 xl:w-[40%] justify-center xl:gap-6 gap-2 ">
         <li className="hover:scale-105 transition-transform">
           <Link
             to="/viewteachers"
