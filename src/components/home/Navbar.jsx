@@ -67,7 +67,7 @@ const Navbar = () => {
         )}
       </div>
 
-      <ul className="hidden md:flex font-bold items-center space-x-6 text-black">
+      <ul className="hidden md:flex font-bold items-center space-x-6 text-black w-1/3 gap-2">
         <li className="hover:scale-105 transition-transform">
           <Link
             to="/viewteachers"
@@ -94,7 +94,7 @@ const Navbar = () => {
         </li>
         <li className="hover:scale-105 transition-transform">
           <Link to="/mycourses" className="hover:text-gray-700 tracking-tighte">
-            Teacher's dashboard
+            Dashboard
           </Link>
         </li>
       </ul>
@@ -115,12 +115,12 @@ const Navbar = () => {
                 {user.user?.name}
               </span>
             </Link>
-            <button
+            {/* <button
               onClick={logout}
               className="px-3 py-1 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
             >
               Logout
-            </button>
+            </button> */}
           </div>
         ) : (
           <div className="hidden md:flex space-x-2">
@@ -203,7 +203,7 @@ const Navbar = () => {
                     {user.user?.name}
                   </span>
                 </Link>
-                <button
+                {/* <button
                   onClick={() => {
                     logout();
                     setMenuOpen(false);
@@ -211,7 +211,7 @@ const Navbar = () => {
                   className="px-4 py-1 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
                 >
                   Logout
-                </button>
+                </button> */}
               </>
             ) : (
               <>
