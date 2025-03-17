@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
 import { toast } from "react-toastify";
+import { IoMdArrowBack } from "react-icons/io";
 
 const AddModule = () => {
   const { id } = useParams();
@@ -57,7 +58,11 @@ const AddModule = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="relative max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <IoMdArrowBack
+        className="absolute md:left-[-30px] left-0 text-2xl top-2 md:top-7 bg-white rounded-full"
+        onClick={() => navigate(-1)}
+      />
       <h2 className="text-2xl font-bold mb-4">Add Module to Your Course</h2>
       <form onSubmit={handleSubmit}>
         <label className="block mb-2">Module Title:</label>

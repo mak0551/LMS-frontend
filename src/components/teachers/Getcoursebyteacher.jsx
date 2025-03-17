@@ -1,28 +1,48 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Loader from "../commonComponents/Loader";
+import { IoMdArrowBack } from "react-icons/io";
 
 function Getcoursebyteacher() {
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
-      );
-      setData(response.data);
-      // console.log(response.data);
-    };
-    fetchData();
+    try {
+      setLoading(true);
+      const fetchData = async () => {
+        const response = await axios.get(
+          `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
+        );
+        setData(response.data);
+        setLoading(false);
+        // console.log(response.data);
+      };
+      fetchData();
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      <div className="flex flex-col justify-center items-center ">
-        <div className="font-mono mt-8 p-4 pl-0 flex flex-wrap justify-center items-center h-fit">
+      <div className="flex relative flex-col justify-center items-center">
+        <div className=" font-mono mt-8 py-4 flex flex-wrap justify-center items-center h-fit">
+          <IoMdArrowBack
+            className="absolute left-4 text-2xl top-8"
+            onClick={() => navigate(-1)}
+          />
           {data.length > 0 ? (
             data.map((data, index) => (
               <Link to={`/viewcoursedetails/${data._id}`} key={index}>
-                <div className="h-[280px] w-[200px] sm:h-[300px] sm:w-[250px] md:h-[350px] md:w-[300px] lg:h-[400px] lg:w-[350px] flex m-4 flex-col overflow-hidden bg-zinc-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex-shrink-0 border border-gray-100">
+                <div className="h-[350px] w-[280px] sm:h-[300px] sm:w-[250px] md:h-[350px] md:w-[300px] lg:h-[400px] lg:w-[350px] flex my-4 flex-col overflow-hidden bg-zinc-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex-shrink-0">
                   <div className="h-[50%] overflow-hidden">
                     <img
                       src={`${
@@ -61,14 +81,14 @@ function Getcoursebyteacher() {
               </Link>
             ))
           ) : (
-            <p className="text-white">No courses available</p>
+            <p className="text-black">No courses available</p>
           )}
         </div>
-        <Link to={"/viewTeachers"} className="m-4">
+        {/* <Link to={"/viewTeachers"} className="m-4">
           <button className="tracking-tighter mx-2 px-3 py-1 text-black border-black border rounded-md hover:bg-zinc-50">
             Go Back
           </button>
-        </Link>
+        </Link> */}
       </div>
     </>
   );

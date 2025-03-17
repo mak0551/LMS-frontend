@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Courses from "../home/courses/Courses";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../commonComponents/Loader";
+import { IoMdArrowBack } from "react-icons/io";
 
 function ViewTeachers() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,8 +48,12 @@ function ViewTeachers() {
 
   return (
     <div className="min-h-screen ">
-      <div className="container mx-auto px-4 sm:px-6 py-8">
-        <div className="mb-12">
+      <div className="relative container mx-auto px-4 sm:px-6 py-8">
+        <div className="mb-12 ">
+          <IoMdArrowBack
+            className="absolute left-2 text-2xl top-2"
+            onClick={() => navigate(-1)}
+          />
           <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-gray-800">
             Our Expert Teachers
           </h2>
