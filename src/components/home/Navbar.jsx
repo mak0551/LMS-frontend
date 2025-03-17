@@ -183,7 +183,7 @@ const Navbar = () => {
                 onClick={() => setMenuOpen(false)}
                 className="hover:text-pink-700"
               >
-                Teacher's dashboard
+                Dashboard
               </Link>
             </li>
           </ul>
