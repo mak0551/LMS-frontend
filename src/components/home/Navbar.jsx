@@ -191,7 +191,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <Link
-                  to="updataprofile"
+                  to="updateprofile"
                   className="flex gap-2 items-center justify-center"
                 >
                   <img

@@ -4,6 +4,8 @@ import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
 import Loader from "../commonComponents/Loader";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BsSkipBackwardBtn } from "react-icons/bs";
+import { IoMdArrowBack } from "react-icons/io";
 
 function UpdateProfile() {
   const { user, login, logout } = useAuth();
@@ -76,94 +78,128 @@ function UpdateProfile() {
     );
 
   return (
-    <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-        User Profile
-      </h2>
-      <div className="flex flex-col items-center">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ">
+      <div className="bg-zinc-50 shadow-xl rounded-xl p-2 w-96 transform transition-all hover:shadow-2xl relative">
         {isEditing ? (
+          <div className="px-6 gap-2 flex flex-col justify-center text-sm sm:text-base">
+            <button>
+              <IoMdArrowBack
+                className="absolute left-2 text-xl top-2"
+                onClick={() => setIsEditing(false)}
+              />
+            </button>
+            <div className="flex items-center">
+              <img
+                src={editedData.profileImg}
+                alt={userData.name}
+                className="w-28 h-28 rounded-full shadow-lg mb-4 border-4 border-gray-200 object-cover transition-transform hover:scale-105"
+              />
+              <div className="flex flex-col justify-center items-center w-full gap-2">
+                Change Profile
+                <CloudinaryUploadWidget
+                  onUploadSuccess={(url) => {
+                    handleProfilePic(url);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <label>name</label>
+              <input
+                type="text"
+                name="name"
+                value={editedData.name}
+                onChange={handleChange}
+                className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[200px]"
+              />
+            </div>
+            <div className="flex gap-2">
+              <label>mobile</label>
+              <input
+                type="text"
+                name="mobileNo"
+                value={editedData.mobileNo}
+                onChange={handleChange}
+                className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[200px]"
+              />
+            </div>
+            <div className="flex gap-2">
+              <label>email</label>
+              <input
+                type="text"
+                name="email"
+                value={editedData.email}
+                onChange={handleChange}
+                className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[250px] px-2"
+              />
+            </div>
+            <div className="flex gap-2">
+              <label>address</label>
+              <input
+                type="text"
+                name="address"
+                value={editedData.address}
+                onChange={handleChange}
+                className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[200px]"
+              />
+            </div>
+            <button
+              onClick={handleUpdate}
+              className="bg-blue-600 text-white px-5 py-2 w-full mt-4 mx-auto rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 ease-in-out"
+            >
+              Save
+            </button>
+          </div>
+        ) : (
           <>
-            <img
-              src={userData.profileImg}
-              alt={userData.name}
-              className="w-24 h-24 rounded-full shadow-md mb-4 border-2 border-gray-300"
-            />
-            <CloudinaryUploadWidget
-              onUploadSuccess={(url, fileName) => {
-                handleProfilePic(url);
-              }}
-            />
-          </>
-        ) : (
-          <img
-            src={userData.profileImg}
-            alt={userData.name}
-            className="w-24 h-24 rounded-full shadow-md mb-4 border-2 border-gray-300"
-          />
-        )}
-        {isEditing ? (
-          <input
-            type="text"
-            name="name"
-            value={editedData.name}
-            onChange={handleChange}
-            className="border border-gray-300 rounded p-1 text-center"
-          />
-        ) : (
-          <p className="text-lg font-medium text-gray-700">{userData.name}</p>
-        )}
-        <p className="text-sm text-gray-500">{userData.email}</p>
-      </div>
-      <div className="mt-5">
-        <p className="text-gray-600">
-          <strong>Mobile No:</strong> {userData.mobileNo}
-        </p>
-        <p className="text-gray-600">
-          <strong>Address:</strong>{" "}
-          {isEditing ? (
-            <input
-              type="text"
-              name="address"
-              value={editedData.address}
-              onChange={handleChange}
-              className="border border-gray-300 rounded p-1"
-            />
-          ) : (
-            userData.address
-          )}
-        </p>
+            <div className="flex items-center space-y-4 relative px-6">
+              <button>
+                <IoMdArrowBack
+                  className="absolute left-2 text-xl top-2"
+                  onClick={() => navigate(-1)}
+                />
+              </button>
 
-        <p className="text-gray-600">
-          <strong>Joined</strong>{" "}
-          {new Date(userData.createdAt).toLocaleDateString()}
-        </p>
-      </div>
-      <div className="mt-4 text-center">
-        {isEditing ? (
-          <button
-            onClick={handleUpdate}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-          >
-            Save
-          </button>
-        ) : (
-          <button
-            onClick={() => setIsEditing(true)}
-            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition"
-          >
-            Edit
-          </button>
-        )}
-        {user && (
-          <button
-            onClick={() => {
-              logout();
-              setMenuOpen(false);
-            }}
-            className="px-4 py-1 text-white bg-red-500 border-2 border-red-600 rounded-md hover:bg-red-600"
-          >
-            Logout
-          </button>
+              <img
+                src={userData.profileImg}
+                alt={userData.name}
+                className="w-28 h-28 rounded-full shadow-lg mb-4 border-4 border-gray-200 object-cover transition-transform hover:scale-105"
+              />
+              <div className="pl-4 space-y-1">
+                <div className="flex flex-col">
+                  <p className="text-lg font-semibold text-gray-800 tracking-wide">
+                    {userData.name}
+                  </p>
+                  <span className="text-sm text-zinc-700">
+                    {userData.mobileNo}
+                  </span>
+                  <p className="text-sm text-zinc-700">{userData.email}</p>
+                  <span className="text-sm text-zinc-700 capitalize">
+                    {userData.address}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center gap-2 mt-2">
+              <button
+                onClick={() => setIsEditing(true)}
+                className="bg-white w-1/3 text-black px-6 py-1 border border-black rounded-lg hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all duration-300 ease-in-out"
+              >
+                Edit
+              </button>
+              {user && (
+                <button
+                  onClick={() => {
+                    logout();
+                    setMenuOpen(false);
+                  }}
+                  className="bg-rose-600 w-1/3 text-white px-6 py-1 rounded-lg hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-all duration-300 ease-in-out"
+                >
+                  Logout
+                </button>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>
