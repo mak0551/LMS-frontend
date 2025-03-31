@@ -92,7 +92,7 @@ function UpdateProfile() {
               <img
                 src={editedData.profileImg}
                 alt={userData.name}
-                className="w-28 h-28 rounded-full shadow-lg mb-4 border-4 border-gray-200 object-cover transition-transform hover:scale-105"
+                className="w-28 h-fit max-h-20 rounded-full shadow-lg my-4 object-cover transition-transform hover:scale-105"
               />
               <div className="flex flex-col justify-center items-center w-full gap-2">
                 Change Profile
@@ -103,7 +103,7 @@ function UpdateProfile() {
                 />
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full justify-between">
               <label>name</label>
               <input
                 type="text"
@@ -113,7 +113,7 @@ function UpdateProfile() {
                 className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[200px]"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full justify-between">
               <label>mobile</label>
               <input
                 type="text"
@@ -123,17 +123,17 @@ function UpdateProfile() {
                 className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[200px]"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-between">
               <label>email</label>
               <input
                 type="text"
                 name="email"
                 value={editedData.email}
                 onChange={handleChange}
-                className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[250px] px-2"
+                className="border-2 border-gray-200 rounded-lg text-center w-full max-w-[200px] px-2"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-between">
               <label>address</label>
               <input
                 type="text"
