@@ -84,7 +84,7 @@ const CreateCourse = () => {
         courseData
       );
       toast.success(
-        "Course added successfully!! now add modules to your course"
+        "Course added successfully!! now add modules"
       );
       console.log(response.data);
 
@@ -96,8 +96,8 @@ const CreateCourse = () => {
         alert("Failed to create course.");
       }
     } catch (error) {
-      console.error("Error adding course:", error.message);
-      alert("Failed to add course.");
+      console.error("Error adding course:", error);
+      toast.error("Failed to add course.");
     }
   };
 
