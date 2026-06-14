@@ -24,8 +24,9 @@ function Signup() {
         return;
       }
       const response = await axios.post(
-        "https://lms-htvh.onrender.com/users/register",
-        formData
+        "https://lms-htvh.onrender.com/auth/register",
+        formData,
+        { withCredentials: true },
       );
       console.log("User registered successfully:", response.data);
       toast.success("signup successful");
@@ -33,7 +34,7 @@ function Signup() {
     } catch (error) {
       console.log(
         "Error during signup:",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       toast.error(`Signup failed. Please try again. ${error.message}`);
     }

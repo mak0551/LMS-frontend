@@ -11,7 +11,8 @@ function ShowCourses() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lms-htvh.onrender.com/course/getall"
+          "https://lms-htvh.onrender.com/course/getall",
+        { withCredentials: true },
         );
         setData(response.data);
         setLoading(false);

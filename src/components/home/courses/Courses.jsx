@@ -13,7 +13,8 @@ function Courses() {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://lms-htvh.onrender.com/course/getall"
+          "https://lms-htvh.onrender.com/course/getall",
+        { withCredentials: true },
         );
         setData(response.data);
         setLoading(false);

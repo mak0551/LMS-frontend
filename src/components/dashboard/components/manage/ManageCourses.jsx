@@ -27,7 +27,8 @@ function ManageCourses() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`
+        `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`,
+        { withCredentials: true },
       );
       console.log(res.data);
       setCourses(res.data);
@@ -43,7 +44,8 @@ function ManageCourses() {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
         await axios.delete(
-          `https://lms-htvh.onrender.com/course/delete/${courseId}`
+          `https://lms-htvh.onrender.com/course/delete/${courseId}`,
+        { withCredentials: true },
         );
         setCourses((courses) =>
           courses.filter((course) => course._id !== courseId)
@@ -55,11 +57,12 @@ function ManageCourses() {
     }
   };
 
-  const handleDeleteReview = async (id, userId) => {
+  const handleDeleteReview = async (id) => {
     console.log(review, "reviewer");
     try {
       await axios.delete(
-        `https://lms-htvh.onrender.com/review/delete/${id}/${userId}`
+        `https://lms-htvh.onrender.com/review/delete/${id}`,
+        { withCredentials: true },
       );
       setReviews((review) => ({
         ...review,
@@ -282,7 +285,7 @@ function ManageCourses() {
                     <div
                       className="w-[10%] flex items-center justify-center"
                       onClick={() =>
-                        handleDeleteReview(review?._id, review?.userId?._id)
+                        handleDeleteReview(review?._id)
                       }
                     >
                       <MdDeleteOutline />

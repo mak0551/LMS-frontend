@@ -20,7 +20,8 @@ export default function Overview() {
       try {
         setLoading(true);
         const res = await fetch(
-          `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`
+          `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`,
+          { credentials: "include" }
         );
         const data = await res.json();
         setCourses(data);

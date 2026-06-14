@@ -22,8 +22,9 @@ function Signin() {
         return;
       }
       const loginResponse = await axios.post(
-        "https://lms-htvh.onrender.com/users/login",
-        formdata
+        "https://lms-htvh.onrender.com/auth/login/",
+        formdata,
+        { withCredentials: true },
       );
       if (loginResponse) {
         login(loginResponse.data); // Save user to Context and localStorage

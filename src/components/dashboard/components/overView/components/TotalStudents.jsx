@@ -10,13 +10,15 @@ function TotalStudents() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
+        `https://lms-htvh.onrender.com/course/getbyteacher/${id}`,
+        { credentials: "include" },
       );
       const data = await res.json();
       setStudent(data);
     };
     fetchData();
   }, [id]);
+
   return (
     <div className="hidden-scrollbar p-2 relative max-h-[150vh] overflow-hidden overflow-y-auto">
       <MdArrowBackIos

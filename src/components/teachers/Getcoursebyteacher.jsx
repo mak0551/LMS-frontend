@@ -14,7 +14,8 @@ function Getcoursebyteacher() {
       setLoading(true);
       const fetchData = async () => {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyteacher/${id}`
+          `https://lms-htvh.onrender.com/course/getbyteacher/${id}`,
+          { withCredentials: true },
         );
         setData(response.data);
         setLoading(false);

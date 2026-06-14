@@ -26,7 +26,8 @@ function ViewCourse() {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyid/${id}`
+          `https://lms-htvh.onrender.com/course/getbyid/${id}`,
+          { withCredentials: true },
         );
         const res = response?.data?.findCourse;
         res.rating = response?.data?.rating;
@@ -44,7 +45,8 @@ function ViewCourse() {
     const checkEnrollment = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`
+          `https://lms-htvh.onrender.com/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`,
+          { withCredentials: true },
         );
         setEnrolled(response.data.isEnrolled);
       } catch (error) {
@@ -65,7 +67,8 @@ function ViewCourse() {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/review/getbycourse/${id}`
+          `https://lms-htvh.onrender.com/review/getbycourse/${id}`,
+          { withCredentials: true },
         );
         setReviews(response.data || []);
       } catch (err) {
@@ -82,7 +85,11 @@ function ViewCourse() {
   const handleEnrollment = async () => {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
-      await axios.post("https://lms-htvh.onrender.com/enrollment/add", payload);
+      await axios.post(
+        "https://lms-htvh.onrender.com/enrollment/add",
+        payload,
+        { withCredentials: true },
+      );
       setEnrolled(true);
       toast.success("Enrolled successfully");
     } catch (err) {
@@ -94,9 +101,13 @@ function ViewCourse() {
   const removeEnrollment = async () => {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
-      await axios.delete("https://lms-htvh.onrender.com/enrollment/delete", {
-        data: payload,
-      });
+      await axios.delete(
+        "https://lms-htvh.onrender.com/enrollment/delete",
+        {
+          data: payload,
+        },
+        { withCredentials: true },
+      );
       setEnrolled(false);
       toast.success("Enrollment removed successfully");
     } catch (error) {
@@ -142,7 +153,8 @@ function ViewCourse() {
       };
       const response = await axios.post(
         "https://lms-htvh.onrender.com/review/create",
-        payload
+        payload,
+        { withCredentials: true },
       );
       setReviews([...reviews, response.data.review]);
       setNewReview("");
@@ -155,7 +167,7 @@ function ViewCourse() {
   };
 
   // Sort reviews based on sortBy state
-  const sortedReviews = [...reviews].sort((a, b) => {
+  const sortedReviews = [...reviews]?.sort((a, b) => {
     if (sortBy === "rating") {
       return b.rating - a.rating; // Highest rating first
     } else if (sortBy === "date") {
@@ -372,7 +384,7 @@ function ViewCourse() {
           </form>
           {/* ) : <div>please enroll to add review</div>} */}
           <div className="font-bold text-xs sm:text-xl sm:p-2 flex sm:gap-8 gap-1 sm:items-center sm:flex-row flex-col">
-            <h1>{reviews.length} Reviews</h1>
+            <h1>{reviews?.length} Reviews</h1>
             <div
               className="flex items-center gap-1"
               onMouseEnter={() => setsort(true)}
@@ -410,7 +422,9 @@ function ViewCourse() {
                       {"☆".repeat(5 - review.rating)}
                     </span>
                   </div>
-                  <p className="text-zinc-600 mt-2 text-xs sm:text-base">{review.comment}</p>
+                  <p className="text-zinc-600 mt-2 text-xs sm:text-base">
+                    {review.comment}
+                  </p>
                   <span className="text-xs sm:text-sm text-zinc-500">
                     {new Date(review.createdAt).toLocaleDateString()}
                   </span>

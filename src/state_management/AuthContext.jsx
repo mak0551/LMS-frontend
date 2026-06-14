@@ -28,8 +28,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Function to handle logout
-  const logout = () => {
-    localStorage.removeItem("user");
+  const logout = async () => {
+    await fetch("https://lms-htvh.onrender.com/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    localStorage.clear();
     setUser(false);
     toast.success("logout successful");
   };

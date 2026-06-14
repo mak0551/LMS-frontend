@@ -24,9 +24,9 @@ function UpdateProfile() {
     }
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `https://lms-htvh.onrender.com/users/getbyid/${id}`
-        );
+        const res = await fetch(`https://lms-htvh.onrender.com/users/getbyid/${id}`, {
+          credentials: "include",
+        });
         const data = await res.json();
         setUserData(data);
         setEditedData(data);
@@ -57,7 +57,8 @@ function UpdateProfile() {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(editedData),
-        }
+        },
+        { credentials: "include" },
       );
       const updatedUser = await res.json();
       setUserData(updatedUser);

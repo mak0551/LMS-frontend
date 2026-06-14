@@ -16,7 +16,8 @@ function ViewTeachers() {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://lms-htvh.onrender.com/users/getallteachers"
+          "https://lms-htvh.onrender.com/users/getallteachers",
+        { withCredentials: true },
         );
         setData(response.data);
       } catch (err) {

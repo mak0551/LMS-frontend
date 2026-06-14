@@ -81,7 +81,8 @@ const CreateCourse = () => {
     try {
       const response = await axios.post(
         "https://lms-htvh.onrender.com/course/create",
-        courseData
+        courseData,
+        { withCredentials: true },
       );
       toast.success(
         "Course added successfully!! now add modules"
