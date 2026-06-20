@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StarRating from "../../commonComponents/StarRating";
 import Loader from "../../commonComponents/Loader";
+import { VscArrowRight } from "react-icons/vsc";
 
 function Courses() {
   var [data, setData] = useState([]);
@@ -14,7 +15,7 @@ function Courses() {
         setLoading(true);
         const response = await axios.get(
           "https://lms-htvh.onrender.com/course/getall",
-        { withCredentials: true },
+          { withCredentials: true },
         );
         setData(response.data);
         setLoading(false);
@@ -29,12 +30,12 @@ function Courses() {
   return loading ? (
     <Loader />
   ) : (
-    <div className="font-mono flex flex-col items-center">
+    <div className="mb-10">
       <div className="py-4 flex flex-wrap flex-auto gap-4 items-center justify-center w-full">
         {data.length > 0 ? (
           data.map((data, index) => (
             <Link to={`/viewcoursedetails/${data._id}`} key={index}>
-              <div className="h-[350px] w-[300px] flex flex-col overflow-hidden rounded-lg m-2 flex-shrink-0 bg-zinc-50 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="h-[350px] w-[300px] flex flex-col overflow-hidden rounded-lg m-2 flex-shrink-0 bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
                 <div className="h-[50%] overflow-hidden">
                   <img
                     src={`${
@@ -46,7 +47,7 @@ function Courses() {
                     className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="h-[60%] px-4 py-2 font-mono flex flex-col">
+                <div className="h-[60%] px-4 py-2  flex flex-col">
                   <div className="h-[50%]">
                     <h1 className="text-lg capitalize">{data?.title}</h1>
                     <p className="text-zinc-500 truncate">
@@ -86,9 +87,9 @@ function Courses() {
           <p className="text-white">No courses available</p>
         )}
       </div>
-      <Link to={"/allcourses"}>
-        <p className="mx-2 px-3 py-1 text-black bg-white border-2 border-black hover:bg-zinc-50 rounded-lg w-fit capitalize">
-          show all courses
+      <Link to={"/allcourses"} className="flex justify-end items-center w-full">
+        <p className="text-black bg-white hover:bg-zinc-50 rounded-lg w-fit capitalize flex gap-1 items-center justify-center">
+          show all courses <VscArrowRight />
         </p>
       </Link>
     </div>

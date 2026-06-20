@@ -7,7 +7,7 @@ function EnrollmentList({ data }) {
       {data.length > 0 ? (
         data.map((data, index) => (
           <div
-            className="flex w-[350px] h-[400px] flex-col rounded-lg overflow-hidden my-2 bg-white hover:bg-zinc-50 font-mono p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
+            className="flex w-[350px] h-[400px] flex-col rounded-lg overflow-hidden my-2 bg-white hover:bg-zinc-50  p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
             key={index}
           >
             <div className=" overflow-hidden rounded-md">
@@ -22,7 +22,7 @@ function EnrollmentList({ data }) {
               />
             </div>
             <div className="relative">
-              <h1 className="mt-4 mb-2 text-3xl capitalize font-mono font-bold ">
+              <h1 className="mt-4 mb-2 text-3xl capitalize  font-bold ">
                 {data?.courseId?.title}
               </h1>
               <p className="text-zinc-500 mb-4 text-sm truncate w-3/4">

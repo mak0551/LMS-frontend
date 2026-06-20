@@ -12,14 +12,15 @@ import {
 
 function Footer() {
   return (
-    <footer className="bg-black text-white pt-12 pb-8 font-mono mt-10">
+    <footer className="bg-black text-white pt-12 pb-8 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <h3 className="text-2xl text-red-500 font-bold tracking-tight">
-              LMS <span className="text-sm text-white">learner's platform</span>
+            <h3 className="tracking-tight flex items-center gap-1">
+              <span className="text-2xl text-red-500  font-bold">LMS </span>
+              <span className="text-sm text-white">learner's platform</span>
             </h3>
             <p className="text-zinc-400 text-sm">
               Your gateway to knowledge with top-tier courses and instructors.

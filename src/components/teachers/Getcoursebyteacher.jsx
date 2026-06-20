@@ -35,7 +35,7 @@ function Getcoursebyteacher() {
   return (
     <>
       <div className="flex relative flex-col justify-center items-center">
-        <div className=" font-mono mt-8 py-4 flex flex-wrap justify-center items-center h-fit">
+        <div className="  mt-8 py-4 flex flex-wrap justify-center items-center h-fit">
           <IoMdArrowBack
             className="absolute left-4 text-2xl top-8"
             onClick={() => navigate(-1)}
@@ -55,7 +55,7 @@ function Getcoursebyteacher() {
                       className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="h-[50%] px-5 py-3 font-mono flex flex-col">
+                  <div className="h-[50%] px-5 py-3  flex flex-col">
                     <h1 className="text-lg font-semibold capitalize text-gray-800 truncate">
                       {data.title}
                     </h1>

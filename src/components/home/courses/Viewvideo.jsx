@@ -53,7 +53,7 @@ function Viewvideo() {
   }
 
   return (
-    <div className="md:mx-48 sm:mt-20 bg-white font-mono sm:p-6 p-2 h-full flex flex-col items-center ">
+    <div className="md:mx-48 sm:mt-20 bg-white  sm:p-6 p-2 h-full flex flex-col items-center ">
       <div>
         <div className="sm:mb-4">
           <video

@@ -177,7 +177,7 @@ function ViewCourse() {
   });
 
   return (
-    <div className="xl:mx-48 mx-8 mt-20 font-mono p-2 h-full text-black">
+    <div className="xl:mx-48 mx-8 mt-20  p-2 h-full text-black">
       {/* Existing course details */}
       <div className="flex flex-col sm:flex-row gap-4 items-start md:items-center ">
         <img
@@ -190,7 +190,7 @@ function ViewCourse() {
           className="h-[200px] w-[300px] md:h-[200px] lg:w-[350px] rounded-md object-cover hover:scale-105 transition-transform duration-300 sm:w-1/2"
         />
         <div className="md:m-4 flex flex-col gap-2">
-          <h1 className="font-mono xl:text-4xl md:text-2xl font-bold capitalize">
+          <h1 className=" xl:text-4xl md:text-2xl font-bold capitalize">
             {data.title}
           </h1>
           <p className="text-zinc-500 xl:text-base ">{data.description}</p>
@@ -252,7 +252,7 @@ function ViewCourse() {
 
         {/* Course content */}
         <div className="p-6 xl:mr-40 md:mx-auto xl:w-[80%] md:w-full bg-zinc-50 rounded-md">
-          <h1 className="font-mono font-semibold xl:text-lg md:text-xl sm:text-base text-sm">
+          <h1 className=" font-semibold xl:text-lg md:text-xl sm:text-base text-sm">
             Course content
           </h1>
           <div className="max-h-[70vh] overflow-auto scrollbar-hide">
@@ -345,7 +345,7 @@ function ViewCourse() {
 
         {/* Review Section */}
         <div className="mt-8 xl:mr-40 md:mx-auto xl:w-[80%] w-full">
-          <h1 className="font-mono font-semibold sm:text-base text-sm xl:text-lg md:text-2xl mb-4">
+          <h1 className=" font-semibold sm:text-base text-sm xl:text-lg md:text-2xl mb-4">
             Reviews
           </h1>
           {/* Review Form */}

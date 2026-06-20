@@ -131,7 +131,7 @@ const EditCourse = () => {
   }
 
   return (
-    <div className="flex justify-center items-center font-mono m-2 ">
+    <div className="flex justify-center items-center  m-2 ">
       <div className="bg-white sm:py-4 py-2 px-8 mt-2 rounded-lg shadow-md xl:w-1/3">
         <h2 className="sm:text-2xl text-base font-semibold mb-4 text-center">
           Edit Course

@@ -21,6 +21,7 @@ import Mylearnimgs from "./components/myLearnings/Mylearnimgs";
 import EditCourse from "./components/dashboard/components/manage/components/EditCourse";
 import EditModules from "./components/dashboard/components/manage/components/EditModule";
 import UpdateProfile from "./components/settings/UpdateProfile";
+import StartTeachingLandingPage from "./components/StartTeachingLandingPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -56,6 +57,8 @@ function App() {
               <Route path="/edit-course/:id" element={<EditCourse />} />
               <Route path="/editmodule/:id" element={<EditModules />} />
               <Route path="/updateprofile" element={<UpdateProfile />} />
+              <Route path="/startteaching-langingpage" element={<StartTeachingLandingPage />} />
+
               <Route
                 path="/getcoursebyteacher/:id"
                 element={<Getcoursebyteacher />}

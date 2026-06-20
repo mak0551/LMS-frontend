@@ -1,4 +1,3 @@
-import React from "react";
 import Courses from "./courses/Courses";
 
 export default function Landingpage() {
@@ -45,15 +44,20 @@ export default function Landingpage() {
   ];
   return (
     <div className="px-4 sm:px-20 relative max-w-screen-2xl mx-auto">
-      <h1 className="absolute top-20 left-6 sm:left-20 text-left w-[60%] sm:w-[50%] sm:top-12 md:top-16 lg:top-20 xl:top-36 text-white font-mono text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl pl-4 sm:pl-8 sm:text-left">
+      <h1 className="absolute top-20 left-6 sm:left-20 text-left w-[250px] max-w-[80%] sm:w-[55%] md:w-[50%] lg:w-[45%] sm:top-32 md:top-22 lg:top-20 xl:top-36 text-white  text-xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl pl-4 sm:pl-8 sm:text-left">
         Empower Learning, Unlock Potential.
       </h1>
-      <img
-        className="w-full h-[250px] sm:h-full sm:w-full md:w-full lg:w-full object-cover rounded-lg mt-2"
-        src="https://img-c.udemycdn.com/notices/web_carousel_slide/image/e410d3ca-ed4a-4309-8e0f-5bab9a8be938.png"
-        alt="Learning Banner"
-      />
-      <div className="m-4 sm:m-8 font-mono text-center sm:text-left">
+      <video
+        className="w-full h-[250px] sm:h-[400px] md:w-full lg:w-full object-cover rounded-lg mt-2"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/landing_vid3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div className="m-4 sm:m-8 text-center sm:text-left">
         <h1 className="text-3xl mb-2 capitalize font-semibold text-zinc-700">
           All the skills you need in one place
         </h1>

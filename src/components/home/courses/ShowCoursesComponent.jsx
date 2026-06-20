@@ -30,7 +30,7 @@ function ShowCoursesComponent({ data }) {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm sm:my-3 gap-1 sm:gap-4">
         {/* Sort Dropdown */}
         <div className="flex items-center gap-2 px-2 ">
-          <label className="font-mono text-sm flex gap-2 items-center">
+          <label className=" text-sm flex gap-2 items-center">
             <span className="hidden sm:block">Sort by</span>
             <FaSortAmountDown className="text-lg"/>
           </label>
@@ -47,7 +47,7 @@ function ShowCoursesComponent({ data }) {
 
         {/* Filter Dropdown */}
         <div className="flex items-center gap-2 px-2 ">
-          <label className="font-mono text-sm flex items-center gap-2">
+          <label className=" text-sm flex items-center gap-2">
             <span className="hidden sm:block">Filter</span>
             <RiFilter2Fill className="text-lg" />
           </label>
@@ -68,7 +68,7 @@ function ShowCoursesComponent({ data }) {
       {filteredCourses.length > 0 ? (
         filteredCourses.map((data, index) => (
           <div
-            className="w-full sm:h-[300px] md:h-fit sm:flex sm:flex-row flex-col rounded-lg overflow-hidden mb-8 bg-white hover:bg-zinc-50 font-mono p-6 shadow-md hover:shadow-xl transition-all duration-300 group "
+            className="w-full sm:h-[300px] md:h-fit sm:flex sm:flex-row flex-col rounded-lg overflow-hidden mb-8 bg-white hover:bg-zinc-50  p-6 shadow-md hover:shadow-xl transition-all duration-300 group "
             key={index}
           >
             <div className="sm:w-[40%] overflow-hidden rounded-md">
@@ -83,7 +83,7 @@ function ShowCoursesComponent({ data }) {
               />
             </div>
             <div className="sm:w-[60%] md:w-[60%] px-8 relative">
-              <h1 className="mt-4 mb-2 text-3xl capitalize font-mono font-bold ">
+              <h1 className="mt-4 mb-2 text-3xl capitalize  font-bold ">
                 {data.title}
               </h1>
               <p className="text-zinc-500 mb-4 text-sm truncate w-3/4">

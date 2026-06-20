@@ -105,7 +105,7 @@ const CreateCourse = () => {
   return (
     <>
       {user && (
-        <div className="flex justify-center items-center font-mono m-2 bg-zinc-50">
+        <div className="flex justify-center items-center  m-2 bg-zinc-50">
           <div className="bg-white sm:py-4 py-2 px-8 mt-2 rounded-lg shadow-md w-full sm:w-auto">
             <h2 className="sm:text-2xl text-base font-semibold mb-4 text-center">
               Add New Course

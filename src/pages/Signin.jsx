@@ -56,7 +56,7 @@ function Signin() {
         className="flex flex-col gap-8 sm:max-w-[60vh] h-fit p-8 rounded-lg "
         onSubmit={handleSignin}
       >
-        <h1 className="font-mono text-center text-xl sm:text-2xl lg:4xl capitalize text-black font-semibold">
+        <h1 className=" text-center text-xl sm:text-2xl lg:4xl capitalize text-black font-semibold">
           Sign in and start learning
         </h1>
 
@@ -81,7 +81,7 @@ function Signin() {
         <div>
           <button
             type="submit"
-            className="w-full text-white bg-black h-12 lg:text-base text-lg font-mono rounded-md hover:bg-zinc-700 overflow-hidden"
+            className="w-full text-white bg-black h-12 lg:text-base text-lg  rounded-md hover:bg-zinc-700 overflow-hidden"
           >
             {loading ? (
               <div className="flex items-center justify-center h-full bg-black">
@@ -95,7 +95,7 @@ function Signin() {
             don't have an account?{" "}
             <Link
               to={"/signup"}
-              className="text-red-600 font-mono underline underline-offset-4"
+              className="text-red-600  underline underline-offset-4"
             >
               Sign up
             </Link>
