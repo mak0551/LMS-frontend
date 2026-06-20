@@ -27,7 +27,7 @@ function ManageCourses() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`,
+        `http://localhost:4040/course/getbyteacher/${user?.user?._id}`,
         { withCredentials: true },
       );
       console.log(res.data);
@@ -44,7 +44,7 @@ function ManageCourses() {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
         await axios.delete(
-          `https://lms-htvh.onrender.com/course/delete/${courseId}`,
+          `http://localhost:4040/course/delete/${courseId}`,
         { withCredentials: true },
         );
         setCourses((courses) =>
@@ -61,7 +61,7 @@ function ManageCourses() {
     console.log(review, "reviewer");
     try {
       await axios.delete(
-        `https://lms-htvh.onrender.com/review/delete/${id}`,
+        `http://localhost:4040/review/delete/${id}`,
         { withCredentials: true },
       );
       setReviews((review) => ({

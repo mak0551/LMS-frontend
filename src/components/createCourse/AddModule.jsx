@@ -39,7 +39,7 @@ const AddModule = () => {
     e.preventDefault();
     try {
       setIsSubmitting(true);
-      await axios.post("https://lms-htvh.onrender.com/module/add", modules,
+      await axios.post("http://localhost:4040/module/add", modules,
         { withCredentials: true },
       );
       toast.success("Modules created successfully!");

@@ -24,7 +24,7 @@ function UpdateProfile() {
     }
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://lms-htvh.onrender.com/users/getbyid/${id}`, {
+        const res = await fetch(`http://localhost:4040/users/getbyid/${id}`, {
           credentials: "include",
         });
         const data = await res.json();
@@ -52,7 +52,7 @@ function UpdateProfile() {
   const handleUpdate = async () => {
     try {
       const res = await fetch(
-        `https://lms-htvh.onrender.com/users/update/${id}`,
+        `http://localhost:4040/users/update/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

@@ -21,14 +21,14 @@ function Viewvideo() {
       setData([]);
       setCoursedata([]);
       const response = await axios.get(
-        `https://lms-htvh.onrender.com/module/getone/${id}`,
+        `http://localhost:4040/module/getone/${id}`,
         { withCredentials: true },
       );
       setData(response.data);
       console.log(response.data);
 
       const response2 = await axios.get(
-        `https://lms-htvh.onrender.com/course/getbyid/${response.data.courseId}`,
+        `http://localhost:4040/course/getbyid/${response.data.courseId}`,
         { withCredentials: true },
       );
       setCoursedata(response2.data.findCourse);

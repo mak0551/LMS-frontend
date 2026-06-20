@@ -15,7 +15,7 @@ const EditModules = () => {
     const fetchModules = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/module/getbycourse/${id}`,
+          `http://localhost:4040/module/getbycourse/${id}`,
         { withCredentials: true },
         );
         setFormData(
@@ -132,7 +132,7 @@ const EditModules = () => {
 
       const updatePromises = existingModules.map((module) =>
         axios.put(
-          `https://lms-htvh.onrender.com/module/update/${module._id}`,
+          `http://localhost:4040/module/update/${module._id}`,
           module,
         { withCredentials: true },
         )
@@ -141,7 +141,7 @@ const EditModules = () => {
 
       if (newModules.length > 0) {
         await axios.post(
-          "https://lms-htvh.onrender.com/module/add",
+          "http://localhost:4040/module/add",
           newModules,
         { withCredentials: true },
         );

@@ -26,7 +26,7 @@ export default function Mylearnimgs() {
         setLoading(true);
         const id = user?.user?._id;
         const res = await axios.get(
-          `https://lms-htvh.onrender.com/enrollment/getallforstudent/${id}`,
+          `http://localhost:4040/enrollment/getallforstudent/${id}`,
         { withCredentials: true },
         );
         setCourses(res.data);

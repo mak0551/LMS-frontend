@@ -16,7 +16,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        "https://lms-htvh.onrender.com/course/getall",
+        "http://localhost:4040/course/getall",
         { withCredentials: true },
       );
       setCourses(res.data);

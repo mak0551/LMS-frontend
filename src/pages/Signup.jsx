@@ -24,7 +24,7 @@ function Signup() {
         return;
       }
       const response = await axios.post(
-        "https://lms-htvh.onrender.com/auth/register",
+        "http://localhost:4040/auth/register",
         formData,
         { withCredentials: true },
       );

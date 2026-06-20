@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   // Function to handle logout
   const logout = async () => {
-    await fetch("https://lms-htvh.onrender.com/auth/logout", {
+    await fetch("http://localhost:4040/auth/logout", {
       method: "POST",
       credentials: "include",
     });

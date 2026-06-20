@@ -10,7 +10,7 @@ function TotalCourses() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${id}`,
+        `http://localhost:4040/course/getbyteacher/${id}`,
         { credentials: "include" },
       );
       const data = await res.json();

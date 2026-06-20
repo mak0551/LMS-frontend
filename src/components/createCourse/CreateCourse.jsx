@@ -80,7 +80,7 @@ const CreateCourse = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://lms-htvh.onrender.com/course/create",
+        "http://localhost:4040/course/create",
         courseData,
         { withCredentials: true },
       );

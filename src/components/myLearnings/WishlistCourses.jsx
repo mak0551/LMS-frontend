@@ -25,7 +25,7 @@ const WishlistCourses = () => {
     try {
       const responses = await Promise.all(
         wishlist?.map((id) =>
-          fetch(`https://lms-htvh.onrender.com/course/getbyid/${id}`)
+          fetch(`http://localhost:4040/course/getbyid/${id}`)
             .then((res) => res.json())
             .catch((err) => console.log(err))
         )

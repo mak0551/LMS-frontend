@@ -36,7 +36,7 @@ const EditCourse = () => {
       }
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyid/${id}`,
+          `http://localhost:4040/course/getbyid/${id}`,
         { withCredentials: true },
         );
         const course = response?.data?.findCourse;
@@ -110,7 +110,7 @@ const EditCourse = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `https://lms-htvh.onrender.com/course/update/${id}`,
+        `http://localhost:4040/course/update/${id}`,
         courseData,
         { withCredentials: true },
       );

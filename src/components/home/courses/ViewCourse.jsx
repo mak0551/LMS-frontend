@@ -26,7 +26,7 @@ function ViewCourse() {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyid/${id}`,
+          `http://localhost:4040/course/getbyid/${id}`,
           { withCredentials: true },
         );
         const res = response?.data?.findCourse;
@@ -45,7 +45,7 @@ function ViewCourse() {
     const checkEnrollment = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`,
+          `http://localhost:4040/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`,
           { withCredentials: true },
         );
         setEnrolled(response.data.isEnrolled);
@@ -67,7 +67,7 @@ function ViewCourse() {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `https://lms-htvh.onrender.com/review/getbycourse/${id}`,
+          `http://localhost:4040/review/getbycourse/${id}`,
           { withCredentials: true },
         );
         setReviews(response.data || []);
@@ -86,7 +86,7 @@ function ViewCourse() {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
       await axios.post(
-        "https://lms-htvh.onrender.com/enrollment/add",
+        "http://localhost:4040/enrollment/add",
         payload,
         { withCredentials: true },
       );
@@ -102,7 +102,7 @@ function ViewCourse() {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
       await axios.delete(
-        "https://lms-htvh.onrender.com/enrollment/delete",
+        "http://localhost:4040/enrollment/delete",
         {
           data: payload,
         },
@@ -152,7 +152,7 @@ function ViewCourse() {
         comment: newReview,
       };
       const response = await axios.post(
-        "https://lms-htvh.onrender.com/review/create",
+        "http://localhost:4040/review/create",
         payload,
         { withCredentials: true },
       );

@@ -15,7 +15,7 @@ function OnProfileHover() {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `https://lms-htvh.onrender.com/users/getbyid/${user?.user?._id}`,
+          `http://localhost:4040/users/getbyid/${user?.user?._id}`,
           {
             credentials: "include",
           },
