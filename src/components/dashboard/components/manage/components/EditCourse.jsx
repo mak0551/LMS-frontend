@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../../state_management/AuthContext";
 import CloudinaryUploadWidget from "../../../../commonComponents/CloudinaryUploadWidget";
+import { api } from "../../../../../utils/api";
 
 const EditCourse = () => {
   const { user } = useAuth();
@@ -35,10 +35,7 @@ const EditCourse = () => {
         return;
       }
       try {
-        const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyid/${id}`,
-        { withCredentials: true },
-        );
+        const response = await api.get(`/course/getbyid/${id}`);
         const course = response?.data?.findCourse;
         setCourseData({
           title: course.title,
@@ -109,11 +106,7 @@ const EditCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `https://lms-htvh.onrender.com/course/update/${id}`,
-        courseData,
-        { withCredentials: true },
-      );
+      await api.put(`/course/update/${id}`, courseData);
       toast.success("Course updated successfully!");
       navigate("/mycourses");
     } catch (error) {

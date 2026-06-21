@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { api } from "../utils/api";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -23,11 +23,7 @@ function Signup() {
         setLoading(false);
         return;
       }
-      const response = await axios.post(
-        "https://lms-htvh.onrender.com/auth/register",
-        formData,
-        { withCredentials: true },
-      );
+      const response = await api.post("/auth/register", formData);
       console.log("User registered successfully:", response.data);
       toast.success("signup successful");
       navigate("/signin");

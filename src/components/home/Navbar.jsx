@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../state_management/AuthContext";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import OnProfileHover from "./OnProfileHover";
+import { api } from "../../utils/api";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -15,10 +15,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(
-        "https://lms-htvh.onrender.com/course/getall",
-        { withCredentials: true },
-      );
+      const res = await api.get("/course/getall");
       setCourses(res.data);
     };
     fetchData();

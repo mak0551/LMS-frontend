@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Courses from "./Courses";
@@ -7,6 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { toast } from "react-toastify";
 import StarRating from "../../commonComponents/StarRating";
 import { MdSort } from "react-icons/md";
+import { api } from "../../../utils/api";
 
 function ViewCourse() {
   const { id } = useParams();
@@ -25,10 +25,7 @@ function ViewCourse() {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyid/${id}`,
-          { withCredentials: true },
-        );
+        const response = await api.get(`/course/getbyid/${id}`);
         const res = response?.data?.findCourse;
         res.rating = response?.data?.rating;
         setData(res);
@@ -44,9 +41,8 @@ function ViewCourse() {
     if (!user?.user?.user?._id) return;
     const checkEnrollment = async () => {
       try {
-        const response = await axios.get(
-          `https://lms-htvh.onrender.com/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`,
-          { withCredentials: true },
+        const response = await api.get(
+          `/enrollment/check?courseId=${id}&studentId=${user?.user?.user?._id}`,
         );
         setEnrolled(response.data.isEnrolled);
       } catch (error) {
@@ -66,10 +62,7 @@ function ViewCourse() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(
-          `https://lms-htvh.onrender.com/review/getbycourse/${id}`,
-          { withCredentials: true },
-        );
+        const response = await api.get(`/review/getbycourse/${id}`);
         setReviews(response.data || []);
       } catch (err) {
         console.error("Error fetching reviews:", err);
@@ -85,11 +78,7 @@ function ViewCourse() {
   const handleEnrollment = async () => {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
-      await axios.post(
-        "https://lms-htvh.onrender.com/enrollment/add",
-        payload,
-        { withCredentials: true },
-      );
+      await api.post("/enrollment/add", payload);
       setEnrolled(true);
       toast.success("Enrolled successfully");
     } catch (err) {
@@ -101,13 +90,9 @@ function ViewCourse() {
   const removeEnrollment = async () => {
     try {
       const payload = { courseId: id, studentId: user?.user?.user?._id };
-      await axios.delete(
-        "https://lms-htvh.onrender.com/enrollment/delete",
-        {
-          data: payload,
-        },
-        { withCredentials: true },
-      );
+      await api.delete("/enrollment/delete", {
+        data: payload,
+      });
       setEnrolled(false);
       toast.success("Enrollment removed successfully");
     } catch (error) {
@@ -151,11 +136,7 @@ function ViewCourse() {
         rating,
         comment: newReview,
       };
-      const response = await axios.post(
-        "https://lms-htvh.onrender.com/review/create",
-        payload,
-        { withCredentials: true },
-      );
+      const response = await api.post("/review/create", payload);
       setReviews([...reviews, response.data.review]);
       setNewReview("");
       setRating(0);

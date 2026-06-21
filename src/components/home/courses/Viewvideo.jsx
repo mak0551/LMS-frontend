@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
+import { api } from "../../../utils/api";
 
 function Viewvideo() {
   const [data, setData] = useState([]);
@@ -20,16 +20,12 @@ function Viewvideo() {
       // Clear previous state to avoid showing stale(same) data
       setData([]);
       setCoursedata([]);
-      const response = await axios.get(
-        `https://lms-htvh.onrender.com/module/getone/${id}`,
-        { withCredentials: true },
-      );
+      const response = await api.get(`/module/getone/${id}`);
       setData(response.data);
       console.log(response.data);
 
-      const response2 = await axios.get(
-        `https://lms-htvh.onrender.com/course/getbyid/${response.data.courseId}`,
-        { withCredentials: true },
+      const response2 = await api.get(
+        `/course/getbyid/${response.data.courseId}`,
       );
       setCoursedata(response2.data.findCourse);
     };

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { api } from "../utils/api";
 
 const AuthContext = createContext();
 
@@ -29,10 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   // Function to handle logout
   const logout = async () => {
-    await fetch("https://lms-htvh.onrender.com/auth/logout", {
-      method: "POST",
-      credentials: "include",
-    });
+    await api.post("/auth/logout");
     localStorage.clear();
     setUser(false);
     toast.success("logout successful");

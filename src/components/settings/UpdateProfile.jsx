@@ -4,8 +4,8 @@ import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
 import Loader from "../commonComponents/Loader";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { BsSkipBackwardBtn } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io";
+import { api } from "../../utils/api";
 
 function UpdateProfile() {
   const { user, login, logout } = useAuth();
@@ -24,12 +24,9 @@ function UpdateProfile() {
     }
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://lms-htvh.onrender.com/users/getbyid/${id}`, {
-          credentials: "include",
-        });
-        const data = await res.json();
-        setUserData(data);
-        setEditedData(data);
+        const res = await api.get(`/users/getbyid/${id}`);
+        setUserData(res);
+        setEditedData(res);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -51,19 +48,10 @@ function UpdateProfile() {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch(
-        `https://lms-htvh.onrender.com/users/update/${id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(editedData),
-        },
-        { credentials: "include" },
-      );
-      const updatedUser = await res.json();
-      setUserData(updatedUser);
+      const res = await api.put(`/users/update/${id}`);
+      setUserData(res);
       setIsEditing(false);
-      login({ user: updatedUser }); // updating the new updated user details in the state
+      login({ user: res }); // updating the new updated user details in the state
       toast.success(" updated successfully");
     } catch (error) {
       toast("error updating user");

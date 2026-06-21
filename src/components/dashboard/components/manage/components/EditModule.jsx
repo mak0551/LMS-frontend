@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "../../../../commonComponents/CloudinaryUploadWidget";
 import { toast } from "react-toastify";
+import { api } from "../../../../../utils/api";
 
 const EditModules = () => {
   const { id } = useParams(); // id is courseId
@@ -14,10 +14,7 @@ const EditModules = () => {
   useEffect(() => {
     const fetchModules = async () => {
       try {
-        const response = await axios.get(
-          `https://lms-htvh.onrender.com/module/getbycourse/${id}`,
-        { withCredentials: true },
-        );
+        const response = await api.get(`/module/getbycourse/${id}`);
         setFormData(
           response.data.length > 0
             ? response.data
@@ -35,7 +32,7 @@ const EditModules = () => {
                   ],
                   courseId: id,
                 },
-              ]
+              ],
         );
         // console.log(response.data);
         setIsLoading(false);
@@ -114,7 +111,7 @@ const EditModules = () => {
   const removeContent = (moduleIndex, contentIndex) => {
     const newFormData = [...formData];
     newFormData[moduleIndex].content = newFormData[moduleIndex].content.filter(
-      (_, i) => i !== contentIndex
+      (_, i) => i !== contentIndex,
     );
     setFormData(newFormData);
   };
@@ -131,20 +128,12 @@ const EditModules = () => {
       const newModules = formData.filter((module) => !module._id);
 
       const updatePromises = existingModules.map((module) =>
-        axios.put(
-          `https://lms-htvh.onrender.com/module/update/${module._id}`,
-          module,
-        { withCredentials: true },
-        )
+        api.put(`/module/update/${module._id}`, module),
       );
       await Promise.all(updatePromises);
 
       if (newModules.length > 0) {
-        await axios.post(
-          "https://lms-htvh.onrender.com/module/add",
-          newModules,
-        { withCredentials: true },
-        );
+        await api.post("/module/add", newModules);
       }
 
       toast.success("modules updated successfully!");
@@ -239,7 +228,7 @@ const EditModules = () => {
                           e,
                           moduleIndex,
                           contentIndex,
-                          "description"
+                          "description",
                         )
                       }
                       className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

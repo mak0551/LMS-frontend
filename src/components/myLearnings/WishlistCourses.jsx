@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { api } from "../../utils/api.js";
 import ShowCoursesComponent from "../home/courses/ShowCoursesComponent";
 
 const WishlistCourses = () => {
@@ -7,8 +8,7 @@ const WishlistCourses = () => {
 
   // Fetch wishlist from localStorage on component mount
   useEffect(() => {
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
-    // console.log(storedWishlist, 'wishlist');
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
     setWishlist(storedWishlist);
   }, []);
 
@@ -25,20 +25,21 @@ const WishlistCourses = () => {
     try {
       const responses = await Promise.all(
         wishlist?.map((id) =>
-          fetch(`https://lms-htvh.onrender.com/course/getbyid/${id}`)
-            .then((res) => res.json())
-            .catch((err) => console.log(err))
-        )
+          api
+            .get(`/course/getbyid/${id}`)
+            .then((res) => res.data)
+            .catch((err) => console.log(err)),
+        ),
       );
       const extractedCourses = responses
-        .map((response) => response.findCourse)
+        .map((response) => response?.findCourse)
         .filter((course) => course !== null && course !== undefined); // Remove null/undefined courses
 
       // Update wishlist to remove any course that doesn't exist anymore
-      const updatedWishlist = extractedCourses.map((course) => course._id);
-      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      // const updatedWishlist = extractedCourses.map((course) => course._id);
+      // localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
 
-      setWishlist(updatedWishlist);
+      // setWishlist(updatedWishlist);
       setCourses(extractedCourses);
     } catch (error) {
       console.error("Error fetching wishlisted courses:", error);

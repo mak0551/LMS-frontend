@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import EnrollmentList from "./EnrollmentList";
 import WishlistCourses from "./WishlistCourses";
 import Loader from "../commonComponents/Loader";
 import { useAuth } from "../../state_management/AuthContext";
+import { api } from "../../utils/api";
 
 export default function Mylearnimgs() {
   const [courses, setCourses] = useState([]);
@@ -25,9 +25,8 @@ export default function Mylearnimgs() {
       try {
         setLoading(true);
         const id = user?.user?._id;
-        const res = await axios.get(
-          `https://lms-htvh.onrender.com/enrollment/getallforstudent/${id}`,
-        { withCredentials: true },
+        const res = await api.get(
+          `/enrollment/getallforstudent/${id}`,
         );
         setCourses(res.data);
         setLoading(false);

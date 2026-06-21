@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
 import { toast } from "react-toastify";
 import { IoMdArrowBack } from "react-icons/io";
+import { api } from "../../utils/api";
 
 const AddModule = () => {
   const { id } = useParams(); // courseId from URL params
@@ -39,9 +39,7 @@ const AddModule = () => {
     e.preventDefault();
     try {
       setIsSubmitting(true);
-      await axios.post("https://lms-htvh.onrender.com/module/add", modules,
-        { withCredentials: true },
-      );
+      await api.post("/module/add", modules);
       toast.success("Modules created successfully!");
       navigate(`/mycourses`);
     } catch (error) {
@@ -92,7 +90,7 @@ const AddModule = () => {
   const removeContent = (moduleIndex, contentIndex) => {
     const newModules = [...modules];
     newModules[moduleIndex].content = newModules[moduleIndex].content.filter(
-      (_, i) => i !== contentIndex
+      (_, i) => i !== contentIndex,
     );
     setModules(newModules);
   };

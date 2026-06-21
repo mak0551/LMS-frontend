@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import StarRating from "../../commonComponents/StarRating";
 import Loader from "../../commonComponents/Loader";
 import { VscArrowRight } from "react-icons/vsc";
+import { api } from "../../../utils/api";
 
 function Courses() {
   var [data, setData] = useState([]);
@@ -13,10 +14,7 @@ function Courses() {
     const fetchdata = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          "https://lms-htvh.onrender.com/course/getall",
-          { withCredentials: true },
-        );
+        const response = await api.get("/course/getall");
         setData(response.data);
         setLoading(false);
         // console.log(response.data);
@@ -88,7 +86,7 @@ function Courses() {
         )}
       </div>
       <Link to={"/allcourses"} className="flex justify-end items-center w-full">
-        <p className="text-black bg-white hover:bg-zinc-50 rounded-lg w-fit capitalize flex gap-1 items-center justify-center">
+        <p className="text-black hover:bg-zinc-50 rounded-lg w-fit capitalize flex gap-1 items-center justify-center">
           show all courses <VscArrowRight />
         </p>
       </Link>

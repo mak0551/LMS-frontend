@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../state_management/AuthContext";
+import { api } from "../../utils/api";
 
 function OnProfileHover() {
   const [userData, setUserData] = useState(null);
   const { user } = useAuth();
-  console.log(user, "kkkkkk");
+  // console.log(user, "kkkkkk");
   useEffect(() => {
     // if (user === null) {
     //   return;
@@ -14,20 +15,14 @@ function OnProfileHover() {
     // }
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `https://lms-htvh.onrender.com/users/getbyid/${user?.user?._id}`,
-          {
-            credentials: "include",
-          },
-        );
-        const data = await res.json();
-        setUserData(data);
+        const res = await api.get(`/users/getbyid/${user?.user?._id}`);
+        setUserData(res);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
     fetchData();
-  },[user]);
+  }, [user]);
   return (
     <div className="w-[250px] bg-white py-1 px-4 border-2 rounded">
       <div className="border-b-2">

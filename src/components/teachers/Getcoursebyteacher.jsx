@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../commonComponents/Loader";
 import { IoMdArrowBack } from "react-icons/io";
+import { api } from "../../utils/api";
 
 function Getcoursebyteacher() {
   const { id } = useParams();
@@ -13,10 +13,7 @@ function Getcoursebyteacher() {
     try {
       setLoading(true);
       const fetchData = async () => {
-        const response = await axios.get(
-          `https://lms-htvh.onrender.com/course/getbyteacher/${id}`,
-          { withCredentials: true },
-        );
+        const response = await api.get(`/course/getbyteacher/${id}`);
         setData(response.data);
         setLoading(false);
         // console.log(response.data);

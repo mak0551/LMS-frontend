@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../../../../../utils/api";
 
 function TotalStudents() {
   const { id } = useParams();
@@ -9,12 +10,8 @@ function TotalStudents() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${id}`,
-        { credentials: "include" },
-      );
-      const data = await res.json();
-      setStudent(data);
+      const res = await api.get(`/course/getbyteacher/${id}`);
+      setStudent(res);
     };
     fetchData();
   }, [id]);

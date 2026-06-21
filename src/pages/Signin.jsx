@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../state_management/AuthContext";
 import { toast } from "react-toastify";
+import { api } from "../utils/api";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -21,11 +21,7 @@ function Signin() {
         setLoading(false);
         return;
       }
-      const loginResponse = await axios.post(
-        "https://lms-htvh.onrender.com/auth/login/",
-        formdata,
-        { withCredentials: true },
-      );
+      const loginResponse = await api.post("/auth/login/", formdata);
       if (loginResponse) {
         login(loginResponse.data); // Save user to Context and localStorage
         navigate("/");

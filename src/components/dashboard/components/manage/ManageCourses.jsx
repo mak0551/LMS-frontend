@@ -3,13 +3,13 @@ import { useAuth } from "../../../../state_management/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FiEdit, FiTrash2, FiUsers, FiStar } from "react-icons/fi";
-import axios from "axios";
 import Loader from "../../../commonComponents/Loader";
 import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaRegEye } from "react-icons/fa";
 import StarRating from "../../../commonComponents/StarRating";
 import { MdDeleteOutline } from "react-icons/md";
+import { api } from "../../../../utils/api";
 function ManageCourses() {
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
@@ -26,10 +26,7 @@ function ManageCourses() {
     if (!user) return;
     try {
       setLoading(true);
-      const res = await axios.get(
-        `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`,
-        { withCredentials: true },
-      );
+      const res = await api.get(`/course/getbyteacher/${user?.user?._id}`);
       console.log(res.data);
       setCourses(res.data);
     } catch (error) {
@@ -43,12 +40,9 @@ function ManageCourses() {
   const handleDelete = async (courseId) => {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
-        await axios.delete(
-          `https://lms-htvh.onrender.com/course/delete/${courseId}`,
-        { withCredentials: true },
-        );
+        await api.delete(`/course/delete/${courseId}`);
         setCourses((courses) =>
-          courses.filter((course) => course._id !== courseId)
+          courses.filter((course) => course._id !== courseId),
         );
         toast.success("Course deleted successfully");
       } catch (error) {
@@ -60,10 +54,7 @@ function ManageCourses() {
   const handleDeleteReview = async (id) => {
     console.log(review, "reviewer");
     try {
-      await axios.delete(
-        `https://lms-htvh.onrender.com/review/delete/${id}`,
-        { withCredentials: true },
-      );
+      await api.delete(`/review/delete/${id}`);
       setReviews((review) => ({
         ...review,
         reviews: review.reviews.filter((e) => e._id !== id),
@@ -284,9 +275,7 @@ function ManageCourses() {
                     </div>
                     <div
                       className="w-[10%] flex items-center justify-center"
-                      onClick={() =>
-                        handleDeleteReview(review?._id)
-                      }
+                      onClick={() => handleDeleteReview(review?._id)}
                     >
                       <MdDeleteOutline />
                     </div>

@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ShowCoursesComponent from "./ShowCoursesComponent";
 import Loader from "../../commonComponents/Loader";
+import { api } from "../../../utils/api";
 
 function ShowCourses() {
   const [data, setData] = useState([]);
@@ -10,10 +10,7 @@ function ShowCourses() {
     setLoading(true);
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://lms-htvh.onrender.com/course/getall",
-        { withCredentials: true },
-        );
+        const response = await api.get("/course/getall");
         setData(response.data);
         setLoading(false);
       } catch (err) {

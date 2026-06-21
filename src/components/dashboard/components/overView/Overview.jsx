@@ -8,6 +8,7 @@ import Loader from "../../../commonComponents/Loader";
 import TotalCourses from "./components/TotalCourses";
 import TotalStudents from "./components/TotalStudents";
 import CreateCourseBtn from "../../../commonComponents/CreateCourseBtn";
+import { api } from "../../../../utils/api";
 
 export default function Overview() {
   const { user } = useAuth();
@@ -19,12 +20,8 @@ export default function Overview() {
       if (user === null) return;
       try {
         setLoading(true);
-        const res = await fetch(
-          `https://lms-htvh.onrender.com/course/getbyteacher/${user?.user?._id}`,
-          { credentials: "include" }
-        );
-        const data = await res.json();
-        setCourses(data);
+        const res = await api.get(`/course/getbyteacher/${user?.user?._id}`);
+        setCourses(res);
       } catch (error) {
         console.error("Error fetching courses:", error);
         toast.error("Failed to load dashboard");
@@ -67,7 +64,7 @@ export default function Overview() {
                         {courses.reduce(
                           (sum, course) =>
                             sum + (course?.enrolledBy?.length || 0),
-                          0
+                          0,
                         )}
                       </p>
                     </Link>

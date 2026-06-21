@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "../../state_management/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CloudinaryUploadWidget from "../commonComponents/CloudinaryUploadWidget";
+import { api } from "../../utils/api";
 
 const CreateCourse = () => {
   const { user } = useAuth();
@@ -79,14 +79,8 @@ const CreateCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://lms-htvh.onrender.com/course/create",
-        courseData,
-        { withCredentials: true },
-      );
-      toast.success(
-        "Course added successfully!! now add modules"
-      );
+      const response = await api.post("/course/create", courseData);
+      toast.success("Course added successfully!! now add modules");
       console.log(response.data);
 
       // Check if the response contains a valid _id before redirecting
