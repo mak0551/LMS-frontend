@@ -25,8 +25,8 @@ function UpdateProfile() {
     const fetchData = async () => {
       try {
         const res = await api.get(`/users/getbyid/${id}`);
-        setUserData(res);
-        setEditedData(res);
+        setUserData(res.data);
+        setEditedData(res.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -48,10 +48,10 @@ function UpdateProfile() {
 
   const handleUpdate = async () => {
     try {
-      const res = await api.put(`/users/update/${id}`);
-      setUserData(res);
+      const res = await api.put(`/users/update/${id}`, editedData);
+      setUserData(res.data);
       setIsEditing(false);
-      login({ user: res }); // updating the new updated user details in the state
+      login({ user: res.data }); // updating the new updated user details in the state
       toast.success(" updated successfully");
     } catch (error) {
       toast("error updating user");

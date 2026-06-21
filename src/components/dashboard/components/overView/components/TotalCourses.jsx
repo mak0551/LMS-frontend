@@ -11,7 +11,7 @@ function TotalCourses() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await api.get(`/course/getbyteacher/${id}`);
-      setCourses(res);
+      setCourses(res.data);
     };
     fetchData();
   }, [id]);

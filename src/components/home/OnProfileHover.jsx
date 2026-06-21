@@ -16,7 +16,7 @@ function OnProfileHover() {
     const fetchData = async () => {
       try {
         const res = await api.get(`/users/getbyid/${user?.user?._id}`);
-        setUserData(res);
+        setUserData(res.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }

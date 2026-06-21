@@ -21,7 +21,7 @@ export default function Overview() {
       try {
         setLoading(true);
         const res = await api.get(`/course/getbyteacher/${user?.user?._id}`);
-        setCourses(res);
+        setCourses(res.data);
       } catch (error) {
         console.error("Error fetching courses:", error);
         toast.error("Failed to load dashboard");

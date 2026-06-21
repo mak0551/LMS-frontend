@@ -11,7 +11,7 @@ function TotalStudents() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await api.get(`/course/getbyteacher/${id}`);
-      setStudent(res);
+      setStudent(res.data);
     };
     fetchData();
   }, [id]);
