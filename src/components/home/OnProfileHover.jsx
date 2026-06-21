@@ -48,7 +48,7 @@ function OnProfileHover() {
       <div className="py-4">
         <ul className="text-sm font-thin flex flex-col gap-4">
           <li
-            onClick={() => navigate("/mylearnings")}
+            onClick={() => navigate("/mylearnings?tab=list")}
             className="cursor-pointer"
           >
             My learning
@@ -60,7 +60,7 @@ function OnProfileHover() {
             My cart
           </li>
           <li
-            onClick={() => navigate("/mylearnings")}
+            onClick={() => navigate("/mylearnings?tab=wishlist")}
             className="cursor-pointer"
           >
             Wishlist

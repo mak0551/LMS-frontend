@@ -86,7 +86,7 @@ const Navbar = () => {
           </li>
           <li className="hover:scale-105 transition-transform">
             <Link
-              to="/mylearnings"
+              to="/mylearnings?tab=list"
               className="hover:text-gray-700 tracking-tighte"
             >
               My learning

@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EnrollmentList from "./EnrollmentList";
 import WishlistCourses from "./WishlistCourses";
+import { useSearchParams } from "react-router-dom";
 import Loader from "../commonComponents/Loader";
 import { useAuth } from "../../state_management/AuthContext";
 import { api } from "../../utils/api";
 
 export default function Mylearnimgs() {
-  const [courses, setCourses] = useState([]);
-  const [activeTab, setActiveTab] = useState("list");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState(searchParams.get("tab") || "list");
   const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState([]);
   const { user } = useAuth();
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const tab = searchParams.get("tab") || "list";
+    setActiveTab(tab);
+  }, [searchParams]);
+
   useEffect(() => {
     const fetchcourses = async () => {
       if (user === null) {
@@ -25,12 +31,9 @@ export default function Mylearnimgs() {
       try {
         setLoading(true);
         const id = user?.user?._id;
-        const res = await api.get(
-          `/enrollment/getallforstudent/${id}`,
-        );
+        const res = await api.get(`/enrollment/getallforstudent/${id}`);
         setCourses(res.data);
         setLoading(false);
-        // console.log(res.data, id);
       } catch (err) {
         console.log("error fetching data", err);
         setLoading(false);
@@ -46,13 +49,13 @@ export default function Mylearnimgs() {
         </h1>
         <div className="text-zinc-100 font-bold flex gap-4 absolute bottom-2 sm:ml-24 ml-4">
           <button
-            onClick={() => setActiveTab("list")}
+            onClick={() => setSearchParams({ tab: "list" })}
             className={activeTab === "list" ? "underline" : ""}
           >
             My Lists
           </button>
           <button
-            onClick={() => setActiveTab("wishlist")}
+            onClick={() => setSearchParams({ tab: "wishlist" })}
             className={activeTab === "wishlist" ? "underline" : ""}
           >
             Wishlist
