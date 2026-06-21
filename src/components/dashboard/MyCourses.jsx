@@ -7,17 +7,17 @@ import { useAuth } from "../../state_management/AuthContext";
 import { toast } from "react-toastify";
 
 export default function MyCourses() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (user === null) {
-      return;
-    }
-    if (user === false) {
-      toast.error("please login to view your learnings");
-      navigate("/signin");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user === null) {
+  //     return;
+  //   }
+  //   if (user === false) {
+  //     toast.error("please login to view your learnings");
+  //     navigate("/signin");
+  //   }
+  // }, [user]);
   return (
     <div className="flex overflow-hidden overflow-x-auto">
       <Sidebar />

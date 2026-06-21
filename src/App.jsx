@@ -22,6 +22,8 @@ import EditCourse from "./components/dashboard/components/manage/components/Edit
 import EditModules from "./components/dashboard/components/manage/components/EditModule";
 import UpdateProfile from "./components/settings/UpdateProfile";
 import StartTeachingLandingPage from "./components/StartTeachingLandingPage";
+import PublicRoute from "./utils/PublicRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -42,27 +44,38 @@ function App() {
           <Navbar />
           <div className="min-h-screen">
             <Routes>
+              {/* Public Routes */}
+              <Route element={<PublicRoute />}>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin" element={<Signin />} />
+              </Route>
+
+              {/* Open Routes */}
               <Route path="/" element={<Landingpage />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/signin" element={<Signin />} />
               <Route path="/allcourses" element={<ShowCourses />} />
               <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
               <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
               <Route path="/viewTeachers" element={<ViewTeachers />} />
-              <Route path="/createcourse" element={<CreateCourse />} />
-              <Route path="/addmodule/:id" element={<AddModule />} />
-              <Route path="/cloud" element={<CloudinaryUploadWidget />} />
-              <Route path="/mycourses/*" element={<MyCourses />} />
-              <Route path="/mylearnings" element={<Mylearnimgs />} />
-              <Route path="/edit-course/:id" element={<EditCourse />} />
-              <Route path="/editmodule/:id" element={<EditModules />} />
-              <Route path="/updateprofile" element={<UpdateProfile />} />
-              <Route path="/startteaching-langingpage" element={<StartTeachingLandingPage />} />
-
               <Route
                 path="/getcoursebyteacher/:id"
                 element={<Getcoursebyteacher />}
               />
+              <Route
+                path="/startteaching-langingpage"
+                element={<StartTeachingLandingPage />}
+              />
+
+              {/* Private Routes */}
+              <Route element={<PrivateRoute />}>
+                <Route path="/createcourse" element={<CreateCourse />} />
+                <Route path="/addmodule/:id" element={<AddModule />} />
+                <Route path="/mycourses/*" element={<MyCourses />} />
+                <Route path="/mylearnings" element={<Mylearnimgs />} />
+                <Route path="/edit-course/:id" element={<EditCourse />} />
+                <Route path="/editmodule/:id" element={<EditModules />} />
+                <Route path="/updateprofile" element={<UpdateProfile />} />
+                <Route path="/cloud" element={<CloudinaryUploadWidget />} />
+              </Route>
             </Routes>
           </div>
           <Footer />

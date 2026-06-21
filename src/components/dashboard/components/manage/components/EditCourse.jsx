@@ -29,11 +29,11 @@ const EditCourse = () => {
       if (user === null) {
         return;
       }
-      if (user === false) {
-        toast.error("Please login to edit your course");
-        navigate("/signin");
-        return;
-      }
+      // if (user === false) {
+      //   toast.error("Please login to edit your course");
+      //   navigate("/signin");
+      //   return;
+      // }
       try {
         const response = await api.get(`/course/getbyid/${id}`);
         const course = response?.data?.findCourse;

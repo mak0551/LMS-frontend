@@ -18,10 +18,10 @@ export default function Mylearnimgs() {
       if (user === null) {
         return;
       }
-      if (user === false) {
-        toast.error("please login to view your learnings");
-        navigate("/signin");
-      }
+      // if (user === false) {
+      //   toast.error("please login to view your learnings");
+      //   navigate("/signin");
+      // }
       try {
         setLoading(true);
         const id = user?.user?._id;

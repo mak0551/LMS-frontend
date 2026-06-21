@@ -19,9 +19,9 @@ function UpdateProfile() {
     if (user === null) {
       return;
     }
-    if (user === false) {
-      navigate("/signin");
-    }
+    // if (user === false) {
+    //   navigate("/signin");
+    // }
     const fetchData = async () => {
       try {
         const res = await api.get(`/users/getbyid/${id}`);

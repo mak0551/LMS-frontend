@@ -9,13 +9,13 @@ const CreateCourse = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user === null) return;
-    if (user === false) {
-      toast.error("please login to create your course");
-      navigate("/signin");
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user === null) return;
+  //   if (user === false) {
+  //     toast.error("please login to create your course");
+  //     navigate("/signin");
+  //   }
+  // }, [user, navigate]);
 
   const [courseData, setCourseData] = useState({
     title: "",
