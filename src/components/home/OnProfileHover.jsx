@@ -53,12 +53,12 @@ function OnProfileHover() {
           >
             My learning
           </li>
-          <li
-            // onClick={() => navigate("/mycart")}
+          {/* <li
+            onClick={() => navigate("/mycart")}
             className="cursor-pointer"
           >
             My cart
-          </li>
+          </li> */}
           <li
             onClick={() => navigate("/mylearnings?tab=wishlist")}
             className="cursor-pointer"
