@@ -86,7 +86,7 @@ function Courses() {
         )}
       </div>
       <Link to={"/allcourses"} className="flex justify-end items-center w-full">
-        <p className="text-black hover:bg-zinc-50 rounded-lg w-fit capitalize flex gap-1 items-center justify-center">
+        <p className="text-black rounded-lg w-fit capitalize flex gap-1 items-center justify-center">
           show all courses <VscArrowRight />
         </p>
       </Link>

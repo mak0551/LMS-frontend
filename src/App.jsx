@@ -24,6 +24,9 @@ import UpdateProfile from "./components/settings/UpdateProfile";
 import StartTeachingLandingPage from "./components/StartTeachingLandingPage";
 import PublicRoute from "./utils/PublicRoute";
 import PrivateRoute from "./utils/PrivateRoute";
+import HelpAndSupport from "./helpandsupport";
+import Terms from "./Terms";
+import Privacy from "./Privacy";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -64,7 +67,10 @@ function App() {
                 path="/startteaching-langingpage"
                 element={<StartTeachingLandingPage />}
               />
-
+              <Route path="/helpandsupport" element={<HelpAndSupport />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
+              
               {/* Private Routes */}
               <Route element={<PrivateRoute />}>
                 <Route path="/createcourse" element={<CreateCourse />} />

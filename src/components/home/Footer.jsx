@@ -102,23 +102,17 @@ function Footer() {
             <ul className="space-y-2 text-zinc-400">
               <li>
                 <Link
-                  to="/"
+                  to="/helpandsupport"
                   className="hover:text-white transition-colors duration-300"
                 >
-                  FAQ
+                  Help & support
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/"
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/"
+                  to="/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Terms
@@ -126,7 +120,9 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Privacy

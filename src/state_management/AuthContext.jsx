@@ -13,18 +13,31 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   // Check for user in localStorage when the app starts
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user");
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   } else {
+  //     setUser(false);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    } else {
-      setUser(false);
-    }
+    const checkAuth = async () => {
+      try {
+        const res = await api.get("/users/getcurrentuser");
+        setUser(res.data);
+      } catch (error) {
+        setUser(false);
+      }
+    };
+
+    checkAuth();
   }, []);
 
   // Function to handle login
   const login = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
+    // localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };
 

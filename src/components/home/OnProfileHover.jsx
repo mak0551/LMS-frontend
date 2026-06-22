@@ -77,7 +77,12 @@ function OnProfileHover() {
           >
             Edit profile
           </li>
-          <li className="border-t-2 pt-2">Help and Support</li>
+          <li
+            onClick={() => navigate("/helpandsupport")}
+            className="border-t-2 pt-2"
+          >
+            Help and Support
+          </li>
           <li onClick={() => logout()} className="cursor-pointer">
             Log out
           </li>
