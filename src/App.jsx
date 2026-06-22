@@ -56,8 +56,6 @@ function App() {
               {/* Open Routes */}
               <Route path="/" element={<Landingpage />} />
               <Route path="/allcourses" element={<ShowCourses />} />
-              <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
-              <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
               <Route path="/viewTeachers" element={<ViewTeachers />} />
               <Route
                 path="/getcoursebyteacher/:id"
@@ -73,6 +71,8 @@ function App() {
 
               {/* Private Routes */}
               <Route element={<PrivateRoute />}>
+                <Route path="/viewcoursedetails/:id" element={<ViewCourse />} />
+                <Route path="/viewvideos/:id/:index" element={<Viewvideo />} />
                 <Route path="/createcourse" element={<CreateCourse />} />
                 <Route path="/addmodule/:id" element={<AddModule />} />
                 <Route path="/mycourses/*" element={<MyCourses />} />

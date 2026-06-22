@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../state_management/AuthContext";
 import { api } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function OnProfileHover() {
   const [userData, setUserData] = useState(null);
@@ -47,11 +47,8 @@ function OnProfileHover() {
       </div>
       <div className="py-4">
         <ul className="text-sm font-thin flex flex-col gap-4">
-          <li
-            onClick={() => navigate("/mylearnings?tab=list")}
-            className="cursor-pointer"
-          >
-            My learning
+          <li>
+            <Link to="/mylearnings?tab=list">My learning</Link>
           </li>
           {/* <li
             onClick={() => navigate("/mycart")}
@@ -59,29 +56,22 @@ function OnProfileHover() {
           >
             My cart
           </li> */}
-          <li
-            onClick={() => navigate("/mylearnings?tab=wishlist")}
-            className="cursor-pointer"
-          >
-            Wishlist
+          <li>
+            <Link to="/mylearnings?tab=wishlist">Wishlist</Link>
           </li>
-          <li
-            onClick={() => navigate("/startteaching-langingpage")}
-            className="cursor-pointer"
-          >
-            Start teaching
+          <li>
+            <Link to="/startteaching-langingpage">Start teaching</Link>
           </li>
-          <li
-            onClick={() => navigate("/updateprofile")}
-            className="cursor-pointer"
-          >
-            Edit profile
+          <li className="cursor-pointer">
+            <Link to="/updateprofile">Edit profile</Link>
           </li>
-          <li
-            onClick={() => navigate("/helpandsupport")}
-            className="border-t-2 pt-2"
-          >
-            Help and Support
+          <li>
+            <Link
+              to="/helpandsupport"
+              className="border-t-2 pt-2 cursor-pointer"
+            >
+              Help and Support
+            </Link>
           </li>
           <li onClick={() => logout()} className="cursor-pointer">
             Log out
