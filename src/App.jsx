@@ -21,12 +21,12 @@ import Mylearnimgs from "./components/myLearnings/Mylearnimgs";
 import EditCourse from "./components/dashboard/components/manage/components/EditCourse";
 import EditModules from "./components/dashboard/components/manage/components/EditModule";
 import UpdateProfile from "./components/settings/UpdateProfile";
-import StartTeachingLandingPage from "./components/StartTeachingLandingPage";
+import StartTeachingLandingPage from "./components/teachers/StartTeachingLandingPage";
 import PublicRoute from "./utils/PublicRoute";
 import PrivateRoute from "./utils/PrivateRoute";
-import HelpAndSupport from "./helpandsupport";
-import Terms from "./Terms";
-import Privacy from "./Privacy";
+import HelpAndSupport from "./legal&support/helpandsupport";
+import Terms from "./legal&support/Terms";
+import Privacy from "./legal&support/Privacy";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -70,7 +70,7 @@ function App() {
               <Route path="/helpandsupport" element={<HelpAndSupport />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
-              
+
               {/* Private Routes */}
               <Route element={<PrivateRoute />}>
                 <Route path="/createcourse" element={<CreateCourse />} />
