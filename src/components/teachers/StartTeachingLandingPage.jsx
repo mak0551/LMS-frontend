@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function StartTeachingLandingPage() {
+  const navigate = useNavigate();
   const tabs = [
     {
       title: "Plan your curriculum",
@@ -48,7 +50,10 @@ function StartTeachingLandingPage() {
           <div className="font-thin">
             Become an instructor and change lives <br /> — including your own
           </div>
-          <button className="mt-4 bg-blue-600 px-2 py-1 rounded-full text-white w-full font-semibold text-lg">
+          <button
+            className="mt-4 bg-blue-600 px-2 py-1 rounded-full text-white w-full font-semibold text-lg"
+            onClick={() => navigate("/instructor-form")}
+          >
             Get started
           </button>
         </div>
@@ -105,7 +110,10 @@ function StartTeachingLandingPage() {
             marketplaces.
           </p>
 
-          <button className="mt-10 bg-purple-700 hover:bg-purple-800 text-white font-semibold px-12 md:px-24 py-4 rounded-lg">
+          <button
+            className="mt-10 bg-purple-700 hover:bg-purple-800 text-white font-semibold px-12 md:px-24 py-4 rounded-lg"
+            onClick={() => navigate("/instructor-form")}
+          >
             Get started
           </button>
         </div>

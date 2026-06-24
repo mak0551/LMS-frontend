@@ -27,6 +27,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import HelpAndSupport from "./legal&support/helpandsupport";
 import Terms from "./legal&support/Terms";
 import Privacy from "./legal&support/Privacy";
+import InstructorForm from "./components/teachers/InstructorForm";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -77,6 +78,7 @@ function App() {
                 <Route path="/addmodule/:id" element={<AddModule />} />
                 <Route path="/mycourses/*" element={<MyCourses />} />
                 <Route path="/mylearnings" element={<Mylearnimgs />} />
+                <Route path="/instructor-form" element={<InstructorForm />} />
                 <Route path="/edit-course/:id" element={<EditCourse />} />
                 <Route path="/editmodule/:id" element={<EditModules />} />
                 <Route path="/updateprofile" element={<UpdateProfile />} />
