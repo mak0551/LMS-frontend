@@ -78,7 +78,7 @@ export default function InstructorForm() {
       navigate(`/mycourses`);
     } catch (error) {
       console.error("Error posting modules:", error);
-      toast.error(error.response?.data?.message || "Failed to create modules.");
+      toast.error(error.response?.data?.message || "An error occurred while submitting the form.");
     }
   };
 

@@ -77,12 +77,21 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="hover:scale-105 transition-transform">
-            <Link
-              to="/startteaching-langingpage"
-              className="hover:text-gray-700 tracking-tighte"
-            >
-              Start teaching
-            </Link>
+            {user?.user?.role === "teacher" ? (
+              <Link
+                to="/mycourses"
+                className="hover:text-gray-700 tracking-tighte"
+              >
+                Instructor
+              </Link>
+            ) : (
+              <Link
+                to="/startteaching-langingpage"
+                className="hover:text-gray-700 tracking-tighte"
+              >
+                Start teaching
+              </Link>
+            )}
           </li>
           <li className="hover:scale-105 transition-transform">
             <Link
